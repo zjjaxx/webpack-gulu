@@ -1,0 +1,221 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+img[src=""],img:not([src]){
+    opacity: 0;
+}
+// 根据屏幕分辨率判断使用@2x图片或者@3x图片
+.bg-image(@url) {
+    background-image :url("@{url}@2x.png");
+
+    @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+        background-image :url("@{url}@3x.png");
+    }
+
+}
+
+.clear-fix{
+    &::after{
+        content: "";
+        display: table;
+        clear: both;
+    }
+   
+}
+.float-r{
+    float: right;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ellipsis-line2 {
+    -webkit-line-clamp: 2;
+    /* 用该属性来限定块元素内文本显示的行数 */
+    display: -webkit-box;
+    /* 将对象作为弹性的伸缩盒子显示 */
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+    text-overflow: ellipsis;
+    /* 使用省略号告诉用户有内容未显示 */
+    overflow: hidden;
+    /* 超出文本隐藏 */
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.aligin-center {
+    align-items: center;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.aligin-start {
+    align-items: flex-start;
+}
+
+.aligin-end {
+    align-items: flex-end;
+}
+
+.justify-start {
+    justify-content: flex-start;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+.border-top-1px, .border-right-1px, .border-bottom-1px, .border-left-1px{
+    position: relative;
+    &::before, &::after{
+        content: "";
+        display: block;
+        position: absolute;
+        transform-origin: 0 0;
+    }
+     
+}
+
+
+.border-top-1px{
+    &::before{
+    border-top: 1px solid #DDDDDD;
+    left: 0;
+    top: 0;
+    width: 100%;
+    transform-origin: 0 top;
+    }
+    
+}
+ 
+
+.border-right-1px{
+    &::after{
+        border-right: 1px solid #DDDDDD;
+        top: 0;
+        right: 0;
+        height: 100%;
+        transform-origin: right 0;
+    }
+  
+}
+ 
+
+.border-bottom-1px{
+    &::after{
+        border-bottom: 1px solid #DDDDDD;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        transform-origin: 0 bottom;
+    }
+    
+}
+ 
+
+.border-left-1px{
+    &::before{
+        border-left: 1px solid #DDDDDD;
+        top: 0;
+        left: 0;
+        height: 100%;
+        transform-origin: left 0;
+    }
+   
+}
+  
+
+@media (min-resolution: 2dppx){
+    .border-top-1px{
+        &::before{
+            width: 200%;
+            transform: scale(.5) translateZ(0);
+        }
+     
+    }
+   
+  .border-right-1px{
+    &::after{
+        height: 200%;
+    transform: scale(.5) translateZ(0);
+    }
+    
+  }
+  
+  .border-bottom-1px{
+    &::after{
+        width: 200%;
+        transform: scale(.5) translateZ(0);
+    }
+   
+  }
+    
+  .border-left-1px{
+    &::before{
+        height: 200%;
+        transform: scale(.5) translateZ(0);
+    }
+    
+  }
+   
+}
+ 
+
+@media (min-resolution: 3dppx){
+    .border-top-1px{
+        &::before{
+            width: 300%;
+            transform: scale(.333) translateZ(0);
+        }
+      
+    }
+    .border-right-1px{
+        &::after{
+            height: 300%;
+            transform: scale(.333) translateZ(0);
+        }
+        
+    }
+   
+    .border-bottom-1px{
+        &::after{
+            width: 300%;
+            transform: scale(.333) translateZ(0);
+        }
+      
+    }
+    .border-left-1px{
+        &::before{
+            height: 300%;
+            transform: scale(.333) translateZ(0);
+        }
+       
+    }
+   
+}
