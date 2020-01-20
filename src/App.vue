@@ -6,7 +6,7 @@
  -->
 <!--  -->
 <template>
-    <div id="app" class="">hello world</div>
+  <div id="app"></div>
 </template>
 
 <script>
@@ -25,5 +25,4 @@ export default {
 };
 </script>
 <style >
-
 </style>
