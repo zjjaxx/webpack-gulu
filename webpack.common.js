@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //自动生成html 并引入js
 const VueLoaderPlugin = require('vue-loader/lib/plugin') //vue 单文件配置
+var MiniCssExtractPlugin = require('mini-css-extract-plugin') //css提取
 module.exports = {
     entry: {
         app: path.resolve(__dirname, './src/main.js')
@@ -10,7 +11,9 @@ module.exports = {
         path: path.resolve(__dirname, 'dist') //
     },
     plugins: [
-        // 请确保引入这个插件！
+        new MiniCssExtractPlugin({
+            filename: 'style.css'
+        }),
         new VueLoaderPlugin(),//vue 单文件配置
         new HtmlWebpackPlugin({ //自动生成html 并引入js
             title: 'gulu-webpack',
@@ -26,9 +29,11 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    'style-loader',
                     'css-loader',
                     // 'postcss-loader'
+                    process.env.NODE_ENV !== 'production'
+                        ? 'style-loader'
+                        : MiniCssExtractPlugin.loader
                 ]
             },
             {
