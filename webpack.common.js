@@ -13,7 +13,7 @@ module.exports = {
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist'), 
+        path: path.resolve(__dirname, 'dist'),
         // publicPath:"https://www.baidu.com/assets/"
     },
     plugins: [
@@ -69,13 +69,42 @@ module.exports = {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 use: [
                     {
-                        loader:"file-loader",
-                        options:{
-                            name:"[name]-zz.[ext]",
+                        loader: "file-loader",
+                        options: {
+                            name: "[name]-zz.[ext]",
                             outputPath: 'fonts/'
                         }
                     }
                 ]
+            },
+            {
+                test: /\.js$/,
+                exclude: /(node_modules)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        // presets: [[
+                        //     "@babel/preset-env",
+                        //     {
+                        //         targets: {
+                        //             edge: "17",
+                        //             firefox: "60",
+                        //             chrome: "67",
+                        //             safari: "11.1",
+                        //         },
+                        //         "useBuiltIns": "usage"
+                        //     }
+                        // ]]
+                        "plugins": [["@babel/plugin-transform-runtime", {
+                            "absoluteRuntime": false,
+                            "corejs": 2,
+                            "helpers": true,
+                            "regenerator": true,
+                            "useESModules": false,
+                            "version": "7.0.0-beta.0"
+                        }]]
+                    }
+                }
             }
         ]
     }
