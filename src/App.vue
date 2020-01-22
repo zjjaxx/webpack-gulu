@@ -1,19 +1,15 @@
-<!--
- * @Author: zjj
- * @Date: 2020-01-21 08:58:23
- * @LastEditors  : zjj
- * @LastEditTime : 2020-01-21 14:08:34
- -->
+
 <!--
  * @Author: zjj
  * @Date: 2020-01-20 16:42:20
  * @LastEditors  : zjj
- * @LastEditTime : 2020-01-21 09:34:49
+ * @LastEditTime : 2020-01-22 15:33:56
  -->
 <!--  -->
 <template>
   <div id="app">
-    <div class="test" :class="test">{{test}}</div>
+    <div class="test test1" :class="test">{{test}}</div>
+    <span class="gulu">&#xe63a;</span>
   </div>
 </template>
 
@@ -22,7 +18,7 @@ export default {
   components: {},
   data() {
     return {
-      test:"33分为服费3"
+      test: "33分为服费3"
     };
   },
   computed: {},
@@ -34,8 +30,8 @@ export default {
   destroyed() {} //生命周期 - 销毁完成
 };
 </script>
-<style scoped lang="less">
-#app{
-  height: 100%;
+<style lang="less" scoped>
+.test1{
+  color: red;
 }
 </style>

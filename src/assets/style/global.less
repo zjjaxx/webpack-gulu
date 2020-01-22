@@ -1,7 +1,9 @@
 html {
     height: 100%;
 }
-
+.test{
+    transform: translateX(100px);
+}
 body {
     height: 100%;
     overflow-x: hidden;
@@ -43,9 +45,10 @@ img[src=""],img:not([src]){
     /* 用该属性来限定块元素内文本显示的行数 */
     display: -webkit-box;
     /* 将对象作为弹性的伸缩盒子显示 */
-    /* autoprefixer: off */
+ 
+    /* autoprefixer: ignore next */
     -webkit-box-orient: vertical;
-    /* autoprefixer: on */
+  
     text-overflow: ellipsis;
     /* 使用省略号告诉用户有内容未显示 */
     overflow: hidden;

@@ -1,19 +1,22 @@
+/*
+ * @Author: zjj
+ * @Date: 2020-01-21 08:58:23
+ * @LastEditors  : zjj
+ * @LastEditTime : 2020-01-22 16:45:37
+ */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //自动生成html 并引入js
 const VueLoaderPlugin = require('vue-loader/lib/plugin') //vue 单文件配置
-var MiniCssExtractPlugin = require('mini-css-extract-plugin') //css提取
 module.exports = {
     entry: {
         app: path.resolve(__dirname, './src/main.js')
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist') //
+        path: path.resolve(__dirname, 'dist'), 
+        // publicPath:"https://www.baidu.com/assets/"
     },
     plugins: [
-        new MiniCssExtractPlugin({
-            filename: 'style.css'
-        }),
         new VueLoaderPlugin(),//vue 单文件配置
         new HtmlWebpackPlugin({ //自动生成html 并引入js
             title: 'gulu-webpack',
@@ -29,19 +32,21 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
+                    'style-loader',
                     'css-loader',
-                    // 'postcss-loader'
-                    process.env.NODE_ENV !== 'production'
-                        ? 'style-loader'
-                        : MiniCssExtractPlugin.loader
+                    'postcss-loader',
                 ]
             },
             {
                 test: /\.less$/,
                 use: [
                     'style-loader',
-                    'css-loader',
-                    "less-loader"
+                    {
+                        loader: "css-loader",
+                        options: { importLoaders: 2 }
+                    },
+                    "less-loader",
+                    'postcss-loader',
                 ]
             },
             //file-loader 可以指定要复制和放置资源文件的位置，以及如何使用版本哈希命名以获得更好的缓存。此外，这意味着 你可以就近管理图片文件，可以使用相对路径而不用担心部署时 URL 的问题。使用正确的配置，webpack 将会在打包输出中自动重写文件路径为正确的 URL。
@@ -54,7 +59,20 @@ module.exports = {
                         loader: 'url-loader',
                         options: {
                             limit: 8192,
-                            name: "[name]-zz.[ext]"
+                            name: "[name]-zz.[ext]",
+                            outputPath: 'images/'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: [
+                    {
+                        loader:"file-loader",
+                        options:{
+                            name:"[name]-zz.[ext]",
+                            outputPath: 'fonts/'
                         }
                     }
                 ]
