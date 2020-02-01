@@ -4,11 +4,15 @@
   "description": "vue+ webpack",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.prod.js",
-    "watch": "webpack --watch",
-    "start": "webpack-dev-server --config webpack.dev.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev-build": "webpack --config build/webpack.dev.js",
+    "build": "webpack --config build/webpack.prod.js",
+    "start": "webpack-dev-server --config build/webpack.dev.js"
   },
+  "sideEffects": [
+    "*.less",
+    "*.css",
+    "*.vue"
+  ],
   "keywords": [
     "vue",
     "webpack"
@@ -20,6 +24,7 @@
     "@babel/runtime": "^7.8.3",
     "@babel/runtime-corejs2": "^7.8.3",
     "core-js": "^2.6.11",
+    "lodash": "^4.17.15",
     "vue": "^2.6.11"
   },
   "devDependencies": {

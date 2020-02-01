@@ -7,20 +7,31 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //自动生成html 并引入js
 const VueLoaderPlugin = require('vue-loader/lib/plugin') //vue 单文件配置
+// var MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin'); //清除dist
 module.exports = {
     entry: {
-        app: path.resolve(__dirname, './src/main.js')
+        app: path.resolve(__dirname, '../src/main.js')
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, '../dist'),
         // publicPath:"https://www.baidu.com/assets/"
     },
+    optimization: {
+       splitChunks:{
+           chunks:"all"
+       }
+    },
     plugins: [
+        // new MiniCssExtractPlugin({
+        //     filename: 'style.css'
+        // }),
+        new CleanWebpackPlugin(),
         new VueLoaderPlugin(),//vue 单文件配置
         new HtmlWebpackPlugin({ //自动生成html 并引入js
             title: 'gulu-webpack',
-            template: path.resolve(__dirname, './public/index.html') //使用自己的模板
+            template: path.resolve(__dirname, '../public/index.html') //使用自己的模板
         })
     ],
     module: {
@@ -33,6 +44,9 @@ module.exports = {
                 test: /\.css$/,
                 use: [
                     'style-loader',
+                    // process.env.NODE_ENV !== 'production'
+                    // ? 'vue-style-loader'
+                    // : MiniCssExtractPlugin.loader,
                     'css-loader',
                     'postcss-loader',
                 ]

@@ -7,8 +7,9 @@
  -->
 <!--  -->
 <template>
-  <div id="app">
+  <div id="container">
     <div class="test test1" :class="test">{{test}}</div>
+    <div class="button-container"></div>
     <span class="gulu">&#xe63a;</span>
     <span>{{count}}</span>
     <button @click="add">add</button>
@@ -19,8 +20,10 @@
 </template>
 
 <script>
+import ZButton from "./components/z-button.vue";
+import Vue from "vue";
 export default {
-  components: {},
+  components: { ZButton },
   data() {
     return {
       test: "333纷纷",
@@ -31,19 +34,14 @@ export default {
   watch: {},
   methods: {
     add() {
-      this.count.map(item => {
-        let helloworld = "aaa";
-        console.log("item", item, helloworld);
-      });
-      let promise = () => {
-        return new Promise((resolve, reject) => {
-          setTimeout(() => {
-            resolve(100)
-          }, 2000);
+      import("lodash").then(({ default: _ }) => {
+        let ButtonConstructor = Vue.extend(ZButton);
+        let button = new ButtonConstructor({
+          propsData: {
+            iconName: "i-setting"
+          }
         });
-      };
-      promise().then(res=>{
-        console.log("res",res)
+        button.$mount(".button-container");
       });
     }
   },
