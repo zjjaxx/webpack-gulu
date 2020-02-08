@@ -1,36 +1,67 @@
 html {
     height: 100%;
 }
-.test{
-    transform: translateX(100px);
-}
+
 body {
     height: 100%;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
 }
-img[src=""],img:not([src]){
+
+@supports (bottom: constant(safe-area-inset-top)) or (bottom: env(safe-area-inset-top)) {
+    body {
+        padding-top: constant(safe-area-inset-top);
+        padding-top: env(safe-area-inset-top);
+        padding-left: constant(safe-area-inset-left);
+        padding-left: env(safe-area-inset-left);
+        padding-right: constant(safe-area-inset-right);
+        padding-right: env(safe-area-inset-right);
+        padding-bottom: constant(safe-area-inset-bottom);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}
+
+img[src=""],
+img:not([src]) {
     opacity: 0;
 }
+/* 内容区 */
+.z-body{
+    position: relative;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+/* 根据header和navbar自动适应内容区高度 */
+.z-header ~ .z-body{
+    padding-top: 45px;
+}
+.z-navbar ~ .z-body{
+    padding-bottom:50px;
+}
+
 // 根据屏幕分辨率判断使用@2x图片或者@3x图片
 .bg-image(@url) {
     background-image :url("@{url}@2x.png");
 
-    @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+    @media (-webkit-min-device-pixel-ratio: 3),
+    (min-device-pixel-ratio: 3) {
         background-image :url("@{url}@3x.png");
     }
 
 }
 
-.clear-fix{
-    &::after{
+.clear-fix {
+    &::after {
         content: "";
         display: table;
         clear: both;
     }
-   
+
 }
-.float-r{
+
+.float-r {
     float: right;
 }
 
@@ -45,10 +76,10 @@ img[src=""],img:not([src]){
     /* 用该属性来限定块元素内文本显示的行数 */
     display: -webkit-box;
     /* 将对象作为弹性的伸缩盒子显示 */
- 
+
     /* autoprefixer: ignore next */
     -webkit-box-orient: vertical;
-  
+
     text-overflow: ellipsis;
     /* 使用省略号告诉用户有内容未显示 */
     overflow: hidden;
@@ -94,131 +125,139 @@ img[src=""],img:not([src]){
 .justify-end {
     justify-content: flex-end;
 }
-.border-top-1px, .border-right-1px, .border-bottom-1px, .border-left-1px{
+
+.border-top-1px,
+.border-right-1px,
+.border-bottom-1px,
+.border-left-1px {
     position: relative;
-    &::before, &::after{
+
+    &::before,
+    &::after {
         content: "";
         display: block;
         position: absolute;
         transform-origin: 0 0;
     }
-     
+
 }
 
 
-.border-top-1px{
-    &::before{
-    border-top: 1px solid #DDDDDD;
-    left: 0;
-    top: 0;
-    width: 100%;
-    transform-origin: 0 top;
+.border-top-1px {
+    &::before {
+        border-top: 1px solid #DDDDDD;
+        left: 0;
+        top: 0;
+        width: 100%;
+        transform-origin: 0 top;
     }
-    
-}
- 
 
-.border-right-1px{
-    &::after{
+}
+
+
+.border-right-1px {
+    &::after {
         border-right: 1px solid #DDDDDD;
         top: 0;
         right: 0;
         height: 100%;
         transform-origin: right 0;
     }
-  
-}
- 
 
-.border-bottom-1px{
-    &::after{
+}
+
+
+.border-bottom-1px {
+    &::after {
         border-bottom: 1px solid #DDDDDD;
         left: 0;
         bottom: 0;
         width: 100%;
         transform-origin: 0 bottom;
     }
-    
-}
- 
 
-.border-left-1px{
-    &::before{
+}
+
+
+.border-left-1px {
+    &::before {
         border-left: 1px solid #DDDDDD;
         top: 0;
         left: 0;
         height: 100%;
         transform-origin: left 0;
     }
-   
-}
-  
 
-@media (min-resolution: 2dppx){
-    .border-top-1px{
-        &::before{
+}
+
+
+@media (min-resolution: 2dppx) {
+    .border-top-1px {
+        &::before {
             width: 200%;
             transform: scale(.5) translateZ(0);
         }
-     
-    }
-   
-  .border-right-1px{
-    &::after{
-        height: 200%;
-    transform: scale(.5) translateZ(0);
-    }
-    
-  }
-  
-  .border-bottom-1px{
-    &::after{
-        width: 200%;
-        transform: scale(.5) translateZ(0);
-    }
-   
-  }
-    
-  .border-left-1px{
-    &::before{
-        height: 200%;
-        transform: scale(.5) translateZ(0);
-    }
-    
-  }
-   
-}
- 
 
-@media (min-resolution: 3dppx){
-    .border-top-1px{
-        &::before{
+    }
+
+    .border-right-1px {
+        &::after {
+            height: 200%;
+            transform: scale(.5) translateZ(0);
+        }
+
+    }
+
+    .border-bottom-1px {
+        &::after {
+            width: 200%;
+            transform: scale(.5) translateZ(0);
+        }
+
+    }
+
+    .border-left-1px {
+        &::before {
+            height: 200%;
+            transform: scale(.5) translateZ(0);
+        }
+
+    }
+
+}
+
+
+@media (min-resolution: 3dppx) {
+    .border-top-1px {
+        &::before {
             width: 300%;
             transform: scale(.333) translateZ(0);
         }
-      
+
     }
-    .border-right-1px{
-        &::after{
+
+    .border-right-1px {
+        &::after {
             height: 300%;
             transform: scale(.333) translateZ(0);
         }
-        
+
     }
-   
-    .border-bottom-1px{
-        &::after{
+
+    .border-bottom-1px {
+        &::after {
             width: 300%;
             transform: scale(.333) translateZ(0);
         }
-      
+
     }
-    .border-left-1px{
-        &::before{
+
+    .border-left-1px {
+        &::before {
             height: 300%;
             transform: scale(.333) translateZ(0);
         }
-       
+
     }
-   
+
 }

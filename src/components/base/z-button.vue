@@ -23,33 +23,35 @@
 </template>
 
 <script>
-import ZIcon from "./z-icon.vue";
 export default {
-  components: { "z-icon": ZIcon },
+  components: {},
   props: {
     isLoading: {
       type: Boolean,
       default: () => {
-        return false;
+        return false
       }
     },
     iconName: {
       type: String,
       default: () => {
-        return "";
+        return ''
       }
     },
     iconPosition: {
       type: String,
       default: () => {
-        return "left";
+        return 'left'
       },
       validator: value => {
-        return value == "left" || value == "right";
+        return value == 'left' || value == 'right'
       }
     }
+  },
+  mounted() {
+    document.body.addEventListener('touchstart', function() {})
   }
-};
+}
 </script>
 <style lang='less'>
 .z-button {
@@ -68,7 +70,7 @@ export default {
   border: 1px solid var(--border-color);
   &:active {
     background: var(--button-active-bg);
-    transform: scale(0.98, 0.98);
+    transform: scale(0.9, 0.9);
   }
   &:hover {
     border-color: var(--border-color-hover);

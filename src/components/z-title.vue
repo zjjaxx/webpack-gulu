@@ -1,0 +1,46 @@
+<!--  -->
+<template>
+  <div class="z-title">
+    <div class="title-content">
+        <div class="title">{{title}}</div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  components: {},
+  props: {
+    title: {
+      type: String,
+      default: () => {
+        return '标题'
+      },
+      required: true
+    }
+  },
+  data() {
+    return {}
+  },
+  computed: {},
+  watch: {},
+  methods: {},
+  created() {},
+  mounted() {},
+  updated() {}, //生命周期 - 更新之后
+  destroyed() {} //生命周期 - 销毁完成
+}
+</script>
+<style lang='less' scoped>
+.z-title {
+  padding-left: 15px;
+  background: #f8f8f8;
+  .title-content{
+      padding: 12px 15px 12px 0px;
+      .title{
+          border-left: 3px solid #c0c0c0;
+          text-indent: 10px;
+      }
+  }
+}
+</style>
