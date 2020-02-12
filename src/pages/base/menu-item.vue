@@ -23,6 +23,7 @@
       <z-menu-item title="个人中心">
         <template v-slot:right>
           <span>跳转</span>
+           <z-icon icon-name="i-right"></z-icon>
         </template>
       </z-menu-item>
     </z-body>

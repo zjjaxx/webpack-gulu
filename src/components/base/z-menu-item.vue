@@ -5,7 +5,6 @@
       <slot name="left"></slot>
       <span class="content-title">{{title}}</span>
       <slot name="right"></slot>
-      <z-icon icon-name="i-right"></z-icon>
     </div>
   </router-link>
 </template>

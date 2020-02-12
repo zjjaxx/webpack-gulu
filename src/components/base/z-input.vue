@@ -6,15 +6,16 @@
       <span class="tip-error">{{inputAttr.errorTip}}</span>
     </div>
     <div class="clear flex justify-center aligin-center" @click="$emit('input','')">
-        <z-icon v-show="inputAttr.value &&!inputAttr.disabled" icon-name="i-error" ></z-icon>
+        <z-icon v-show="inputAttr.value &&!inputAttr.disabled" iconName="i-error" ></z-icon>
     </div>
   
   </div>
 </template>
 
 <script>
+import ZIcon from "./z-icon.vue"
 export default {
-  components: { },
+  components: { ZIcon},
   props: {
     inputAttr: {
       type: Object,

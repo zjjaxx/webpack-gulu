@@ -28,8 +28,6 @@ describe("ZInput",()=>{
         input.$destroy()
     })
     it("v-model可用",()=>{
-    })
-    it("clear可用",()=>{
         let inputConstruct=Vue.extend(ZInput)
         let input=new inputConstruct({
             propsData:{
@@ -39,13 +37,44 @@ describe("ZInput",()=>{
             }
         })
         input.$mount()
-        let svg=input.$el.querySelector("svg")
-        expect(svg).to.be.null
+        let value_callback
+        const spy = chai.spy((e)=>{
+            value_callback=e
+        });
+        input.$on("input",spy)
         let _input =input.$el.querySelector("input")
-        _input.value="aaa"
-        console.log(input.inputAttr.value)
-        // let use=input.$el.querySelector("use")
-        // expect(use['xlink:href']).to.equal("i-error")
+        let inputEvent=new Event("input")
+        Object.defineProperty(inputEvent,"target",{value:{value:"hahaha"},enumerable:true})
+        _input.dispatchEvent(inputEvent)
+        expect(value_callback).to.equal("hahaha")
+    })
+    describe("clear可用",()=>{
+        it("clear 不显示",()=>{
+            let inputConstruct=Vue.extend(ZInput)
+            let input=new inputConstruct({
+                propsData:{
+                    inputAttr:{
+                        value:""
+                    }
+                }
+            })
+            input.$mount()
+            let svg=input.$el.querySelector("svg")
+            expect(svg.style.display).to.equal("none")
+        })
+        it("clear 显示",()=>{
+            let inputConstruct=Vue.extend(ZInput)
+            let input=new inputConstruct({
+                propsData:{
+                    inputAttr:{
+                        value:"hhh"
+                    }
+                }
+            })
+            input.$mount()
+            let svg=input.$el.querySelector("svg")
+            expect(svg.style.display).to.equal("")
+        })
     })
     it("input placeholder",()=>{
         let inputConstruct=Vue.extend(ZInput)
