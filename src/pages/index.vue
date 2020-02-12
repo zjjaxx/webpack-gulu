@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import ZNavbar from '../components/z-navbar.vue'
+import ZNavbar from '../components/layout/z-navbar.vue'
 export default {
   components: { ZNavbar },
   data() {

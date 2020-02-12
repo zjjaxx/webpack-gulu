@@ -1,7 +1,7 @@
 <!--  -->
 <template>
-  <div class="body-container">
-      <z-header title="z-header">
+<div class='title-container'>
+        <z-header title="标题栏">
       <template v-slot:left>
         <div class="left-wrap flex justify-center aligin-center" @click="$router.back()">
           <z-icon icon-name="i-left"></z-icon>
@@ -9,32 +9,38 @@
       </template>
     </z-header>
     <z-body>
-      <z-title title="z-body"></z-title>
-     <template v-for="(item,index) in 50">
-       <z-menu-item :title="'position:'+item"></z-menu-item>
-     </template>
+      <z-title title="默认标题栏"></z-title>
     </z-body>
-  </div>
+</div>
 </template>
 
 <script>
+
 export default {
-  components: {},
-  data() {
-    return {}
-  },
-  computed: {},
-  watch: {},
-  methods: {},
-  created() {},
-  mounted() {},
-  updated() {}, //生命周期 - 更新之后
-  destroyed() {} //生命周期 - 销毁完成
+components: {},
+data() {
+return {
+
+};
+},
+computed: {},
+watch: {},
+methods: {
+
+},
+created() {
+
+},
+mounted() {
+
+},
+updated() {}, //生命周期 - 更新之后
+destroyed() {}, //生命周期 - 销毁完成
 }
 </script>
 <style lang='less' scoped>
-.body-container {
-  position: absolute;
+.title-container{
+     position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -54,4 +60,5 @@ export default {
     }
   }
 }
+
 </style>

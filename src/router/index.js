@@ -24,6 +24,26 @@ const routes = [
                     {
                         path: "badge",
                         component: () => import("../pages/base/badge.vue")
+                    },
+                    {
+                        path: "title",
+                        component: () => import("../pages/base/title.vue")
+                    },
+                    {
+                        path: "icon",
+                        component: () => import("../pages/base/icon.vue")
+                    },
+                    {
+                        path: "menuItem",
+                        component: () => import("../pages/base/menu-item.vue")
+                    },
+                    {
+                        path: "input",
+                        component: () => import("../pages/base/input.vue")
+                    },
+                    {
+                        path: "dialog",
+                        component: () => import("../pages/base/dialog.vue")
                     }
                 ]
             }, {

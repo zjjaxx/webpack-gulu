@@ -16,7 +16,7 @@ Vue.config.devtools=false
 
 describe("Button",()=>{
     it("存在",()=>{
-        expect(ZButton).to.be.exist
+        expect(ZButton).to.be.an("object")
     })
     it("iconName 测试 ",()=>{
          let ButtonConstruct = Vue.extend(ZButton)

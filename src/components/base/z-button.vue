@@ -23,8 +23,9 @@
 </template>
 
 <script>
+import ZIcon from "./z-icon.vue"
 export default {
-  components: {},
+  components: {ZIcon},
   props: {
     isLoading: {
       type: Boolean,

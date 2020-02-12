@@ -1,11 +1,14 @@
 <!--  -->
 <template>
-  <div class="input-wrap aligin-center" :class="[inputAttr.errorTip?'error':'']">
+  <div class="z-input-wrap aligin-center" :class="[inputAttr.errorTip?'error':'']">
     <input class="z-input" v-bind="inputAttr" v-on="c_inputListener" />
-    <template v-if="inputAttr.errorTip">
-      <ZIcon iconName="i-error" class="icon-error"></ZIcon>
+    <div  v-if="inputAttr.errorTip">
       <span class="tip-error">{{inputAttr.errorTip}}</span>
-    </template>
+    </div>
+    <div class="clear flex justify-center aligin-center" @click="$emit('input','')">
+        <z-icon v-show="inputAttr.value &&!inputAttr.disabled" icon-name="i-error" ></z-icon>
+    </div>
+  
   </div>
 </template>
 
@@ -37,6 +40,9 @@ export default {
           // 这里确保组件配合 `v-model` 的工作
           input: function(event) {
             vm.$emit('input', event.target.value)
+          },
+          focus:function(event){
+            event.target.scrollIntoView()
           }
         }
       )
@@ -45,14 +51,18 @@ export default {
   watch: {},
   methods: {},
   created() {},
-  mounted() {},
+  mounted() {
+  },
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
 }
 </script>
 <style lang='less' scoped>
-.input-wrap {
-  display: inline-flex;
+.clear /deep/ .icon{
+  fill: gray;
+}
+.z-input-wrap {
+  position: relative;
   font-size: 14px;
   * {
     margin-right: 4px;
@@ -61,13 +71,14 @@ export default {
     }
   }
   .z-input {
-    flex: 1;
-    padding: 0 8px;
+    width: 100%;
+    padding: 0 28px 0 8px;
     height: var(--button-height);
     border: 1px solid var(--border-color);
     font-size: 14px;
     line-height: var(--button-height);
     border-radius: var(--border-radius);
+    box-sizing: border-box;
     &:hover {
       border-color: var(--border-color-hover);
     }
@@ -89,10 +100,18 @@ export default {
   .tip-error {
     color: red;
   }
+  .clear{
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 32px;
+    width: 28px;
+  }
 }
 .error {
   .z-input {
     border-color: red;
   }
 }
+
 </style>

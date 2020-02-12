@@ -12,7 +12,7 @@ module.exports = {
     mode: "production", //development
     devtool: 'source-map', //追踪到错误和警告在源代码中的原始位置
     output: {
-        filename: '[name].bundle.js',
+        filename: '[name].test.js',
         path: path.resolve(__dirname, '../dist'),
         // publicPath:"https://www.baidu.com/assets/"
     },

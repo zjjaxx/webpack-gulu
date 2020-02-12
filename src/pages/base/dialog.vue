@@ -1,7 +1,7 @@
 <!--  -->
 <template>
-  <div class="body-container">
-      <z-header title="z-header">
+  <div class="dialog-container">
+    <z-header title="对话框">
       <template v-slot:left>
         <div class="left-wrap flex justify-center aligin-center" @click="$router.back()">
           <z-icon icon-name="i-left"></z-icon>
@@ -9,19 +9,24 @@
       </template>
     </z-header>
     <z-body>
-      <z-title title="z-body"></z-title>
-     <template v-for="(item,index) in 50">
-       <z-menu-item :title="'position:'+item"></z-menu-item>
-     </template>
+      <z-title title="提示弹窗"></z-title>
+      <div class="default-wrap">
+          <z-button @click="defaultFlag=!defaultFlag">提示弹窗(默认)</z-button>
+      </div>
     </z-body>
+    <z-dialog :dialogFlag.sync=defaultFlag content="今日次数已达上限"></z-dialog>
   </div>
 </template>
 
 <script>
+import ZButton from "../../components/base/z-button.vue"
+import ZDialog from "../../components/base/z-dialog.vue"
 export default {
-  components: {},
+  components: {ZButton,ZDialog},
   data() {
-    return {}
+    return {
+        defaultFlag:false
+    }
   },
   computed: {},
   watch: {},
@@ -33,7 +38,7 @@ export default {
 }
 </script>
 <style lang='less' scoped>
-.body-container {
+.dialog-container {
   position: absolute;
   top: 0;
   left: 0;
