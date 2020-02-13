@@ -7,7 +7,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin') //vue 单文件配置
 const { CleanWebpackPlugin } = require('clean-webpack-plugin'); //清除dist
 module.exports = {
     entry: {
-        app: path.resolve(__dirname, '../test/input.test.js')
+        app: path.resolve(__dirname, '../test/badge.test.js')
     },
     mode: "production", //development
     devtool: 'source-map', //追踪到错误和警告在源代码中的原始位置
