@@ -51,6 +51,10 @@ const routes = [
                 component: () => import(/*webpackChunkName:"layout"*/"../pages/layout/layout.vue"),
                 children:[
                     {
+                        path: "row-col",
+                        component: () => import("../pages/layout/row-col.vue")
+                    },
+                    {
                         path: "header",
                         component: () => import("../pages/layout/header.vue")
                     },
