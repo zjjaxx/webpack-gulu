@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="z-row clear-fix">
+  <div class="z-row" :class="[type=='flex'?'flex':'clear-fix']" :style="cssStyle">
     <slot></slot>
   </div>
 </template>
@@ -15,6 +15,18 @@ export default {
   props: {
     gutter: {
       type: [String, Number]
+    },
+    type: {
+      type: String,
+      default: () => {
+        return ''
+      }
+    },
+    justify: {
+      type: String,
+      default: () => {
+        return ''
+      }
     }
   },
   components: {},
@@ -22,9 +34,15 @@ export default {
     return {}
   },
   computed: {
-    _getGutter(){
-      console.log("this.gutter",this.gutter)
+    _getGutter() {
       return this.gutter
+    },
+    cssStyle() {
+      return {
+        marginLeft: `-${parseInt(this.gutter) / 2}px`,
+        marginRight: `-${parseInt(this.gutter) / 2}px`,
+        justifyContent: this.justify
+      }
     }
   },
   watch: {},
@@ -37,5 +55,6 @@ export default {
 </script>
 <style lang='less' scoped>
 .z-row {
+ 
 }
 </style>

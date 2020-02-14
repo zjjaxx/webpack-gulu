@@ -19,7 +19,7 @@
             <div class="col-css" style="opacity:0.5">span:12</div>
           </z-col>
         </z-row>
-        <z-row>
+        <z-row style="marginTop:20px">
           <z-col :span="8">
             <div class="col-css">span:12</div>
           </z-col>
@@ -28,6 +28,17 @@
           </z-col>
           <z-col :span="8">
             <div class="col-css">span:12</div>
+          </z-col>
+        </z-row>
+        <z-row style="marginTop:20px">
+          <z-col span="6">
+            <div class="col-css">span:6</div>
+          </z-col>
+          <z-col span="6">
+            <div class="col-css" style="opacity:0.5">span:6</div>
+          </z-col>
+          <z-col span="6">
+            <div class="col-css">span:6</div>
           </z-col>
         </z-row>
       </div>
@@ -52,6 +63,78 @@
         </z-col>
         <z-col span="8">
           <div class="col-css" style="opacity:0.5">span:8</div>
+        </z-col>
+      </z-row>
+      <z-title title="flex布局"></z-title>
+      <z-row type="flex">
+        <z-col span="6">
+          <div class="col-css">span:6</div>
+        </z-col>
+        <z-col span="6">
+          <div class="col-css" style="opacity:0.5">span:6</div>
+        </z-col>
+        <z-col span="6">
+          <div class="col-css">span:6</div>
+        </z-col>
+      </z-row>
+      <z-title title="flex布局+居中"></z-title>
+      <z-row type="flex" justify="center">
+        <z-col span="6">
+          <div class="col-css">span:6</div>
+        </z-col>
+        <z-col span="6">
+          <div class="col-css" style="opacity:0.5">span:6</div>
+        </z-col>
+        <z-col span="6">
+          <div class="col-css">span:6</div>
+        </z-col>
+      </z-row>
+      <z-title title="flex布局+靠左"></z-title>
+      <z-row type="flex" justify="flex-start">
+        <z-col span="6">
+          <div class="col-css">span:6</div>
+        </z-col>
+        <z-col span="6">
+          <div class="col-css" style="opacity:0.5">span:6</div>
+        </z-col>
+        <z-col span="6">
+          <div class="col-css">span:6</div>
+        </z-col>
+      </z-row>
+      <z-title title="flex布局+靠右"></z-title>
+      <z-row type="flex" justify="flex-end">
+        <z-col span="6">
+          <div class="col-css">span:6</div>
+        </z-col>
+        <z-col span="6">
+          <div class="col-css" style="opacity:0.5">span:6</div>
+        </z-col>
+        <z-col span="6">
+          <div class="col-css">span:6</div>
+        </z-col>
+      </z-row>
+      <z-title title="flex布局+space-between"></z-title>
+      <z-row type="flex" justify="space-between">
+        <z-col span="6">
+          <div class="col-css">span:6</div>
+        </z-col>
+        <z-col span="6">
+          <div class="col-css" style="opacity:0.5">span:6</div>
+        </z-col>
+        <z-col span="6">
+          <div class="col-css">span:6</div>
+        </z-col>
+      </z-row>
+      <z-title title="flex布局+space-around"></z-title>
+      <z-row type="flex" justify="space-around">
+        <z-col span="6">
+          <div class="col-css">span:6</div>
+        </z-col>
+        <z-col span="6">
+          <div class="col-css" style="opacity:0.5">span:6</div>
+        </z-col>
+        <z-col span="6">
+          <div class="col-css">span:6</div>
         </z-col>
       </z-row>
     </z-body>
