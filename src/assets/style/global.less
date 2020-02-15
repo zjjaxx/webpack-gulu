@@ -26,19 +26,22 @@ img[src=""],
 img:not([src]) {
     opacity: 0;
 }
+
 /* 内容区 */
-.z-body{
+.z-body {
     position: relative;
     height: 100%;
     box-sizing: border-box;
     overflow-y: auto;
 }
+
 /* 根据header和navbar自动适应内容区高度 */
-.z-header ~ .z-body{
+.z-header~.z-body {
     padding-top: 45px;
 }
-.z-navbar ~ .z-body{
-    padding-bottom:50px;
+
+.z-navbar~.z-body {
+    padding-bottom: 50px;
 }
 
 // 根据屏幕分辨率判断使用@2x图片或者@3x图片

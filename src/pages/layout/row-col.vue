@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="row-col-container">
-    <z-header title="Row">
+    <z-header title="Grid栅格">
       <template v-slot:left>
         <div class="left-wrap flex justify-center aligin-center" @click="$router.back()">
           <z-icon icon-name="i-left"></z-icon>
@@ -135,6 +135,15 @@
         </z-col>
         <z-col span="6">
           <div class="col-css">span:6</div>
+        </z-col>
+      </z-row>
+      <z-title title="默认布局+响应式"></z-title>
+      <z-row>
+        <z-col span="2" :ipad="{span:4}" :sm="{span:6}" :pc="{span:8}" :lg="{span:10}">
+          <div class="col-css">响应式</div>
+        </z-col>
+        <z-col span="22" :ipad="{span:20}" :sm="{span:18}" :pc="{span:16}" :lg="{span:14}">
+          <div class="col-css" style="opacity:0.5">响应式</div>
         </z-col>
       </z-row>
     </z-body>

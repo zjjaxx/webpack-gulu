@@ -1,11 +1,18 @@
 <!--  -->
 <template>
-  <div class="z-col" :style="colStyle">
+  <div class="z-col" :style="colStyle" :class="classStyle">
     <slot></slot>
   </div>
 </template>
 
 <script>
+const _validator = value => {
+  let valid = true
+  for (let key in value) {
+    valid = ['span', 'offset'].includes(key)
+  }
+  return valid
+}
 export default {
   components: {},
   inject: ['getGutter'],
@@ -16,6 +23,23 @@ export default {
     },
     offset: {
       type: [String, Number]
+    },
+
+    ipad: {
+      type: Object,
+      validator: _validator
+    },
+    sm: {
+      type: Object,
+      validator: _validator
+    },
+    pc: {
+      type: Object,
+      validator: _validator
+    },
+    lg: {
+      type: Object,
+      validator: _validator
     }
   },
   data() {
@@ -24,11 +48,23 @@ export default {
   computed: {
     colStyle() {
       return {
-        width: (parseInt(this.span) * 100) / 24 + '%',
-        marginLeft: (parseInt(this.offset) * 100) / 24 + '%',
-        paddingLeft:`${parseInt(this.getGutter)/2}px`,
-        paddingRight:`${parseInt(this.getGutter)/2}px`
+        paddingLeft: `${parseInt(this.getGutter) / 2}px`,
+        paddingRight: `${parseInt(this.getGutter) / 2}px`
       }
+    },
+    classStyle() {
+      return [
+        `span-${this.span}`,
+        this.offset && `offset-${this.offset}`,
+        this.ipad && `span-${this.pc.span}-ipad`,
+        this.ipad && `offset-${this.pc.offset}-ipad`,
+        this.sm && `span-${this.pc.span}-sm`,
+        this.sm && `offset-${this.pc.offset}-sm`,
+        this.pc && `span-${this.pc.span}-pc`,
+        this.pc && `offset-${this.pc.offset}-pc`,
+        this.lg && `span-${this.pc.span}-lg`,
+        this.lg && `offset-${this.pc.offset}-lg`
+      ]
     }
   },
   watch: {},
@@ -40,8 +76,71 @@ export default {
 }
 </script>
 <style lang='less' scoped>
+@counter: 1;
+.loop(@i) when (@i <= 24) {
+  .span-@{i} {
+    width: @i / 24 * 100%;
+  }
+  .offset-@{i} {
+    margin-left: @i / 24 * 100%;
+  }
+  .loop(@i+1);
+}
+.loop(@counter);
 .z-col {
   float: left;
   box-sizing: border-box;
+}
+@media screen and (min-width: 576px) {
+  @counter: 1;
+  .loop(@i) when (@i <= 24) {
+    .span-@{i}-ipad {
+      width: @i / 24 * 100%;
+    }
+    .offset-@{i}-ipad {
+      margin-left: @i / 24 * 100%;
+    }
+    .loop(@i+1);
+  }
+  .loop(@counter);
+}
+@media screen and (min-width: 768px) {
+  @counter: 1;
+  .loop(@i) when (@i <= 24) {
+    .span-@{i}-sm {
+      width: @i / 24 * 100%;
+    }
+    .offset-@{i}-sm {
+      margin-left: @i / 24 * 100%;
+    }
+    .loop(@i+1);
+  }
+  .loop(@counter);
+}
+@media screen and (min-width: 1200px) {
+  @counter: 1;
+  .loop(@i) when (@i <= 24) {
+    .span-@{i}-pc {
+      width: @i / 24 * 100%;
+    }
+    .offset-@{i}-pc {
+      margin-left: @i / 24 * 100%;
+    }
+    .loop(@i+1);
+  }
+  .loop(@counter);
+}
+@media screen and (min-width: 1600px) {
+  @counter: 1;
+  .loop(@i) when (@i <= 24) {
+    .span-@{i}-lg {
+      width: @i / 24 * 100%;
+    }
+    .offset-@{i}-lg {
+      margin-left: @i / 24 * 100%;
+    }
+    .loop(@i+1);
+  }
+  .loop(@counter);
 }
 </style>

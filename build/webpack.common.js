@@ -59,8 +59,8 @@ module.exports = {
                         loader: "css-loader",
                         options: { importLoaders: 2 }
                     },
-                    "less-loader",
                     'postcss-loader',
+                    "less-loader"
                 ]
             },
             //file-loader 可以指定要复制和放置资源文件的位置，以及如何使用版本哈希命名以获得更好的缓存。此外，这意味着 你可以就近管理图片文件，可以使用相对路径而不用担心部署时 URL 的问题。使用正确的配置，webpack 将会在打包输出中自动重写文件路径为正确的 URL。
