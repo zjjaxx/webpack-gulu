@@ -139,10 +139,10 @@
       </z-row>
       <z-title title="默认布局+响应式"></z-title>
       <z-row>
-        <z-col span="2" :ipad="{span:4}" :sm="{span:6}" :pc="{span:8}" :lg="{span:10}">
+        <z-col span="24" :ipad="{span:4}" :sm="{span:6}" :pc="{span:8}" :lg="{span:12}">
           <div class="col-css">响应式</div>
         </z-col>
-        <z-col span="22" :ipad="{span:20}" :sm="{span:18}" :pc="{span:16}" :lg="{span:14}">
+        <z-col span="24" :ipad="{span:20}" :sm="{span:18}" :pc="{span:16}" :lg="{span:12}">
           <div class="col-css" style="opacity:0.5">响应式</div>
         </z-col>
       </z-row>

@@ -56,14 +56,14 @@ export default {
       return [
         `span-${this.span}`,
         this.offset && `offset-${this.offset}`,
-        this.ipad && `span-${this.pc.span}-ipad`,
-        this.ipad && `offset-${this.pc.offset}-ipad`,
-        this.sm && `span-${this.pc.span}-sm`,
-        this.sm && `offset-${this.pc.offset}-sm`,
+        this.ipad && `span-${this.ipad.span}-ipad`,
+        this.ipad && `offset-${this.ipad.offset}-ipad`,
+        this.sm && `span-${this.sm.span}-sm`,
+        this.sm && `offset-${this.sm.offset}-sm`,
         this.pc && `span-${this.pc.span}-pc`,
         this.pc && `offset-${this.pc.offset}-pc`,
-        this.lg && `span-${this.pc.span}-lg`,
-        this.lg && `offset-${this.pc.offset}-lg`
+        this.lg && `span-${this.lg.span}-lg`,
+        this.lg && `offset-${this.lg.offset}-lg`
       ]
     }
   },
