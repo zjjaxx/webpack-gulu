@@ -7,15 +7,15 @@
 
 <script>
 const _validator = value => {
-  let valid = true
+  let valid = true;
   for (let key in value) {
-    valid = ['span', 'offset'].includes(key)
+    valid = ["span", "offset"].includes(key);
   }
-  return valid
-}
+  return valid;
+};
 export default {
   components: {},
-  inject: ['getGutter'],
+  inject: ["getGutter"],
   props: {
     span: {
       type: [String, Number],
@@ -43,28 +43,28 @@ export default {
     }
   },
   data() {
-    return {}
+    return {};
   },
   computed: {
     colStyle() {
       return {
         paddingLeft: `${parseInt(this.getGutter) / 2}px`,
         paddingRight: `${parseInt(this.getGutter) / 2}px`
-      }
+      };
     },
     classStyle() {
       return [
         `span-${this.span}`,
-        this.offset && `offset-${this.offset}`,
-        this.ipad && `span-${this.ipad.span}-ipad`,
-        this.ipad && `offset-${this.ipad.offset}-ipad`,
-        this.sm && `span-${this.sm.span}-sm`,
-        this.sm && `offset-${this.sm.offset}-sm`,
-        this.pc && `span-${this.pc.span}-pc`,
-        this.pc && `offset-${this.pc.offset}-pc`,
-        this.lg && `span-${this.lg.span}-lg`,
-        this.lg && `offset-${this.lg.offset}-lg`
-      ]
+        this.offset ? `offset-${this.offset}` : "",
+        this.ipad && this.ipad.span ? `span-${this.ipad.span}-ipad` : "",
+        this.ipad && this.ipad.offset ? `offset-${this.ipad.offset}-ipad` : "",
+        this.sm && this.sm.span ? `span-${this.sm.span}-sm` : "",
+        this.sm && this.sm.offset ? `offset-${this.sm.offset}-sm` : "",
+        this.pc && this.pc.span ? `span-${this.pc.span}-pc` : "",
+        this.pc && this.pc.offset ? `offset-${this.pc.offset}-pc` : "",
+        this.lg && this.lg.span ? `span-${this.lg.span}-lg` : "",
+        this.lg && this.lg.offset ? `offset-${this.lg.offset}-lg` : ""
+      ];
     }
   },
   watch: {},
@@ -73,7 +73,7 @@ export default {
   mounted() {},
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-}
+};
 </script>
 <style lang='less' scoped>
 @counter: 1;
