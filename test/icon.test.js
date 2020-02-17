@@ -1,3 +1,9 @@
+/*
+ * @Author: zjj
+ * @Date: 2020-02-16 15:39:07
+ * @LastEditors: zjj
+ * @LastEditTime: 2020-02-17 11:58:26
+ */
 import Vue from "vue"
 import ZIcon from "../src/components/base/z-icon.vue"
 //单元测试
@@ -20,7 +26,6 @@ describe("ZIcon",()=>{
         })
         icon.$mount()
         let use=icon.$el.querySelector("use")
-        console.log("use",use)
         expect(use.getAttribute("xlink:href")).to.equal("#i-setting")
         icon.$el.remove()
         icon.$destroy()

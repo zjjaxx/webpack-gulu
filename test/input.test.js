@@ -48,33 +48,23 @@ describe("ZInput",()=>{
         _input.dispatchEvent(inputEvent)
         expect(value_callback).to.equal("hahaha")
     })
-    describe("clear可用",()=>{
-        it("clear 不显示",()=>{
-            let inputConstruct=Vue.extend(ZInput)
-            let input=new inputConstruct({
-                propsData:{
-                    inputAttr:{
-                        value:""
-                    }
+    it("clear可用",(done)=>{
+        let inputConstruct=Vue.extend(ZInput)
+        let input=new inputConstruct({
+            propsData:{
+                inputAttr:{
+                    value:""
                 }
-            })
-            input.$mount()
-            let svg=input.$el.querySelector("svg")
-            expect(svg.style.display).to.equal("none")
+            }
         })
-        it("clear 显示",()=>{
-            let inputConstruct=Vue.extend(ZInput)
-            let input=new inputConstruct({
-                propsData:{
-                    inputAttr:{
-                        value:"hhh"
-                    }
-                }
-            })
-            input.$mount()
-            let svg=input.$el.querySelector("svg")
+        input.$mount()
+        let svg=input.$el.querySelector("svg")
+        expect(svg.style.display).to.equal("none")
+        input.$set(input.inputAttr,"value","hahaha")
+        setTimeout(()=>{
             expect(svg.style.display).to.equal("")
-        })
+            done()
+        },0)
     })
     it("input placeholder",()=>{
         let inputConstruct=Vue.extend(ZInput)
