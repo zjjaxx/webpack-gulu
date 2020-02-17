@@ -64,6 +64,8 @@ describe("ZInput",()=>{
         setTimeout(()=>{
             expect(svg.style.display).to.equal("")
             done()
+            input.$el.remove()
+            input.$destroy()
         },0)
     })
     it("input placeholder",()=>{
