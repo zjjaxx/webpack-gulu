@@ -66,7 +66,6 @@ describe("ZInput",()=>{
             done()
         },0)
     })
-    
     it("input placeholder",()=>{
         let inputConstruct=Vue.extend(ZInput)
         let input=new inputConstruct({
