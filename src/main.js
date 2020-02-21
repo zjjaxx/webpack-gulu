@@ -31,7 +31,9 @@ Vue.use(VueRouter)
 
 import router from "./router/index.js"
 
-
+//插件
+import Toast from "./utils/plugins"
+Vue.use(Toast)
 // import VConsole from "vconsole"
 // var vConsoleInstance = new VConsole();
 // Vue.use(vConsoleInstance)

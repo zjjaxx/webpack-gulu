@@ -42,6 +42,10 @@ const routes = [
                         component: () => import("../pages/base/input.vue")
                     },
                     {
+                        path: "toast",
+                        component: () => import("../pages/base/toast.vue")
+                    },
+                    {
                         path: "dialog",
                         component: () => import("../pages/base/dialog.vue")
                     }
