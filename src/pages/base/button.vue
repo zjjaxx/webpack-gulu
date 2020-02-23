@@ -10,7 +10,7 @@
     </z-header>
     <z-body>
       <z-title title="默认按钮"></z-title>
-      <div class="default-wrap">
+      <div class="default-wrap border-1px">
         <z-button>按钮</z-button>
         <z-button>点击</z-button>
       </div>
