@@ -1,6 +1,6 @@
 import Toast from "../components/base/z-toast.vue"
 export default {
-    install :(Vue, options) => {
+    install: (Vue, options) => {
         // 1. 添加全局方法或属性
         Vue.myGlobalMethod = function () {
             // 逻辑...
@@ -23,8 +23,8 @@ export default {
         // 4. 添加实例方法
         Vue.prototype.$toast = function (message) {
             let ToastConstruct = Vue.extend(Toast)
-            let toast=new ToastConstruct()
-            toast.$slots.default=[message]
+            let toast = new ToastConstruct()
+            toast.$slots.default = [message]
             toast.$mount()
             document.body.appendChild(toast.$el)
         }

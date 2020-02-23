@@ -13,6 +13,10 @@
       <div class="default-wrap">
           <z-button @click="showToast">默认toast</z-button>
       </div>
+       <z-title title="不自动关闭toast"></z-title>
+      <div class="default-wrap">
+          <z-button @click="showToastAllTime">不自动关闭toast</z-button>
+      </div>
     </z-body>
   </div>
 </template>
@@ -29,6 +33,9 @@ export default {
   methods: {
       showToast(){
           this.$toast("默认 toast")
+      },
+      showToastAllTime(){
+        this.$toast({title:'不自动关闭toast',duration:0})
       }
   },
   created() {},
