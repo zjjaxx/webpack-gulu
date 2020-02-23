@@ -19,9 +19,9 @@ module.exports = {
         // publicPath:"https://www.baidu.com/assets/"
     },
     optimization: {
-       splitChunks:{
-           chunks:"all"
-       }
+        splitChunks: {
+            chunks: "all"
+        }
     },
     plugins: [
         // new MiniCssExtractPlugin({
@@ -60,7 +60,15 @@ module.exports = {
                         options: { importLoaders: 2 }
                     },
                     'postcss-loader',
-                    "less-loader"
+                    "less-loader",
+                    {
+                        loader: 'style-resources-loader',
+                        options: {
+                            patterns: [
+                                path.resolve(__dirname, '../src/assets/style/mixin.less')
+                            ]
+                        }
+                    }
                 ]
             },
             //file-loader 可以指定要复制和放置资源文件的位置，以及如何使用版本哈希命名以获得更好的缓存。此外，这意味着 你可以就近管理图片文件，可以使用相对路径而不用担心部署时 URL 的问题。使用正确的配置，webpack 将会在打包输出中自动重写文件路径为正确的 URL。

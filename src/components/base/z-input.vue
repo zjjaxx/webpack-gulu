@@ -74,14 +74,13 @@ export default {
   .z-input {
     width: 100%;
     padding: 0 28px 0 8px;
-    height: var(--button-height);
-    border: 1px solid var(--border-color);
+    border: 1px solid @border-color;
     font-size: 14px;
-    line-height: var(--button-height);
-    border-radius: var(--border-radius);
+    line-height: 32px;
+    border-radius: @border-radius;
     box-sizing: border-box;
     &:hover {
-      border-color: var(--border-color-hover);
+      border-color: @border-color-hover;
     }
     &:focus {
       outline: none;

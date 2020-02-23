@@ -54,7 +54,7 @@ export default {
   }
 }
 </script>
-<style lang='less'>
+<style lang='less' scoped>
 .z-button {
   display: inline-flex;
   vertical-align: middle;
@@ -62,19 +62,19 @@ export default {
   align-items: center;
   padding: 0 1em;
   transition: all 0.3s ease;
-  height: var(--button-height);
-  font-size: var(--font-size);
-  line-height: var(--font-size);
-  background: var(--button-bg);
-  border-radius: var(--border-radius);
-  color: var(--color);
-  border: 1px solid var(--border-color);
+  height: @button-height;
+  font-size: @font-size;
+  line-height: @font-size;
+  background: @button-bg;
+  border-radius: @border-radius;
+  color: @color;
+  border: 1px solid @border-color;
   &:active {
-    background: var(--button-active-bg);
+    background: @button-active-bg;
     transform: scale(0.9, 0.9);
   }
   &:hover {
-    border-color: var(--border-color-hover);
+    border-color: @border-color-hover
   }
   &:focus {
     outline: none;

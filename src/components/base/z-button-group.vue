@@ -20,7 +20,7 @@ export default {
   destroyed() {} //生命周期 - 销毁完成
 };
 </script>
-<style lang='less'>
+<style lang='less' scoped>
 
 .z-button-group {
   display: inline-flex;
@@ -30,12 +30,12 @@ export default {
     border-radius: 0;
     &:first-child {
       margin-left: 0;
-      border-top-left-radius: var(--border-radius);
-      border-bottom-left-radius: var(--border-radius);
+      border-top-left-radius: @border-radius;
+      border-bottom-left-radius: @border-radius;
     }
     &:last-child {
-      border-top-right-radius: var(--border-radius);
-      border-bottom-right-radius: var(--border-radius);
+      border-top-right-radius: @border-radius;
+      border-bottom-right-radius: @border-radius;
     }
     &:hover{
         position: relative;

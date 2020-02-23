@@ -34,7 +34,7 @@ export default {
   destroyed() {} //生命周期 - 销毁完成
 };
 </script>
-<style lang='less'>
+<style lang='less' scoped>
 .icon {
   width: 1em;
   height: 1em;

@@ -35,6 +35,7 @@ img {
     height: 100%;
     box-sizing: border-box;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* 根据header和navbar自动适应内容区高度 */
@@ -143,7 +144,15 @@ img {
 }
 .border-1px{
     border:1px solid;
-    border-image:svg(border-1px param(--color red)) 1 stretch;
+    border-image:svg(border-1px param(--color #ddd)) 1 stretch;
+}
+.border-bottom-1px{
+    border-bottom:1px solid;
+    border-image:svg(border-1px param(--color #ddd)) 1 stretch;
+}
+.border-top-1px{
+    border-top:1px solid;
+    border-image:svg(border-1px param(--color #ddd)) 1 stretch;
 }
 
 
