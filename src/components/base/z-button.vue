@@ -2,16 +2,12 @@
  * @Author: zjj
  * @Date: 2020-01-13 09:04:56
  * @LastEditors: zjj
- * @LastEditTime: 2020-02-24 17:20:41
+ * @LastEditTime: 2020-02-24 17:56:14
  -->
 
 <template>
   <button :class="c_type" @click="$emit('click')">
-    <z-icon
-      :iconName="iconName"
-      v-if="iconName&&!isLoading"
-      :class="[iconPosition=='right'?'icon-right':'icon-left']"
-    ></z-icon>
+    <z-icon :iconName="iconName" v-if="iconName&&!isLoading" :class="classStyle"></z-icon>
     <z-icon
       class="loading"
       v-if="isLoading"
@@ -29,6 +25,12 @@ export default {
   computed: {
     c_type() {
       return this.type == "default" ? "z-button" : "z-custom-button";
+    },
+    classStyle() {
+      return [
+        this.iconPosition == "right" ? "icon-right" : "icon-left",
+        this.type == "custom" ? "fill-white" : ""
+      ];
     }
   },
   props: {
@@ -67,23 +69,22 @@ export default {
 };
 </script>
 <style lang='less' scoped>
-.z-button,.z-custom-button{
+.z-button /deep/ .fill-white.icon {
+  fill: #fff;
+}
+.z-custom-button /deep/ .fill-white.icon {
+  fill: #fff;
+}
+.z-button,
+.z-custom-button {
   display: inline-flex;
   justify-content: center;
   align-items: center;
   padding: 0 1em;
   transition: all 0.3s ease;
-  &:disabled{
+  &:disabled {
     opacity: 0.7;
   }
-}
-.z-button {
-  height: @button-height;
-  font-size: @button-font-size;
-  line-height: @button-font-size;
-  background: @button-bg;
-  color: @button-color;
-  border: 1px solid @button-border-color;
   &:active {
     background: @button-active-bg;
     transform: scale(0.9, 0.9);
@@ -115,6 +116,14 @@ export default {
     margin-right: 0;
     order: 2;
   }
+}
+.z-button {
+  height: @button-height;
+  font-size: @button-font-size;
+  line-height: @button-font-size;
+  background: @button-bg;
+  color: @button-color;
+  border: 1px solid @button-border-color;
 }
 .z-custom-button {
   font-size: @button-custom-font-size;

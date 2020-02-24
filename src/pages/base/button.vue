@@ -2,7 +2,7 @@
  * @Author: zjj
  * @Date: 2020-02-24 09:51:51
  * @LastEditors: zjj
- * @LastEditTime: 2020-02-24 17:22:21
+ * @LastEditTime: 2020-02-24 17:53:28
  -->
 <!--  -->
 <template>
@@ -25,9 +25,10 @@
         <z-button disabled>禁用状态</z-button>
         <z-button type="custom" disabled>禁用状态</z-button>
       </div>
+        
       <z-title title="按钮+icon"></z-title>
       <div class="default-wrap">
-        <z-button iconName="i-setting">设置</z-button>
+        <z-button  type="custom" iconName="i-setting">设置</z-button>
         <z-button iconName="i-right" iconPosition="right">下一页</z-button>
       </div>
       <z-title title="按钮+loading"></z-title>
