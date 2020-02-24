@@ -1,9 +1,39 @@
 
 @font-size:14px;
+//button component
+//button通用样式
+
+//type:default
 @button-height:32px;
 @button-bg:#fff;
-@button-active-bg:#eee;
-@border-radius: 4px;
-@color:#333;
+@button-color:#333;
+@button-font-size:14px;
+@button-border-color:#999;
+@button-active-bg:#eeeeee;
+//type:custom
+@button-custom-bg:linear-gradient(66deg,rgba(232,48,56,1),rgba(247,88,151,1));
+@button-custom-color:#fff;
+@button-custom-font-size:14px;
+@button-custom-active-bg:rgba(247,88,151,1);
+@button-mini-height: 22px;
+
+@button-large-height: 50px;
+
+
+
+
+
 @border-color: #999;
 @border-color-hover:#000;
+
+
+// 根据屏幕分辨率判断使用@2x图片或者@3x图片
+.bg-image(@url) {
+    background-image :url("@{url}@2x.png");
+
+    @media (-webkit-min-device-pixel-ratio: 3),
+    (min-device-pixel-ratio: 3) {
+        background-image :url("@{url}@3x.png");
+    }
+
+}

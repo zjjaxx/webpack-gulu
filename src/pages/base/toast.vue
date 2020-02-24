@@ -1,3 +1,9 @@
+<!--
+ * @Author: zjj
+ * @Date: 2020-02-24 09:51:51
+ * @LastEditors: zjj
+ * @LastEditTime: 2020-02-24 14:15:47
+ -->
 <!--  -->
 <template>
   <div class="toast-container">
@@ -35,7 +41,7 @@ export default {
           this.$toast("默认 toast")
       },
       showToastAllTime(){
-        this.$toast({title:'不自动关闭toast',duration:0})
+        this.$toast('不自动关闭toast')
       }
   },
   created() {},

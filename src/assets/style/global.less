@@ -22,10 +22,6 @@ body {
     }
 }
 
-img[src=""],
-img:not([src]) {
-    opacity: 0;
-}
 img {
     content: normal !important;
 }
@@ -47,25 +43,6 @@ img {
     padding-bottom: 50px;
 }
 
-// 根据屏幕分辨率判断使用@2x图片或者@3x图片
-.bg-image(@url) {
-    background-image :url("@{url}@2x.png");
-
-    @media (-webkit-min-device-pixel-ratio: 3),
-    (min-device-pixel-ratio: 3) {
-        background-image :url("@{url}@3x.png");
-    }
-
-}
-
-.clear-fix {
-    &::after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-}
 
 .float-r {
     float: right;

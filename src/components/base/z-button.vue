@@ -1,12 +1,12 @@
 <!--
  * @Author: zjj
  * @Date: 2020-01-13 09:04:56
- * @LastEditors  : zjj
- * @LastEditTime : 2020-01-17 16:31:14
+ * @LastEditors: zjj
+ * @LastEditTime: 2020-02-24 17:20:41
  -->
 
 <template>
-  <button class="z-button" @click="$emit('click')">
+  <button :class="c_type" @click="$emit('click')">
     <z-icon
       :iconName="iconName"
       v-if="iconName&&!isLoading"
@@ -23,62 +23,72 @@
 </template>
 
 <script>
-import ZIcon from "./z-icon.vue"
+import ZIcon from "./z-icon.vue";
 export default {
-  components: {ZIcon},
+  components: { ZIcon },
+  computed: {
+    c_type() {
+      return this.type == "default" ? "z-button" : "z-custom-button";
+    }
+  },
   props: {
+    type: {
+      type: String,
+      default: () => {
+        return "default";
+      },
+      validator: value => value == "default" || value == "custom"
+    },
     isLoading: {
       type: Boolean,
       default: () => {
-        return false
+        return false;
       }
     },
     iconName: {
       type: String,
       default: () => {
-        return ''
+        return "";
       }
     },
     iconPosition: {
       type: String,
       default: () => {
-        return 'left'
+        return "left";
       },
       validator: value => {
-        return value == 'left' || value == 'right'
+        return value == "left" || value == "right";
       }
     }
   },
   mounted() {
-    document.body.addEventListener('touchstart', function() {})
+    document.body.addEventListener("touchstart", function() {});
   }
-}
+};
 </script>
 <style lang='less' scoped>
-.z-button {
+.z-button,.z-custom-button{
   display: inline-flex;
-  vertical-align: middle;
   justify-content: center;
   align-items: center;
   padding: 0 1em;
   transition: all 0.3s ease;
+  &:disabled{
+    opacity: 0.7;
+  }
+}
+.z-button {
   height: @button-height;
-  font-size: @font-size;
-  line-height: @font-size;
+  font-size: @button-font-size;
+  line-height: @button-font-size;
   background: @button-bg;
-  border-radius: @border-radius;
-  color: @color;
-  border: 1px solid @border-color;
+  color: @button-color;
+  border: 1px solid @button-border-color;
   &:active {
     background: @button-active-bg;
     transform: scale(0.9, 0.9);
   }
-  &:hover {
-    border-color: @border-color-hover
-  }
-  &:focus {
-    outline: none;
-  }
+
   .icon-left {
     margin-left: 0;
     margin-right: 0.3em;
@@ -104,6 +114,16 @@ export default {
     margin-left: 0.3em;
     margin-right: 0;
     order: 2;
+  }
+}
+.z-custom-button {
+  font-size: @button-custom-font-size;
+  line-height: @button-custom-font-size;
+  background: @button-custom-bg;
+  color: @button-custom-color;
+  &:active {
+    background: @button-custom-active-bg;
+    transform: scale(0.9, 0.9);
   }
 }
 </style>

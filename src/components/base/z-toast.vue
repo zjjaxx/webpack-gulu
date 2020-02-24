@@ -1,8 +1,14 @@
+<!--
+ * @Author: zjj
+ * @Date: 2020-02-24 09:51:51
+ * @LastEditors: zjj
+ * @LastEditTime: 2020-02-24 14:22:17
+ -->
 <!--  -->
 <template>
   <div class="z-toast">
     <slot></slot>
-    <span class="close" v-if="!autoClose">{{customCloseButton.title}}</span>
+    <span class="close"  @click="closeToast">{{customCloseButton.title}}</span>
   </div>
 </template>
 
@@ -19,7 +25,7 @@ export default {
     time: {
       type: Number,
       default: () => {
-        return 5000;
+        return 500000;
       }
     },
     customCloseButton: {
@@ -27,7 +33,9 @@ export default {
       default: () => {
         return {
           title: "知道了",
-          callback: toast => {}
+          callback: (toast, close) => {
+            toast.close();
+          }
         };
       }
     }
@@ -41,6 +49,9 @@ export default {
     close() {
       this.$el.remove();
       this.$destroy();
+    },
+    closeToast() {
+      this.customCloseButton.callback(this, this.close);
     }
   },
   created() {},
@@ -66,10 +77,12 @@ export default {
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
   font-size: 14px;
+  white-space: nowrap;
   z-index: 300;
-  .close{
-    padding-left:16px;
-    border-left: 1px solid #666;
+  .close {
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid #999;
   }
 }
 </style>

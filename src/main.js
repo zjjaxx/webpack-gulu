@@ -1,12 +1,12 @@
 /*
  * @Author: zjj
  * @Date: 2020-01-19 14:02:57
- * @LastEditors  : zjj
- * @LastEditTime : 2020-01-22 15:36:40
+ * @LastEditors: zjj
+ * @LastEditTime: 2020-02-24 14:50:53
  */
 import Vue from "vue"
 import App from "./App.vue"
-import "../src/assets/style/global.css"
+import "../src/assets/style/reset.css"
 import "../src/assets/style/global.less"
 
 //zui

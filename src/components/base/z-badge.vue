@@ -1,6 +1,12 @@
+<!--
+ * @Author: zjj
+ * @Date: 2020-02-17 13:48:10
+ * @LastEditors: zjj
+ * @LastEditTime: 2020-02-24 15:00:01
+ -->
 <!--  -->
 <template>
-  <span class="z-badge" :style="[{'background':background},{'color':background?'#fff':''}]">{{badge}}</span>
+  <span class="z-badge" :style="{'background':background}">{{badge}}</span>
 </template>
 
 <script>

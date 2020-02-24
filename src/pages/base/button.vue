@@ -1,3 +1,9 @@
+<!--
+ * @Author: zjj
+ * @Date: 2020-02-24 09:51:51
+ * @LastEditors: zjj
+ * @LastEditTime: 2020-02-24 17:22:21
+ -->
 <!--  -->
 <template>
   <div class="button-container">
@@ -9,10 +15,15 @@
       </template>
     </z-header>
     <z-body>
-      <z-title title="默认按钮"></z-title>
-      <div class="default-wrap border-1px">
-        <z-button>按钮</z-button>
-        <z-button>点击</z-button>
+      <z-title title="按钮类型(默认:default;支持custom、default)"></z-title>
+      <div class="default-wrap">
+        <z-button>按钮+default</z-button>
+        <z-button type="custom">点击+custom</z-button>
+      </div>
+       <z-title title="禁用状态"></z-title>
+      <div class="default-wrap ">
+        <z-button disabled>禁用状态</z-button>
+        <z-button type="custom" disabled>禁用状态</z-button>
       </div>
       <z-title title="按钮+icon"></z-title>
       <div class="default-wrap">
@@ -66,12 +77,11 @@ export default {
     height: 100%;
   }
   .default-wrap {
+    display: flex;
     padding: 10px;
     * {
       margin-right: 20px;
-      &:last-child {
-        margin-right: 0;
-      }
+     
     }
   }
 }

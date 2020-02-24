@@ -77,7 +77,7 @@ export default {
     border: 1px solid @border-color;
     font-size: 14px;
     line-height: 32px;
-    border-radius: @border-radius;
+    border-radius: 5px;
     box-sizing: border-box;
     &:hover {
       border-color: @border-color-hover;
