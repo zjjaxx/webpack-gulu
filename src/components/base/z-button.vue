@@ -19,54 +19,84 @@
 </template>
 
 <script>
-import ZIcon from "./z-icon.vue";
+import ZIcon from './z-icon.vue'
 export default {
   components: { ZIcon },
   computed: {
+    //button style
     c_type() {
-      return this.type == "default" ? "z-button" : "z-custom-button";
+      return [
+        this.type == 'default' ? 'z-button' : 'z-custom-button',
+        this.size == 'small'
+          ? 'size-small'
+          : this.size == 'large'
+          ? 'size-large'
+          : '',
+        this.block ? 'button-block' : ''
+      ]
     },
+    //icon style
     classStyle() {
       return [
-        this.iconPosition == "right" ? "icon-right" : "icon-left",
-        this.type == "custom" ? "fill-white" : ""
-      ];
+        this.iconPosition == 'right' ? 'icon-right' : 'icon-left',
+        this.type == 'custom' ? 'fill-white' : ''
+      ]
     }
   },
   props: {
+    //块级元素
+    block: {
+      type: Boolean,
+      default: () => {
+        return false
+      }
+    },
+    //类型
     type: {
       type: String,
       default: () => {
-        return "default";
+        return 'default'
       },
-      validator: value => value == "default" || value == "custom"
+      validator: value => value == 'default' || value == 'custom'
     },
+    //尺寸
+    size: {
+      type: String,
+      default: () => {
+        return 'common'
+      },
+      validator: value =>
+        value == 'small' || value == 'large' || value == 'common'
+    },
+    //是否下载状态
     isLoading: {
       type: Boolean,
       default: () => {
-        return false;
+        return false
       }
     },
+    //icon
     iconName: {
       type: String,
       default: () => {
-        return "";
+        return ''
       }
     },
+    //icon 位置
     iconPosition: {
       type: String,
       default: () => {
-        return "left";
+        return 'left'
       },
       validator: value => {
-        return value == "left" || value == "right";
+        return value == 'left' || value == 'right'
       }
     }
   },
   mounted() {
-    document.body.addEventListener("touchstart", function() {});
+    document.body.addEventListener('touchstart', function() {})
   }
-};
+}
 </script>
 <style lang='less' scoped>
 .z-button /deep/ .fill-white.icon {
@@ -82,14 +112,10 @@ export default {
   align-items: center;
   padding: 0 1em;
   transition: all 0.3s ease;
+  border-radius: 4px;
   &:disabled {
-    opacity: 0.7;
+    opacity: 0.6;
   }
-  &:active {
-    background: @button-active-bg;
-    transform: scale(0.9, 0.9);
-  }
-
   .icon-left {
     margin-left: 0;
     margin-right: 0.3em;
@@ -124,8 +150,13 @@ export default {
   background: @button-bg;
   color: @button-color;
   border: 1px solid @button-border-color;
+   &:active {
+    background: @button-active-bg;
+    transform: scale(0.9, 0.9);
+  }
 }
 .z-custom-button {
+  height: @button-height;
   font-size: @button-custom-font-size;
   line-height: @button-custom-font-size;
   background: @button-custom-bg;
@@ -134,5 +165,16 @@ export default {
     background: @button-custom-active-bg;
     transform: scale(0.9, 0.9);
   }
+}
+.size-small {
+  height: @button-mini-height;
+}
+.size-large {
+  height: @button-large-height;
+}
+.button-block {
+  display: flex;
+  width: 100%;
+  border-radius: 0;
 }
 </style>

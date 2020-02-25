@@ -20,28 +20,36 @@
         <z-button>按钮+default</z-button>
         <z-button type="custom">点击+custom</z-button>
       </div>
-       <z-title title="禁用状态"></z-title>
-      <div class="default-wrap ">
+      <z-title title="禁用状态"></z-title>
+      <div class="default-wrap">
         <z-button disabled>禁用状态</z-button>
         <z-button type="custom" disabled>禁用状态</z-button>
       </div>
-        
       <z-title title="按钮+icon"></z-title>
       <div class="default-wrap">
-        <z-button  type="custom" iconName="i-setting">设置</z-button>
+        <z-button type="custom" iconName="i-setting">设置</z-button>
         <z-button iconName="i-right" iconPosition="right">下一页</z-button>
+      </div>
+      <z-title title="按钮尺寸"></z-title>
+      <div class="default-wrap">
+        <z-button size="small" type="custom" iconName="i-setting">设置</z-button>
+        <z-button type="custom" iconName="i-setting">设置</z-button>
+        <z-button size="large" type="custom" iconName="i-setting">设置</z-button>
       </div>
       <z-title title="按钮+loading"></z-title>
       <div class="default-wrap">
         <z-button iconName="i-download" :isLoading="isLoading" @click="isLoading=!isLoading">下载</z-button>
         <z-button
+          type="custom"
           iconName="i-download"
           iconPosition="right"
           :isLoading="isLoading_"
           @click="isLoading_=!isLoading_"
         >下载</z-button>
       </div>
-   
+      <z-title title="块级元素"></z-title>
+      <z-button block type="custom" iconName="i-setting">设置</z-button>
+      <z-button style="marginTop:10px" size="large" block iconPosition="right">下一页</z-button>
     </z-body>
   </div>
 </template>
@@ -82,7 +90,6 @@ export default {
     padding: 10px;
     * {
       margin-right: 20px;
-     
     }
   }
 }
