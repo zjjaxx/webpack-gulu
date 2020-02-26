@@ -4,77 +4,26 @@
     <z-header title="图标">
       <template v-slot:left>
         <div class="left-wrap flex justify-center aligin-center" @click="$router.back()">
-          <z-icon icon-name="i-left"></z-icon>
+          <z-icon iconName="i-left"></z-icon>
         </div>
       </template>
     </z-header>
     <z-body>
-      <z-title title="图标"></z-title>
+      <z-title title="图标 默认"></z-title>
       <div class="default-wrap flex">
         <div>
           <z-icon iconName="i-setting"></z-icon>
-          <div>i-setting</div>
         </div>
-        <div>
-          <z-icon iconName="i-code"></z-icon>
-          <div>i-code</div>
-        </div>
-        <div>
-          <z-icon iconName="i-love"></z-icon>
-          <div>i-love</div>
-        </div>
-        <div>
-          <z-icon iconName="i-more"></z-icon>
-          <div>i-more</div>
-        </div>
-        <div>
-          <z-icon iconName="i-share"></z-icon>
-          <div>i-share</div>
-        </div>
-        <div>
-          <z-icon iconName="i-location"></z-icon>
-          <div>i-location</div>
-        </div>
-        <div>
-          <z-icon iconName="i-layout"></z-icon>
-          <div>i-layout</div>
-        </div>
-        <div>
-          <z-icon iconName="i-home"></z-icon>
-          <div>i-setting</div>
-        </div>
-        <div>
-          <z-icon iconName="i-error"></z-icon>
-          <div>i-error</div>
-        </div>
-        <div>
-          <z-icon iconName="i-info"></z-icon>
-          <div>i-info</div>
-        </div>
-        <div>
-          <z-icon iconName="i-loading"></z-icon>
-          <div>i-loading</div>
-        </div>
-        <div>
-          <z-icon iconName="i-left"></z-icon>
-          <div>i-left</div>
-        </div>
-        <div>
-          <z-icon iconName="i-right"></z-icon>
-          <div>i-right</div>
-        </div>
-        <div>
-          <z-icon iconName="i-down"></z-icon>
-          <div>i-down</div>
-        </div>
-        <div>
-          <z-icon iconName="i-thumbs-up"></z-icon>
-          <div>i-thumbs-up</div>
-        </div>
-        <div>
-          <z-icon iconName="i-download"></z-icon>
-          <div>i-download</div>
-        </div>
+      </div>
+      <z-title title="图标 提示信息"></z-title>
+      <div class="default-wrap flex">
+        <z-icon iconName="i-setting" dot></z-icon>
+        <z-icon iconName="i-setting" info="10"></z-icon>
+        <z-icon iconName="i-setting" info="1"></z-icon>
+      </div>
+      <z-title title="图标 提示信息"></z-title>
+      <div class="default-wrap flex">
+        <z-icon iconName="i-setting" color="#ee0a24" dot></z-icon>
       </div>
     </z-body>
   </div>
@@ -97,7 +46,6 @@ export default {
 </script>
 <style lang='less' scoped>
 .default-wrap /deep/ .icon {
-  margin-bottom: 8px;
   height: 1.5em;
   width: 1.5em;
 }
@@ -113,13 +61,6 @@ export default {
     height: 100%;
   }
   .default-wrap {
-    > div {
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: space-around;
-      flex-direction: column;
-      align-items: center;
-    }
     padding: 10px;
     flex-wrap: wrap;
     * {

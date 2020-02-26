@@ -6,7 +6,7 @@
     </div>
     <ZNavbar :bottomMenu="bottomMenu" class="nav-wrap">
       <template v-slot="{item,active}">
-        <z-icon :iconName="item.iconName" :class="active?'fill-icon':''"></z-icon>
+        <z-icon :iconName="item.iconName" :color="active?'#ee0a24':''"></z-icon>
       </template>
     </ZNavbar>
   </div>
@@ -47,19 +47,12 @@ export default {
 }
 </script>
 <style lang='less' scoped>
-.nav-wrap /deep/ .icon {
-  height: 2em;
-  width: 2em;
-}
 .index {
   height: 100%;
   .wrap {
     padding-bottom: 50px;
     height: 100%;
     box-sizing: border-box;
-  }
-  .fill-icon {
-    fill: red;
   }
 }
 </style>

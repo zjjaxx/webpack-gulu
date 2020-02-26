@@ -4,7 +4,6 @@
     <z-header title="基本组件"></z-header>
     <z-body>
       <z-menu-item title="按钮" :path="{path:'/home/button'}"></z-menu-item>
-      <z-menu-item title="数字角标" :path="{path:'/home/badge'}"></z-menu-item>
       <z-menu-item title="标题栏" :path="{path:'/home/title'}"></z-menu-item>
       <z-menu-item title="图标" :path="{path:'/home/icon'}"></z-menu-item>
       <z-menu-item title="Cell单元格" :path="{path:'/home/menuItem'}"></z-menu-item>

@@ -1,21 +1,20 @@
 <!--  -->
 <template>
-  <div class="z-input-wrap aligin-center" :class="[inputAttr.errorTip?'error':'']">
+  <div class="z-input-wrap aligin-center">
     <input class="z-input" v-bind="inputAttr" v-on="c_inputListener" />
-    <div  v-if="inputAttr.errorTip">
+    <div v-if="inputAttr.errorTip">
       <span class="tip-error">{{inputAttr.errorTip}}</span>
     </div>
     <div class="clear flex justify-center aligin-center" @click="$emit('input','')">
-        <z-icon v-show="inputAttr.value &&!inputAttr.disabled" iconName="i-error" ></z-icon>
+      <z-icon v-show="inputAttr.value &&!inputAttr.disabled" color="gray" iconName="i-error"></z-icon>
     </div>
-  
   </div>
 </template>
 
 <script>
-import ZIcon from "./z-icon.vue"
+import ZIcon from './z-icon.vue'
 export default {
-  components: { ZIcon},
+  components: { ZIcon },
   props: {
     inputAttr: {
       type: Object,
@@ -42,7 +41,7 @@ export default {
           input: function(event) {
             vm.$emit('input', event.target.value)
           },
-          focus:function(event){
+          focus: function(event) {
             event.target.scrollIntoView()
           }
         }
@@ -52,16 +51,12 @@ export default {
   watch: {},
   methods: {},
   created() {},
-  mounted() {
-  },
+  mounted() {},
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
 }
 </script>
 <style lang='less' scoped>
-.clear /deep/ .icon{
-  fill: gray;
-}
 .z-input-wrap {
   position: relative;
   font-size: 14px;
@@ -73,15 +68,11 @@ export default {
   }
   .z-input {
     width: 100%;
-    padding: 0 28px 0 8px;
-    border: 1px solid @border-color;
+    padding: 0 28px 0 14px;
     font-size: 14px;
     line-height: 32px;
     border-radius: 5px;
     box-sizing: border-box;
-    &:hover {
-      border-color: @border-color-hover;
-    }
     &:focus {
       outline: none;
     }
@@ -98,9 +89,11 @@ export default {
     fill: red;
   }
   .tip-error {
+    margin-left: 14px;
     color: red;
+    font-size: 10px;
   }
-  .clear{
+  .clear {
     position: absolute;
     right: 0;
     top: 0;
@@ -108,10 +101,4 @@ export default {
     width: 28px;
   }
 }
-.error {
-  .z-input {
-    border-color: red;
-  }
-}
-
 </style>

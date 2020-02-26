@@ -46,9 +46,8 @@ describe("Button", () => {
         button.$mount(div)
         let classList = button.$el.classList
         expect(classList.contains("z-custom-button")).to.equal(true)
-        let svg=button.$el.querySelector("svg")
-        let icon_classList = svg.classList
-        expect(icon_classList.contains("fill-white")).to.equal(true)
+        let _icon=button.$el.querySelector(".icon")
+        expect(_icon.style.fill).to.equal("rgb(255, 255, 255)")
         button.$el.remove()
         button.$destroy()
     })
@@ -109,7 +108,7 @@ describe("Button", () => {
         button.$el.remove()
         button.$destroy()
     })
-    it("iconPosition测试", () => {
+    it("iconPosition测试 left", () => {
         let div = document.createElement("div")
         document.body.appendChild(div)
         let ButtonConstruct = Vue.extend(ZButton)
@@ -119,14 +118,14 @@ describe("Button", () => {
             }
         })
         button.$mount(div)
-        let svg = button.$el.querySelector("svg")
+        let svg = button.$el.querySelector(".z-icon-wrap")
         let cssObject = window.getComputedStyle(svg)
         let order = cssObject.getPropertyValue("order")
         expect(order).to.equal("0")
         button.$el.remove()
         button.$destroy()
     })
-    it("iconPosition测试", () => {
+    it("iconPosition测试 right", () => {
         let div = document.createElement("div")
         document.body.appendChild(div)
         let ButtonConstruct = Vue.extend(ZButton)
@@ -137,7 +136,7 @@ describe("Button", () => {
             }
         })
         button.$mount(div)
-        let svg = button.$el.querySelector("svg")
+        let svg = button.$el.querySelector(".z-icon-wrap")
         let cssObject = window.getComputedStyle(svg)
         let order = cssObject.getPropertyValue("order")
         expect(order).to.equal("2")

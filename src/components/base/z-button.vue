@@ -7,7 +7,12 @@
 
 <template>
   <button :class="c_type" @click="$emit('click')">
-    <z-icon :iconName="iconName" v-if="iconName&&!isLoading" :class="classStyle"></z-icon>
+    <z-icon
+      :iconName="iconName"
+      v-if="iconName&&!isLoading"
+      :class="classStyle"
+      :color=" [this.type == 'custom' ?'#fff':''] "
+    ></z-icon>
     <z-icon
       class="loading"
       v-if="isLoading"
@@ -37,10 +42,7 @@ export default {
     },
     //icon style
     classStyle() {
-      return [
-        this.iconPosition == 'right' ? 'icon-right' : 'icon-left',
-        this.type == 'custom' ? 'fill-white' : ''
-      ]
+      return [this.iconPosition == 'right' ? 'icon-right' : 'icon-left']
     }
   },
   props: {
@@ -150,7 +152,7 @@ export default {
   background: @button-bg;
   color: @button-color;
   border: 1px solid @button-border-color;
-   &:active {
+  &:active {
     background: @button-active-bg;
     transform: scale(0.9, 0.9);
   }

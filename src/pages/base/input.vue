@@ -9,34 +9,14 @@
       </template>
     </z-header>
     <z-body>
-      <z-title title="默认输入框"></z-title>
-      <div class="default-wrap">
-        <z-input v-model="inputAttr.value" :inputAttr="inputAttr"></z-input>
-      </div>
       <z-title title="输入框+placeholder"></z-title>
-      <div class="default-wrap">
-        <div style="width:150px">
-          <z-input v-model="inputAttr_one.value" :inputAttr="inputAttr_one"></z-input>
-        </div>
-      </div>
+      <z-input v-model="inputAttr_one.value" :inputAttr="inputAttr_one"></z-input>
       <z-title title="输入框+错误提示"></z-title>
-      <div class="default-wrap">
-        <div style="width:150px">
-          <z-input v-model="inputAttr_two.value" :inputAttr="inputAttr_two"></z-input>
-        </div>
-      </div>
-       <z-title title="输入框+只读"></z-title>
-      <div class="default-wrap">
-        <div style="width:150px">
-          <z-input v-model="inputAttr_three.value" :inputAttr="inputAttr_three"></z-input>
-        </div>
-      </div>
-       <z-title title="输入框+数字"></z-title>
-      <div class="default-wrap">
-        <div style="width:150px">
-          <z-input v-model="inputAttr_four.value" :inputAttr="inputAttr_four"></z-input>
-        </div>
-      </div>
+      <z-input v-model="inputAttr_two.value" :inputAttr="inputAttr_two"></z-input>
+      <z-title title="输入框+只读"></z-title>
+      <z-input v-model="inputAttr_three.value" :inputAttr="inputAttr_three"></z-input>
+      <z-title title="输入框+数字"></z-title>
+      <z-input v-model="inputAttr_four.value" :inputAttr="inputAttr_four"></z-input>
     </z-body>
   </div>
 </template>
@@ -59,14 +39,14 @@ export default {
         placeholder: '请输入手机号',
         errorTip: '手机号格式有误'
       },
-       inputAttr_three: {
+      inputAttr_three: {
         value: '金华婺城区',
-        disabled:true
+        disabled: true
       },
-       inputAttr_four: {
+      inputAttr_four: {
         value: '',
-        type:"number",
-        placeholder:"请输入数字"
+        type: 'number',
+        placeholder: '请输入数字'
       }
     }
   },

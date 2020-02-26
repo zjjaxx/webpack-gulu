@@ -22,10 +22,6 @@ const routes = [
                         component: () => import("../pages/base/button.vue")
                     },
                     {
-                        path: "badge",
-                        component: () => import("../pages/base/badge.vue")
-                    },
-                    {
                         path: "title",
                         component: () => import("../pages/base/title.vue")
                     },

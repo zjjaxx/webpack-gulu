@@ -58,7 +58,7 @@ describe("ZInput",()=>{
             }
         })
         input.$mount()
-        let svg=input.$el.querySelector("svg")
+        let svg=input.$el.querySelector(".z-icon-wrap")
         expect(svg.style.display).to.equal("none")
         input.$set(input.inputAttr,"value","hahaha")
         setTimeout(()=>{

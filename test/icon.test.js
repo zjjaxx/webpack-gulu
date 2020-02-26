@@ -30,4 +30,54 @@ describe("ZIcon",()=>{
         icon.$el.remove()
         icon.$destroy()
     })
+    it("dot 有效",()=>{
+        let div =document.createElement("div")
+        document.body.appendChild(div)
+        let ZIconConstructor=Vue.extend(ZIcon)
+        let icon =new ZIconConstructor({
+            propsData:{
+                iconName:"i-setting",
+                dot:true
+            }
+        })
+        icon.$mount(div)
+        let dot=icon.$el.querySelector(".dot")
+        expect(dot).to.exist
+        icon.$el.remove()
+        icon.$destroy()
+    })
+    it("info 有效",()=>{
+        let div =document.createElement("div")
+        document.body.appendChild(div)
+        let ZIconConstructor=Vue.extend(ZIcon)
+        let icon =new ZIconConstructor({
+            propsData:{
+                iconName:"i-setting",
+                dot:true,
+                info:"10"
+            }
+        })
+        icon.$mount(div)
+        let z_badge=icon.$el.querySelector(".z-badge")
+        expect(z_badge).to.exist
+        icon.$el.remove()
+        icon.$destroy()
+    })
+    it("color 有效",()=>{
+        let div =document.createElement("div")
+        document.body.appendChild(div)
+        let ZIconConstructor=Vue.extend(ZIcon)
+        let icon =new ZIconConstructor({
+            propsData:{
+                iconName:"i-setting",
+                dot:true,
+                color:"#f50"
+            }
+        })
+        icon.$mount(div)
+        let _icon=icon.$el.querySelector(".icon")
+        expect(_icon.style.fill).to.equal("rgb(255, 85, 0)")
+        icon.$el.remove()
+        icon.$destroy()
+    })
 })
