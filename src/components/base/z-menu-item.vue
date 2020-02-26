@@ -13,14 +13,14 @@
 export default {
   components: {},
   props:{
-      title:{
+      title:{ //单元格内容
           type:String,
           default:()=>{
               return ""
           },
           required:true
       },
-      path:{
+      path:{ //路由跳转路径
         type:Object,
         default:()=>{
           return {
@@ -43,9 +43,9 @@ export default {
 </script>
 <style lang='less' scoped>
 .menu-item-wrap {
-  padding-left: 15px;
+  padding-left: @cell-padding-left-right;
   .menu-item {
-    padding: 12px 15px 12px 0;
+    padding: @cell-padding-top-bottom @cell-padding-left-right @cell-padding-top-bottom 0;
     .content-title{
         margin-left: 4px;
         flex: 1;

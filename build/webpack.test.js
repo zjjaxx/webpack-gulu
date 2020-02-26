@@ -9,6 +9,7 @@ module.exports = {
     entry: {
         button:path.resolve(__dirname, '../test/button.test.js'),
         badge: path.resolve(__dirname, '../test/badge.test.js'),
+        menuItem: path.resolve(__dirname, '../test/menu-item.test.js'),
         icon:path.resolve(__dirname, '../test/icon.test.js'),
         input:path.resolve(__dirname, '../test/input.test.js')
     },
