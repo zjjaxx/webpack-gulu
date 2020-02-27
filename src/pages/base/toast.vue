@@ -41,7 +41,13 @@ export default {
           this.$toast("默认 toast")
       },
       showToastAllTime(){
-        this.$toast('不自动关闭toast')
+        this.$toast('不自动关闭toast',{
+          title:"了解",
+          callback:(toast,close)=>{
+            close()
+            console.log("close toast")
+          }
+        })
       }
   },
   created() {},

@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="z-input-wrap aligin-center">
-    <input class="z-input" :typ="type" :disabled="disabled" :placeholder="placeholder" :value="value" v-on="c_inputListener" />
+    <input class="z-input" :type="type" :disabled="disabled" :placeholder="placeholder" :value="value" v-on="c_inputListener" />
     <div v-if="errorTip">
       <span class="tip-error">{{errorTip}}</span>
     </div>

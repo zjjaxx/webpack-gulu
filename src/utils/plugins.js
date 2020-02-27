@@ -21,9 +21,13 @@ export default {
         })
 
         // 4. 添加实例方法
-        Vue.prototype.$toast = function (message) {
+        Vue.prototype.$toast = function (message,closeOption) {
             let ToastConstruct = Vue.extend(Toast)
-            let toast = new ToastConstruct()
+            let toast = new ToastConstruct({
+                propsData:{
+                    customCloseButton:closeOption
+                }
+            })
             toast.$slots.default = [message]
             toast.$mount()
             document.body.appendChild(toast.$el)
