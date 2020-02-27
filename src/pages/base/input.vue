@@ -10,13 +10,13 @@
     </z-header>
     <z-body>
       <z-title title="输入框+placeholder"></z-title>
-      <z-input v-model="inputAttr_one.value" :inputAttr="inputAttr_one"></z-input>
+      <z-input v-model="value"></z-input>
       <z-title title="输入框+错误提示"></z-title>
-      <z-input v-model="inputAttr_two.value" :inputAttr="inputAttr_two"></z-input>
+      <z-input v-model="value_two" :placeholder="placeholder_two" :errorTip="errorTip_two"></z-input>
       <z-title title="输入框+只读"></z-title>
-      <z-input v-model="inputAttr_three.value" :inputAttr="inputAttr_three"></z-input>
+      <z-input v-model="value_three" :placeholder="placeholder_two" :disabled="disabled_three"></z-input>
       <z-title title="输入框+数字"></z-title>
-      <z-input v-model="inputAttr_four.value" :inputAttr="inputAttr_four"></z-input>
+      <z-input v-model="value_four" :type="type_four" :placeholder="placeholder_four"></z-input>
     </z-body>
   </div>
 </template>
@@ -27,27 +27,15 @@ export default {
   components: { ZInput },
   data() {
     return {
-      inputAttr: {
-        value: ''
-      },
-      inputAttr_one: {
-        value: '',
-        placeholder: '请输入地址'
-      },
-      inputAttr_two: {
-        value: '',
-        placeholder: '请输入手机号',
-        errorTip: '手机号格式有误'
-      },
-      inputAttr_three: {
-        value: '金华婺城区',
-        disabled: true
-      },
-      inputAttr_four: {
-        value: '',
-        type: 'number',
-        placeholder: '请输入数字'
-      }
+      value: '',
+      value_two: '',
+      placeholder_two: '请输入手机号',
+      errorTip_two: '手机号格式有误',
+      value_three: '金华婺城区',
+      disabled_three: true,
+      value_four: '',
+      type_four: 'number',
+      placeholder_four: '请输入数字'
     }
   },
   computed: {},

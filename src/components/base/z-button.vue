@@ -11,8 +11,8 @@
       :iconName="iconName"
       v-if="iconName&&!isLoading"
       :class="classStyle"
-      :color=" [this.type == 'custom' ?'#fff':''] "
-    ></z-icon>
+      :color="this.type == 'custom' ?'#fff':'' "
+    ></z-icon> 
     <z-icon
       class="loading"
       v-if="isLoading"

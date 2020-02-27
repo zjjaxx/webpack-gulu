@@ -1,12 +1,12 @@
 <!--  -->
 <template>
   <div class="z-input-wrap aligin-center">
-    <input class="z-input" v-bind="inputAttr" v-on="c_inputListener" />
-    <div v-if="inputAttr.errorTip">
-      <span class="tip-error">{{inputAttr.errorTip}}</span>
+    <input class="z-input" :typ="type" :disabled="disabled" :placeholder="placeholder" :value="value" v-on="c_inputListener" />
+    <div v-if="errorTip">
+      <span class="tip-error">{{errorTip}}</span>
     </div>
     <div class="clear flex justify-center aligin-center" @click="$emit('input','')">
-      <z-icon v-show="inputAttr.value &&!inputAttr.disabled" color="gray" iconName="i-error"></z-icon>
+      <z-icon v-show="value &&!disabled" color="gray" iconName="i-error"></z-icon>
     </div>
   </div>
 </template>
@@ -16,10 +16,35 @@ import ZIcon from './z-icon.vue'
 export default {
   components: { ZIcon },
   props: {
-    inputAttr: {
-      type: Object,
-      default: () => {
-        return {}
+    placeholder:{
+      type:String,
+      default:()=>{
+        return "请输入内容"
+      }
+    },
+    value:{ //输入值
+      type:[String,Number],
+      default:()=>{
+        return ""
+      },
+      required:true
+    },
+    type:{ //类型
+      type:String,
+      default:()=>{
+        return ""
+      }
+    },
+    disabled:{ //禁用状态
+      type:Boolean,
+      default:()=>{
+        return false
+      }
+    },
+    errorTip:{ //错误提示
+      type:String,
+      default:()=>{
+        return ""
       }
     }
   },
