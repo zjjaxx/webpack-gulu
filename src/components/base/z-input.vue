@@ -16,7 +16,7 @@ import ZIcon from './z-icon.vue'
 export default {
   components: { ZIcon },
   props: {
-    placeholder:{
+    placeholder:{ //提示
       type:String,
       default:()=>{
         return "请输入内容"
