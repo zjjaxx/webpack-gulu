@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="z-tabs flex" @click="click">
+  <div class="z-tabs flex" @click="change">
     <slot></slot>
     <div class="tab-line flex aligin-center justify-center" :style="c_style">
       <span class="line"></span>
@@ -40,6 +40,9 @@ export default {
   },
   watch: {},
   methods: {
+    change(event){
+      console.log("event",event)
+    }
   },
   created() {},
   mounted() {

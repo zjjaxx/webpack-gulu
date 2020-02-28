@@ -10,7 +10,7 @@
     </z-header>
     <z-body>
       <z-title title="默认"></z-title>
-      <z-tabs :active="active" @click="click">
+      <z-tabs :active="active">
         <z-tab title="tab-1"></z-tab>
         <z-tab title="tab-2"></z-tab>
         <z-tab title="tab-3"></z-tab>
@@ -32,9 +32,6 @@ export default {
   computed: {},
   watch: {},
   methods: {
-      click(event){
-          console.log("event",event)
-      }
   },
   created() {},
   mounted() {},
