@@ -1,10 +1,11 @@
 <!--  -->
 <template>
-  <div class="z-tabs flex">
+  <div class="z-tabs flex border-bottom-1px">
     <slot></slot>
     <div class="tab-line flex aligin-center justify-center" :style="c_style">
       <span class="line"></span>
     </div>
+    <div class="tab-content-wrap"></div>
   </div>
 </template>
 
@@ -48,10 +49,15 @@ export default {
   created() {},
   mounted() {
     this.length = this.$children.length
+    let tabContentWrap=document.querySelector(".tab-content-wrap")
     this.$children.forEach((element,index) => {
       element.$el.onclick=()=>{
         this.$emit('change',index)
       }
+      console.log(element.$slots.default[0])
+      let div=document.createElement("div")
+      div.appendChild(element.$slots.default[0])
+      tabContentWrap.appendChild(div)
     });
   },
   updated() {}, //生命周期 - 更新之后
@@ -66,7 +72,7 @@ export default {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 2px;
+    height: 3px;
     min-width: 84px;
     flex-shrink: 0;
     flex-grow: 1;

@@ -11,34 +11,38 @@
     <z-body>
       <z-title title="默认"></z-title>
       <z-tabs v-model="active">
-        <z-tab title="tab-1"></z-tab>
-        <z-tab title="tab-2"></z-tab>
-        <z-tab title="tab-3"></z-tab>
+        <z-tab title="tab-1">
+          <div>内容一</div>
+        </z-tab>
+        <z-tab title="tab-2">
+          <div>内容二</div>
+        </z-tab>
+        <z-tab title="tab-3">
+          <div>内容三</div>
+        </z-tab>
       </z-tabs>
-      
     </z-body>
   </div>
 </template>
 
 <script>
-import ZTabs from '../../components/base/z-tabs.vue'
-import ZTab from '../../components/base/z-tab.vue'
+import ZTabs from "../../components/base/z-tabs.vue";
+import ZTab from "../../components/base/z-tab.vue";
 export default {
   components: { ZTabs, ZTab },
   data() {
     return {
-        active:2,
-    }
+      active: 2
+    };
   },
   computed: {},
   watch: {},
-  methods: {
-  },
+  methods: {},
   created() {},
   mounted() {},
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-}
+};
 </script>
 <style lang='less' scoped>
 .button-container {

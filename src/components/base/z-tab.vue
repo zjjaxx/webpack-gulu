@@ -2,7 +2,6 @@
 <template>
   <span class="z-tab flex aligin-center justify-center" >
     <span>{{title}}</span>
-    <!-- <slot></slot> -->
   </span>
 </template>
 
