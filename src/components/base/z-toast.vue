@@ -8,7 +8,7 @@
 <template>
   <div class="z-toast">
     <slot></slot>
-    <span class="close"  @click="closeToast">{{customCloseButton.title}}</span>
+    <!-- <span class="close"  @click="closeToast">{{customCloseButton.title}}</span> -->
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
     time: {
       type: Number,
       default: () => {
-        return 500000;
+        return 2000;
       }
     },
     customCloseButton: {
@@ -48,6 +48,7 @@ export default {
   methods: {
     close() {
       this.$el.remove();
+      this.$emit("beforeDestroy")
       this.$destroy();
     },
     closeToast() {
@@ -77,8 +78,18 @@ export default {
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
   font-size: 14px;
-  white-space: nowrap;
+  width: fit-content;
+  max-width: 240px;
   z-index: 300;
+  animation: fade_in 0.3s ease;
+  @keyframes fade_in {
+    0%{
+      opacity: 0;
+    }
+    100%{
+      opacity: 1;
+    }
+  }
   .close {
     margin-left: 10px;
     padding-left: 10px;

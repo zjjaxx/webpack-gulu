@@ -18,6 +18,7 @@
       <z-title title="默认toast"></z-title>
       <div class="default-wrap">
           <z-button @click="showToast">默认toast</z-button>
+           <z-button @click="showToastWrap">溢出换行</z-button>
       </div>
        <z-title title="不自动关闭toast"></z-title>
       <div class="default-wrap">
@@ -39,6 +40,9 @@ export default {
   methods: {
       showToast(){
           this.$toast("默认 toast")
+      },
+      showToastWrap(){
+         this.$toast("zui移动端UI组件库，模仿vant移动端组件库，仅供学习，不用于商业用途,版本v"+Math.random())
       },
       showToastAllTime(){
         this.$toast('不自动关闭toast',{
