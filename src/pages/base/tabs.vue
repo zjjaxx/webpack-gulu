@@ -10,11 +10,12 @@
     </z-header>
     <z-body>
       <z-title title="默认"></z-title>
-      <z-tabs :active="active">
+      <z-tabs v-model="active">
         <z-tab title="tab-1"></z-tab>
         <z-tab title="tab-2"></z-tab>
         <z-tab title="tab-3"></z-tab>
       </z-tabs>
+      
     </z-body>
   </div>
 </template>
@@ -26,7 +27,7 @@ export default {
   components: { ZTabs, ZTab },
   data() {
     return {
-        active:0
+        active:2,
     }
   },
   computed: {},

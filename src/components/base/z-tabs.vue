@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="z-tabs flex" @click="change">
+  <div class="z-tabs flex">
     <slot></slot>
     <div class="tab-line flex aligin-center justify-center" :style="c_style">
       <span class="line"></span>
@@ -11,6 +11,10 @@
 <script>
 export default {
   components: {},
+  model:{
+    prop: 'active',
+    event: 'change'
+  },
   props: {
     active: {
       //激活索引
@@ -40,13 +44,15 @@ export default {
   },
   watch: {},
   methods: {
-    change(event){
-      console.log("event",event)
-    }
   },
   created() {},
   mounted() {
     this.length = this.$children.length
+    this.$children.forEach((element,index) => {
+      element.$el.onclick=()=>{
+        this.$emit('change',index)
+      }
+    });
   },
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
