@@ -21,6 +21,12 @@
           <div class="tab-content">内容三</div>
         </z-tab>
       </z-tabs>
+      <z-title title="tab标签超过4个,标签栏可以在水平方向上滚动，切换时会自动将当前标签居中"></z-title>
+      <z-tabs v-model="active2">
+        <z-tab :title="'tab-'+item" v-for="(item,index) in 8" :key="index">
+          <div class="tab-content">tab-{{item}}</div>
+        </z-tab>
+      </z-tabs>
     </z-body>
   </div>
 </template>
@@ -32,7 +38,8 @@ export default {
   components: { ZTabs, ZTab },
   data() {
     return {
-      active: 0
+      active: 0,
+      active2: 0
     };
   },
   computed: {},
@@ -63,7 +70,7 @@ export default {
       margin-right: 20px;
     }
   }
-  .tab-content{
+  .tab-content {
     padding: 20px;
   }
 }

@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <span class="z-tab flex aligin-center justify-center" >
+  <span class="z-tab flex aligin-center justify-center" :class="c_class">
     <span>{{title}}</span>
   </span>
 </template>
@@ -17,11 +17,18 @@ export default {
       required: true
     }
   },
-  components: {},
-  data() {
-    return {}
+  components: {
   },
-  computed: {},
+  data() {
+    return {
+      isActive:false
+    }
+  },
+  computed: {
+     c_class(){
+      return this.isActive?'active-style':''
+    }
+  },
   watch: {},
   methods: {},
   created() {},
@@ -36,5 +43,9 @@ export default {
   flex-shrink: 0;
   height: 100%;
   flex-grow: 1;
+  color: @tab-color;
+}
+.active-style{
+  color:@tab-active-color;
 }
 </style>

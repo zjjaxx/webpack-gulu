@@ -39,7 +39,7 @@ export default {
       padding: 12px 15px 12px 0px;
       .title{
           border-left: 3px solid #c0c0c0;
-          text-indent: 10px;
+          padding-left:10px;
       }
   }
 }
