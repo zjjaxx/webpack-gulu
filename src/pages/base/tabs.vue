@@ -12,13 +12,13 @@
       <z-title title="默认"></z-title>
       <z-tabs v-model="active">
         <z-tab title="tab-1">
-          <div>内容一</div>
+          <div class="tab-content">内容一</div>
         </z-tab>
         <z-tab title="tab-2">
-          <div>内容二</div>
+          <div class="tab-content">内容二</div>
         </z-tab>
         <z-tab title="tab-3">
-          <div>内容三</div>
+          <div class="tab-content">内容三</div>
         </z-tab>
       </z-tabs>
     </z-body>
@@ -32,7 +32,7 @@ export default {
   components: { ZTabs, ZTab },
   data() {
     return {
-      active: 2
+      active: 0
     };
   },
   computed: {},
@@ -62,6 +62,9 @@ export default {
     * {
       margin-right: 20px;
     }
+  }
+  .tab-content{
+    padding: 20px;
   }
 }
 </style>

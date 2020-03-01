@@ -1,27 +1,30 @@
 <!--  -->
 <template>
-  <div class="z-tabs flex border-bottom-1px">
-    <slot></slot>
-    <div class="tab-line flex aligin-center justify-center" :style="c_style">
-      <span class="line"></span>
+  <div>
+    <div class="z-tabs border-bottom-1px flex">
+      <slot></slot>
+      <div class="tab-line flex aligin-center justify-center" :style="c_style">
+        <span class="line"></span>
+      </div>
     </div>
     <div class="tab-content-wrap"></div>
   </div>
 </template>
 
 <script>
+import Vue from "vue";
 export default {
   components: {},
-  model:{
-    prop: 'active',
-    event: 'change'
+  model: {
+    prop: "active",
+    event: "change"
   },
   props: {
     active: {
       //激活索引
       type: Number,
       default: () => {
-        return 0
+        return 0;
       },
       required: true
     }
@@ -29,40 +32,66 @@ export default {
   data() {
     return {
       length: 0
-    }
+    };
   },
   computed: {
     c_style() {
       return [
         {
-          width: 100 / this.length + '%'
+          width: 100 / this.length + "%"
         },
         {
-          transform: `translateX(${this.active * 100 + '%'})`
+          transform: `translateX(${this.active * 100 + "%"})`
         }
-      ]
+      ];
     }
   },
-  watch: {},
-  methods: {
-  },
+  methods: {},
   created() {},
   mounted() {
-    this.length = this.$children.length
-    let tabContentWrap=document.querySelector(".tab-content-wrap")
-    this.$children.forEach((element,index) => {
-      element.$el.onclick=()=>{
-        this.$emit('change',index)
-      }
-      console.log(element.$slots.default[0])
-      let div=document.createElement("div")
-      div.appendChild(element.$slots.default[0])
-      tabContentWrap.appendChild(div)
+    this.length = this.$children.length;
+    let that=this
+    let tabContentWrap = document.querySelector(".tab-content-wrap");
+    this.$children.forEach((element, index) => {
+      element.$el.onclick = () => {
+        this.$emit("change", index);
+      };
+      let ComponentConstructor = Vue.component("z-tab-content", {
+        props: {
+          index: {
+            type: Number,
+            default: () => {
+              return 0;
+            },
+            required: true
+          }
+        },
+        render: function(createElement) {
+          var body = element.$slots.default;
+          return createElement(
+            "div",
+            {
+              style: {
+                display: this.index == that.active ? "" : "none"
+              }
+            },
+            body
+          );
+        }
+      });
+      let component = new ComponentConstructor({
+        propsData: {
+          index: index
+        }
+      });
+      let div = document.createElement("div");
+      tabContentWrap.appendChild(div);
+      component.$mount(div);
     });
   },
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-}
+};
 </script>
 <style lang='less' scoped>
 .z-tabs {
