@@ -11,6 +11,7 @@
       <z-menu-item title="Toast" :path="{path:'/home/toast'}"></z-menu-item>
       <z-menu-item title="对话框" :path="{path:'/home/dialog'}"></z-menu-item>
       <z-menu-item title="Tab标签页" :path="{path:'/home/tabs'}"></z-menu-item>
+       <z-menu-item title="粘性布局" :path="{path:'/home/sticky'}"></z-menu-item>
     </z-body>
     <router-view></router-view>
   </div>

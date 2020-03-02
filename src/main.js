@@ -38,6 +38,10 @@ Vue.use(Toast)
 // import VConsole from "vconsole"
 // var vConsoleInstance = new VConsole();
 // Vue.use(vConsoleInstance)
+import Vant from 'vant';
+import 'vant/lib/index.css';
+
+Vue.use(Vant);
 
 new Vue({ router, render: (h) => h(App) }).$mount("#App")
 

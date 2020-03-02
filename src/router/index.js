@@ -48,6 +48,10 @@ const routes = [
                     {
                         path: "tabs",
                         component: () => import("../pages/base/tabs.vue")
+                    },
+                    {
+                        path: "sticky",
+                        component: () => import("../pages/base/sticky.vue")
                     }
                 ]
             }, {
