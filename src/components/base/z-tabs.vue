@@ -1,13 +1,14 @@
 <!--  -->
 <template>
   <div class="z-tab-wrap">
-    <div class="z-tabs border-bottom-1px flex">
+    <div class="z-tabs border-bottom-1px flex" :class="c_tabs">
       <slot></slot>
       <div class="tab-line flex aligin-center justify-center" :style="c_style">
         <span class="line"></span>
       </div>
     </div>
-    <div class="tab-content-wrap"></div>
+    <div id="z-tabs"></div>
+    <div class="tab-content-wrap" :class="c_content"></div>
   </div>
 </template>
 
@@ -20,6 +21,12 @@ export default {
     event: 'change'
   },
   props: {
+    isSticky:{ //是否吸顶
+      type:Boolean,
+      default:()=>{
+        return false
+      }
+    },
     active: {
       //激活索引
       type: Number,
@@ -31,10 +38,17 @@ export default {
   },
   data() {
     return {
-      length: 0
+      length: 0,
+      sticky:false
     }
   },
   computed: {
+    c_content(){
+      return [this.sticky?'z-content-pt':'']
+    },
+    c_tabs(){
+      return [this.sticky?'z-tabs-sticky':'']
+    },
     c_style() {
       return [
         {
@@ -47,6 +61,17 @@ export default {
     }
   },
   methods: {
+    chargeSticky(){
+      let wrap = this.$el
+  
+      zBody.addEventListener("scroll",()=>{
+        let top=zTabs.getBoundingClientRect().top
+        console.log("top",top)
+        if(top<=0){
+          this.sticky=true
+        }
+      })
+    },
     //滚动
     scroll(element) {
       let el = element.$el
@@ -57,7 +82,6 @@ export default {
       let half_width = el.offsetWidth / 2
       let half_window_width = window_width / 2
       let scrollL = tabs.scrollLeft
-      console.log('tabs.offsetWidth', tabs.scrollWidth)
       let totalScrollDistance =
         scrollL + (offsetLeft - half_window_width) + half_width
       if (totalScrollDistance > tabs.scrollWidth - window_width) {
@@ -67,7 +91,7 @@ export default {
       }
       let to_scrollLeft = offsetLeft - half_window_width + half_width
       let params = {
-        scrollDuration: 1000,
+        scrollDuration: 1500,
         tabs,
         to_scrollLeft,
         totalScrollDistance,
@@ -90,37 +114,23 @@ export default {
             tabs.scrollLeft = totalScrollDistance
             return
           }
-          tabs.scrollLeft += stepDistance
-          window.requestAnimationFrame(step)
         } else {
           if (tabs.scrollLeft <= totalScrollDistance) {
             tabs.scrollLeft = totalScrollDistance
             return
           }
-          tabs.scrollLeft = (tabs.scrollLeft * 100 + stepDistance * 100) / 100
-          window.requestAnimationFrame(step)
         }
+        tabs.scrollLeft = (tabs.scrollLeft * 100 + stepDistance * 100) / 100
+        window.requestAnimationFrame(step)
       }
       window.requestAnimationFrame(step)
     },
-    /* 
-        Explanations:
-        - pi is the length/end point of the cosinus intervall (see above)
-        - newTimestamp indicates the current time when callbacks queued by requestAnimationFrame begin to fire.
-          (for more information see https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
-        - newTimestamp - oldTimestamp equals the duration
-
-          a * cos (bx + c) + d                      | c translates along the x axis = 0
-        = a * cos (bx) + d                          | d translates along the y axis = 1 -> only positive y values
-        = a * cos (bx) + 1                          | a stretches along the y axis = cosParameter = window.scrollY / 2
-        = cosParameter + cosParameter * (cos bx)    | b stretches along the x axis = scrollCount = Math.PI / (scrollDuration / (newTimestamp - oldTimestamp))
-        = cosParameter + cosParameter * (cos scrollCount * x)
-    */
     //设置v-model
     setVModel() {
       this.$children.forEach((element, index) => {
         element.$el.onclick = () => {
           this.$emit('change', index)
+          this.$emit('click',{index,title:element.title})
           this.reset()
           element.isActive = true
           this.scroll(element)
@@ -180,6 +190,10 @@ export default {
     this.length = this.$children.length
     //设置v-model
     this.setVModel()
+    //判断吸顶
+    if(this.isSticky){
+      //  this.chargeSticky()
+    }
   },
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
@@ -211,5 +225,16 @@ export default {
       border-radius: 3px;
     }
   }
+  .z-content-pt{
+    padding-top: 45px;
+  }
+}
+.z-tabs-sticky{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 45px;
+  background: #fff;
 }
 </style>

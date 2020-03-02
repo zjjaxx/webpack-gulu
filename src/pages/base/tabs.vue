@@ -22,9 +22,15 @@
         </z-tab>
       </z-tabs>
       <z-title title="tab标签超过4个,标签栏可以在水平方向上滚动，切换时会自动将当前标签居中"></z-title>
-      <z-tabs v-model="active2">
+      <z-tabs v-model="active2"  @click="tab_click">
         <z-tab :title="'tab-'+item" v-for="(item,index) in 8" :key="index">
           <div class="tab-content">tab-{{item}}</div>
+        </z-tab>
+      </z-tabs>
+      <z-title title="吸顶sticky"></z-title>
+      <z-tabs v-model="active3" :isSticky="true">
+        <z-tab :title="'tab-'+item" v-for="(item,index) in 8" :key="index">
+          <div class="tab-content—sticky">tab-{{item}}</div>
         </z-tab>
       </z-tabs>
     </z-body>
@@ -39,12 +45,17 @@ export default {
   data() {
     return {
       active: 0,
-      active2: 0
+      active2: 0,
+      active3:0
     };
   },
   computed: {},
   watch: {},
-  methods: {},
+  methods: {
+    tab_click({index,title}){
+      this.$toast(`title is ${title} , index is ${index}`)
+    }
+  },
   created() {},
   mounted() {},
   updated() {}, //生命周期 - 更新之后
@@ -72,6 +83,10 @@ export default {
   }
   .tab-content {
     padding: 20px;
+  }
+  .tab-content—sticky{
+    padding: 20px;
+    height: 800px;
   }
 }
 </style>
