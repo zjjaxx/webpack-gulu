@@ -24,7 +24,7 @@
 <script>
 import Vue from 'vue'
 import ZSticky from '../../components/base/z-sticky.vue'
-import router from "../../router/index.js"
+import router from '../../router/index.js'
 export default {
   components: { ZSticky },
   model: {
@@ -48,6 +48,7 @@ export default {
       required: true
     },
     offsetTop: {
+      //吸顶距离
       type: Number,
       default: () => {
         return 0
@@ -175,7 +176,7 @@ export default {
           )
         }
       })
-      let ZTabContentConstructor=Vue.extend(ZTabContent)
+      let ZTabContentConstructor = Vue.extend(ZTabContent)
       let component = new ZTabContentConstructor({
         propsData: {
           index: index
