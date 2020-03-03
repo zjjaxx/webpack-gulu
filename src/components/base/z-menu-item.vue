@@ -1,12 +1,12 @@
 <!-- 、 -->
 <template>
-  <router-link tag="div" :to="path" class="menu-item-wrap">
+  <div @click="toPath" class="menu-item-wrap">
     <div class="menu-item border-bottom-1px flex justify-between aligin-center">
       <slot name="left"></slot>
       <span class="content-title">{{title}}</span>
       <slot name="right"></slot>
     </div>
-  </router-link>
+  </div>
 </template>
 
 <script>
@@ -34,7 +34,11 @@ export default {
   },
   computed: {},
   watch: {},
-  methods: {},
+  methods: {
+    toPath(){
+      this.$router.push(this.path)
+    }
+  },
   created() {},
   mounted() {},
   updated() {}, //生命周期 - 更新之后

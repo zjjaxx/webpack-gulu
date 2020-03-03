@@ -6,6 +6,7 @@
  */
 import Vue from "vue"
 import App from "./App.vue"
+import router from "./router/index.js"
 import "../src/assets/style/reset.css"
 import "../src/assets/style/global.less"
 
@@ -24,12 +25,8 @@ Vue.component("z-body",ZBody)
 
 import ZTitle from "./components/base/z-title.vue"
 Vue.component("z-title",ZTitle)
-//vue router
-import VueRouter from 'vue-router'
 
-Vue.use(VueRouter)
 
-import router from "./router/index.js"
 
 //插件
 import Toast from "./utils/plugins"
@@ -38,10 +35,10 @@ Vue.use(Toast)
 // import VConsole from "vconsole"
 // var vConsoleInstance = new VConsole();
 // Vue.use(vConsoleInstance)
-import Vant from 'vant';
-import 'vant/lib/index.css';
+// import Vant from 'vant';
+// import 'vant/lib/index.css';
 
-Vue.use(Vant);
+// Vue.use(Vant);
 
 new Vue({ router, render: (h) => h(App) }).$mount("#App")
 

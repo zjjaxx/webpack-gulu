@@ -1,29 +1,41 @@
 <!--  -->
 <template>
   <div class="z-tab-wrap">
-    <div class="z-tabs border-bottom-1px flex" :class="c_tabs">
+    <div :class="sticky?'polyfill-height':''" v-if="isSticky">
+      <z-sticky @scroll="stickyScroll" :offsetTop="offsetTop">
+        <div class="z-tabs border-bottom-1px flex" :class="c_tabs">
+          <slot></slot>
+          <div class="tab-line flex aligin-center justify-center" :style="c_style">
+            <span class="line"></span>
+          </div>
+        </div>
+      </z-sticky>
+    </div>
+    <div class="z-tabs border-bottom-1px flex" :class="c_tabs" v-else>
       <slot></slot>
       <div class="tab-line flex aligin-center justify-center" :style="c_style">
         <span class="line"></span>
       </div>
     </div>
-    <div id="z-tabs"></div>
-    <div class="tab-content-wrap" :class="c_content"></div>
+    <div class="tab-content-wrap"></div>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import ZSticky from '../../components/base/z-sticky.vue'
+import router from "../../router/index.js"
 export default {
-  components: {},
+  components: { ZSticky },
   model: {
     prop: 'active',
     event: 'change'
   },
   props: {
-    isSticky:{ //是否吸顶
-      type:Boolean,
-      default:()=>{
+    isSticky: {
+      //是否吸顶
+      type: Boolean,
+      default: () => {
         return false
       }
     },
@@ -34,20 +46,23 @@ export default {
         return 0
       },
       required: true
+    },
+    offsetTop: {
+      type: Number,
+      default: () => {
+        return 0
+      }
     }
   },
   data() {
     return {
       length: 0,
-      sticky:false
+      sticky: false
     }
   },
   computed: {
-    c_content(){
-      return [this.sticky?'z-content-pt':'']
-    },
-    c_tabs(){
-      return [this.sticky?'z-tabs-sticky':'']
+    c_tabs() {
+      return [this.sticky ? 'z-tabs-sticky' : '']
     },
     c_style() {
       return [
@@ -61,16 +76,8 @@ export default {
     }
   },
   methods: {
-    chargeSticky(){
-      let wrap = this.$el
-  
-      zBody.addEventListener("scroll",()=>{
-        let top=zTabs.getBoundingClientRect().top
-        console.log("top",top)
-        if(top<=0){
-          this.sticky=true
-        }
-      })
+    stickyScroll({ scrollTop, isSticky }) {
+      this.sticky = isSticky
     },
     //滚动
     scroll(element) {
@@ -126,12 +133,12 @@ export default {
       window.requestAnimationFrame(step)
     },
     //设置v-model
-    setVModel() {
-      this.$children.forEach((element, index) => {
+    setVModel(chidren) {
+      chidren.forEach((element, index) => {
         element.$el.onclick = () => {
           this.$emit('change', index)
-          this.$emit('click',{index,title:element.title})
-          this.reset()
+          this.$emit('click', { index, title: element.title })
+          this.reset(chidren)
           element.isActive = true
           this.scroll(element)
         }
@@ -145,7 +152,7 @@ export default {
     setTabContent(index, element) {
       let that = this
       let tabContentWrap = this.$el.querySelector('.tab-content-wrap')
-      let ComponentConstructor = Vue.component('z-tab-content', {
+      let ZTabContent = Vue.component('z-tab-content', {
         props: {
           index: {
             type: Number,
@@ -168,7 +175,8 @@ export default {
           )
         }
       })
-      let component = new ComponentConstructor({
+      let ZTabContentConstructor=Vue.extend(ZTabContent)
+      let component = new ZTabContentConstructor({
         propsData: {
           index: index
         }
@@ -178,22 +186,25 @@ export default {
       component.$mount(div)
     },
     //重置tab激活样式
-    reset() {
-      this.$children.forEach((element, index) => {
+    reset(chidren) {
+      chidren.forEach((element, index) => {
         element.isActive = false
       })
     }
   },
   created() {},
   mounted() {
+    let chidren = []
     //获取子元素的个数
-    this.length = this.$children.length
-    //设置v-model
-    this.setVModel()
-    //判断吸顶
-    if(this.isSticky){
-      //  this.chargeSticky()
+    if (this.isSticky) {
+      this.length = this.$children[0].$children.length
+      chidren = this.$children[0].$children
+    } else {
+      this.length = this.$children.length
+      chidren = this.$children
     }
+    //设置v-model
+    this.setVModel(chidren)
   },
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
@@ -225,16 +236,8 @@ export default {
       border-radius: 3px;
     }
   }
-  .z-content-pt{
-    padding-top: 45px;
-  }
 }
-.z-tabs-sticky{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+.polyfill-height {
   height: 45px;
-  background: #fff;
 }
 </style>

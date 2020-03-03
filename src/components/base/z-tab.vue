@@ -1,7 +1,9 @@
 <!--  -->
 <template>
   <span class="z-tab flex aligin-center justify-center" :class="c_class">
-    <span>{{title}}</span>
+    <slot name="title">
+      <span>{{title}}</span>
+    </slot>
   </span>
 </template>
 
@@ -17,16 +19,15 @@ export default {
       required: true
     }
   },
-  components: {
-  },
+  components: {},
   data() {
     return {
-      isActive:false
+      isActive: false
     }
   },
   computed: {
-     c_class(){
-      return this.isActive?'active-style':''
+    c_class() {
+      return this.isActive ? 'active-style' : ''
     }
   },
   watch: {},
@@ -45,7 +46,7 @@ export default {
   flex-grow: 1;
   color: @tab-color;
 }
-.active-style{
-  color:@tab-active-color;
+.active-style {
+  color: @tab-active-color;
 }
 </style>

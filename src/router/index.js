@@ -1,6 +1,8 @@
 import VueRouter from "vue-router"
+import Vue from "vue"
 import Index from "../pages/index.vue"
 import Home from "../pages/base/home.vue"
+Vue.use(VueRouter)
 const routes = [
     {
         path: "",
