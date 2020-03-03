@@ -131,6 +131,13 @@ img {
     border-top:1px solid;
     border-image:svg(border-1px param(--color #ddd)) 1 stretch;
 }
+.clear-fix{
+    &::after{
+        display: block;
+        content: "";
+        clear: both;
+    }
+}
 
 
 
