@@ -188,7 +188,7 @@ export default {
     },
     //重置tab激活样式
     reset(chidren) {
-      chidren.forEach((element, index) => {
+      chidre.forEach((element, index) => {
         element.isActive = false
       })
     }

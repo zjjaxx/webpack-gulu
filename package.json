@@ -14,8 +14,6 @@
     "@babel/polyfill": "^7.8.3",
     "@babel/runtime": "^7.8.3",
     "@babel/runtime-corejs2": "^7.8.3",
-    "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
-    "@vue/babel-preset-jsx": "^1.1.2",
     "core-js": "^2.6.11",
     "cssnano": "^4.1.10",
     "lodash": "^4.17.15",
