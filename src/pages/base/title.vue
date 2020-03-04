@@ -32,7 +32,7 @@ created() {
 
 },
 mounted() {
-
+  console.log("ZJXS",ZJXS)
 },
 updated() {}, //生命周期 - 更新之后
 destroyed() {}, //生命周期 - 销毁完成
