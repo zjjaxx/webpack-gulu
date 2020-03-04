@@ -44,7 +44,7 @@
           <div class="tab-content">内容二</div>
         </z-tab>
         <z-tab title="tab-3">
-           <template v-slot:title>
+          <template v-slot:title>
             <z-icon iconName="i-love" style="marginRight:4px"></z-icon>
             <span>标签三</span>
           </template>
@@ -55,9 +55,9 @@
       <z-tabs v-model="active3" :isSticky="true" :offsetTop="offsetTop">
         <z-tab :title="'tab-'+item" v-for="(item,index) in 8" :key="index">
           <div class="tab-content—sticky">
-             <template v-for="(item,index) in 80">
-                 <div class="item border-bottom-1px">菜单{{index}}</div>
-             </template>
+            <template v-for="(item,index) in 80">
+              <div class="item border-bottom-1px" :key="index">菜单{{index}}</div>
+            </template>
           </div>
         </z-tab>
       </z-tabs>
@@ -66,8 +66,8 @@
 </template>
 
 <script>
-import ZTabs from '../../components/base/z-tabs.vue'
-import ZTab from '../../components/base/z-tab.vue'
+import ZTabs from "../../components/base/z-tabs.vue";
+import ZTab from "../../components/base/z-tab.vue";
 export default {
   components: { ZTabs, ZTab },
   data() {
@@ -75,25 +75,25 @@ export default {
       active: 0,
       active2: 0,
       active3: 0,
-      active4:0,
+      active4: 0,
       offsetTop: 0
-    }
+    };
   },
   computed: {},
   watch: {},
   methods: {
     tab_click({ index, title }) {
-      this.$toast(`title is ${title} , index is ${index}`)
+      this.$toast(`title is ${title} , index is ${index}`);
     }
   },
   created() {},
   mounted() {
-    let header = document.getElementById('header')
-    this.offsetTop = header.offsetHeight
+    let header = document.getElementById("header");
+    this.offsetTop = header.offsetHeight;
   },
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-}
+};
 </script>
 <style lang='less' scoped>
 .button-container {
@@ -118,8 +118,8 @@ export default {
     padding: 20px;
   }
   .tab-content—sticky {
-    .item{
-      padding: 10px;
+    .item {
+      padding: 10px 20px;
     }
   }
 }

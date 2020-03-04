@@ -36,6 +36,9 @@ export default {
   watch: {},
   methods: {
     toPath(){
+      if(!this.path.path){
+        return
+      }
       this.$router.push(this.path)
     }
   },

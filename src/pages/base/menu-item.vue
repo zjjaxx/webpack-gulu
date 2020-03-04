@@ -12,7 +12,7 @@
       <z-title title="默认Cell单元格"></z-title>
       <z-menu-item title="menu-item"></z-menu-item>
       <z-title title="Cell单元格+路由link"></z-title>
-      <z-menu-item title="数字角标" :path="{path:'/home/badge'}"></z-menu-item>
+      <z-menu-item title="图标" :path="{path:'/home/icon'}"></z-menu-item>
       <z-title title="Cell单元格+左边自定义"></z-title>
       <z-menu-item title="金华市婺城区">
         <template v-slot:left>
