@@ -10,14 +10,17 @@
     </z-header>
     <z-body>
       <z-title title="默认标题栏"></z-title>
+      <test>
+        <z-icon iconName="i-setting"></z-icon>
+      </test>
     </z-body>
 </div>
 </template>
 
 <script>
-
+import test from "../../components/base/test.vue"
 export default {
-components: {},
+components: {test},
 data() {
 return {
 
@@ -32,7 +35,6 @@ created() {
 
 },
 mounted() {
-  console.log("ZJXS",ZJXS)
 },
 updated() {}, //生命周期 - 更新之后
 destroyed() {}, //生命周期 - 销毁完成
@@ -58,6 +60,10 @@ destroyed() {}, //生命周期 - 销毁完成
         margin-right: 0;
       }
     }
+  }
+  .test{
+    padding:20px;
+    color: #f50;
   }
 }
 

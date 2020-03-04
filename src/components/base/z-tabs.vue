@@ -153,7 +153,7 @@ export default {
     setTabContent(index, element) {
       let that = this
       let tabContentWrap = this.$el.querySelector('.tab-content-wrap')
-      let ZTabContent = Vue.component('z-tab-content', {
+      let ZTabContent = {
         props: {
           index: {
             type: Number,
@@ -175,7 +175,7 @@ export default {
             body
           )
         }
-      })
+      }
       let ZTabContentConstructor = Vue.extend(ZTabContent)
       let component = new ZTabContentConstructor({
         propsData: {
@@ -188,7 +188,7 @@ export default {
     },
     //重置tab激活样式
     reset(chidren) {
-      chidre.forEach((element, index) => {
+      chidren.forEach((element, index) => {
         element.isActive = false
       })
     }
