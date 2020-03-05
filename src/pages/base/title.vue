@@ -1,7 +1,7 @@
 <!--  -->
 <template>
-<div class='title-container'>
-        <z-header title="标题栏">
+  <div class="title-container">
+    <z-header title="标题栏">
       <template v-slot:left>
         <div class="left-wrap flex justify-center aligin-center" @click="$router.back()">
           <z-icon icon-name="i-left"></z-icon>
@@ -10,39 +10,28 @@
     </z-header>
     <z-body>
       <z-title title="默认标题栏"></z-title>
-      <test>
-        <z-icon iconName="i-setting"></z-icon>
-      </test>
     </z-body>
-</div>
+  </div>
 </template>
 
 <script>
-import test from "../../components/base/test.vue"
 export default {
-components: {test},
-data() {
-return {
-
-};
-},
-computed: {},
-watch: {},
-methods: {
-
-},
-created() {
-
-},
-mounted() {
-},
-updated() {}, //生命周期 - 更新之后
-destroyed() {}, //生命周期 - 销毁完成
+  components: {},
+  data() {
+    return {}
+  },
+  computed: {},
+  watch: {},
+  methods: {},
+  created() {},
+  mounted() {},
+  updated() {}, //生命周期 - 更新之后
+  destroyed() {} //生命周期 - 销毁完成
 }
 </script>
 <style lang='less' scoped>
-.title-container{
-     position: absolute;
+.title-container {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -61,10 +50,9 @@ destroyed() {}, //生命周期 - 销毁完成
       }
     }
   }
-  .test{
-    padding:20px;
+  .test {
+    padding: 20px;
     color: #f50;
   }
 }
-
 </style>

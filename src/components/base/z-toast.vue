@@ -8,7 +8,6 @@
 <template>
   <div class="z-toast">
     <slot></slot>
-    <!-- <span class="close"  @click="closeToast">{{customCloseButton.title}}</span> -->
   </div>
 </template>
 
@@ -89,11 +88,6 @@ export default {
     100%{
       opacity: 1;
     }
-  }
-  .close {
-    margin-left: 10px;
-    padding-left: 10px;
-    border-left: 1px solid #999;
   }
 }
 </style>

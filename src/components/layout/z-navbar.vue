@@ -1,5 +1,5 @@
 <template>
-  <div class="z-navbar flex">
+  <div class="z-navbar flex border-top-1px">
     <template v-for="(item,index) in bottomMenu">
       <router-link
         tag="div"
@@ -8,7 +8,7 @@
         :key="index"
       >
         <slot :item="item" :active="$route.path.match(item.path)"></slot>
-        <div class="mt-6">{{item.name}}</div>
+        <div class="mt-2" :style="c_style(item)">{{item.name}}</div>
       </router-link>
     </template>
   </div>
@@ -28,6 +28,18 @@ export default {
           }
         ]
       }
+    },
+    activeColor: {
+      type: String,
+      default: () => {
+        return '#07c160'
+      }
+    },
+    inactiveColor: {
+      type: String,
+      default: () => {
+        return '#000'
+      }
     }
   },
   data() {
@@ -35,7 +47,15 @@ export default {
   },
   computed: {},
   watch: {},
-  methods: {},
+  methods: {
+    c_style(item) {
+      return {
+        color: this.$route.path.match(item.path)
+          ? this.activeColor
+          : this.inactiveColor
+      }
+    }
+  },
   created() {},
   mounted() {},
   updated() {}, //生命周期 - 更新之后
@@ -54,14 +74,14 @@ export default {
   height: calc(50px + env(safe-area-inset-bottom));
   background: #fff;
   box-sizing: border-box;
-  border-top: 1px solid #ddd;
   z-index: 200;
   .menu-item {
     flex: 1;
     height: 100%;
+    font-size: 14px;
   }
-  .mt-6 {
-    margin-top: 6px;
+  .mt-2 {
+    margin-top: 2px;
   }
 }
 </style>

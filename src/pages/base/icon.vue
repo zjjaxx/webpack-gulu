@@ -21,7 +21,7 @@
         <z-icon iconName="i-setting" info="10"></z-icon>
         <z-icon iconName="i-setting" info="1"></z-icon>
       </div>
-      <z-title title="图标 提示信息"></z-title>
+      <z-title title="图标 颜色填充"></z-title>
       <div class="default-wrap flex">
         <z-icon iconName="i-setting" color="#ee0a24" dot></z-icon>
       </div>

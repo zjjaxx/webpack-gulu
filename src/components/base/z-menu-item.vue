@@ -4,7 +4,9 @@
     <div class="menu-item border-bottom-1px flex justify-between aligin-center">
       <slot name="left"></slot>
       <span class="content-title">{{title}}</span>
-      <slot name="right"></slot>
+      <slot name="right">
+        <z-icon iconName="i-right"></z-icon>
+      </slot>
     </div>
   </div>
 </template>

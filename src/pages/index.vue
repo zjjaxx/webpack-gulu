@@ -1,14 +1,15 @@
 <!--  -->
 <template>
   <div class="index">
-    <div class="wrap">
-      <router-view></router-view>
-    </div>
-    <ZNavbar :bottomMenu="bottomMenu" class="nav-wrap">
+     <ZNavbar :bottomMenu="bottomMenu" activeColor="#ee0a24" inactiveColor="#333">
       <template v-slot="{item,active}">
-        <z-icon :iconName="item.iconName" :color="active?'#ee0a24':''"></z-icon>
+        <z-icon :iconName="item.iconName" :info="item.info" :color="active?'#ee0a24':'#333'"></z-icon>
       </template>
     </ZNavbar>
+    <div class="z-body">
+      <router-view></router-view>
+    </div>
+   
   </div>
 </template>
 
@@ -27,7 +28,8 @@ export default {
         {
           path: '/layout',
           iconName: 'i-layout',
-          name: '布局'
+          name: '布局',
+          info:2
         },
         {
           path: '/person',
@@ -49,10 +51,6 @@ export default {
 <style lang='less' scoped>
 .index {
   height: 100%;
-  .wrap {
-    padding-bottom: 50px;
-    height: 100%;
-    box-sizing: border-box;
-  }
+  
 }
 </style>
