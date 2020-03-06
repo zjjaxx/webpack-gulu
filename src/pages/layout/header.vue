@@ -47,7 +47,7 @@
         </z-header>
         <z-header style="position:relative" :customCenter="true">
           <template v-slot:center>
-            <z-input class="center-wrap1" :inputAttr="inputAttr"></z-input>
+            <z-input class="center-wrap1" :value="value" :placeholder="placeholder"></z-input>
           </template>
           <template v-slot:right>
             <div class="right-wrap flex justify-center aligin-center">
@@ -66,10 +66,8 @@ export default {
   components: { ZInput },
   data() {
     return {
-      inputAttr: {
         value: '',
         placeholder: '请输入搜索商品'
-      }
     }
   },
   computed: {},

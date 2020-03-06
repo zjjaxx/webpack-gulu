@@ -1,35 +1,33 @@
 <!-- 、 -->
 <template>
-  <div @click="toPath" class="menu-item-wrap">
-    <div class="menu-item border-bottom-1px flex justify-between aligin-center">
-      <slot name="left"></slot>
-      <span class="content-title">{{title}}</span>
-      <slot name="right">
-        <z-icon iconName="i-right"></z-icon>
-      </slot>
+    <div class="menu-item-wrap" @click="clickEvent">
+      <div class="menu-item border-bottom-1px flex justify-between aligin-center">
+        <slot name="left"></slot>
+        <span class="content-title">{{title}}</span>
+        <slot name="right"></slot>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
   components: {},
-  props:{
-      title:{ //单元格内容
-          type:String,
-          default:()=>{
-              return ""
-          },
-          required:true
+  props: {
+    title: {
+      //单元格内容
+      type: String,
+      default: () => {
+        return ''
       },
-      path:{ //路由跳转路径
-        type:Object,
-        default:()=>{
-          return {
-            path:""
-          }
-        }
+      required: true
+    },
+    path: {
+      //路由跳转路径
+      type: Object,
+      default: () => {
+        return null
       }
+    }
   },
   data() {
     return {}
@@ -37,11 +35,13 @@ export default {
   computed: {},
   watch: {},
   methods: {
-    toPath(){
-      if(!this.path.path){
-        return
+    clickEvent(){
+      if(this.path){
+        this.$router.push(this.path)
       }
-      this.$router.push(this.path)
+      else{
+        this.$emit('click')
+      }
     }
   },
   created() {},
@@ -54,10 +54,11 @@ export default {
 .menu-item-wrap {
   padding-left: @cell-padding-left-right;
   .menu-item {
-    padding: @cell-padding-top-bottom @cell-padding-left-right @cell-padding-top-bottom 0;
-    .content-title{
-        margin-left: 4px;
-        flex: 1;
+    padding: @cell-padding-top-bottom @cell-padding-left-right
+      @cell-padding-top-bottom 0;
+    .content-title {
+      margin-left: 4px;
+      flex: 1;
     }
   }
 }

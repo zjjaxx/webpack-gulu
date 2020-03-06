@@ -26,6 +26,7 @@ body {
 img {
     content: normal !important;
 }
+
 /* 内容区 */
 .z-body {
     position: relative;
@@ -109,38 +110,102 @@ img {
 .justify-end {
     justify-content: flex-end;
 }
+
 @svg border-1px {
     height: 4px;
     width: 4px;
+
     @rect {
-      fill: transparent;
-      width: 100%;
-      height: 100%; // 高度为4px * 100%
-      stroke-width: 25%; // 边框宽度 4px * 25%(即1px)
-      stroke: var(--color, black); // 颜色
+        fill: transparent;
+        width: 100%;
+        height: 100%; // 高度为4px * 100%
+        stroke-width: 25%; // 边框宽度 4px * 25%(即1px)
+        stroke: var(--color, black); // 颜色
     }
 }
-.border-1px{
-    border:1px solid;
-    border-image:svg(border-1px param(--color #ddd)) 1 stretch;
+
+.border-1px {
+    border: 1px solid;
+    border-image: svg(border-1px param(--color #ddd)) 1 stretch;
 }
-.border-bottom-1px{
-    border-bottom:1px solid;
-    border-image:svg(border-1px param(--color #ddd)) 1 stretch;
+
+.border-bottom-1px {
+    border-bottom: 1px solid;
+    border-image: svg(border-1px param(--color #ddd)) 1 stretch;
 }
-.border-top-1px{
-    border-top:1px solid;
-    border-image:svg(border-1px param(--color #ddd)) 1 stretch;
+
+.border-top-1px {
+    border-top: 1px solid;
+    border-image: svg(border-1px param(--color #ddd)) 1 stretch;
 }
-.clear-fix{
-    &::after{
+
+.clear-fix {
+    &::after {
         display: block;
         content: "";
         clear: both;
     }
 }
 
+@keyframes show-in {
+    0% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
 
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
+@keyframes show-out {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
 
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
+@keyframes top-in {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes bottom-in {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes left-in {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes right-in {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

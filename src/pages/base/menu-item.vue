@@ -10,9 +10,13 @@
     </z-header>
     <z-body>
       <z-title title="默认Cell单元格"></z-title>
-      <z-menu-item title="menu-item"></z-menu-item>
+      <z-menu-item title="个人信息"></z-menu-item>
       <z-title title="Cell单元格+路由link"></z-title>
-      <z-menu-item title="图标" :path="{path:'/home/icon'}"></z-menu-item>
+      <z-menu-item title="地址管理" :path="{path:'/home/icon'}">
+        <template v-slot:right>
+          <z-icon icon-name="i-right"></z-icon>
+        </template>
+      </z-menu-item>
       <z-title title="Cell单元格+左边自定义"></z-title>
       <z-menu-item title="金华市婺城区">
         <template v-slot:left>
@@ -23,7 +27,7 @@
       <z-menu-item title="个人中心">
         <template v-slot:right>
           <span>跳转</span>
-           <z-icon icon-name="i-right"></z-icon>
+          <z-icon icon-name="i-right"></z-icon>
         </template>
       </z-menu-item>
     </z-body>

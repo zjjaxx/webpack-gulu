@@ -54,6 +54,10 @@ const routes = [
                     {
                         path: "sticky",
                         component: () => import("../pages/base/sticky.vue")
+                    },
+                    {
+                        path: "popup",
+                        component: () => import("../pages/base/popup.vue")
                     }
                 ]
             }, {

@@ -64,18 +64,8 @@ export default {
     width: 320px;
     border-radius: 5px;
     background: #fff;
-    animation: show 0.3s 1;
+    animation: show-in 0.3s 1;
     box-shadow: 14px 25px 16px 7px rgba(0, 0, 0, 0.05);
-    @keyframes show {
-      0% {
-        opacity: 0;
-        transform: scale(1.5);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
     .title{
       padding-top: 24px;
       text-align: center;
