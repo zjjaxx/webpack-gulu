@@ -58,6 +58,10 @@ const routes = [
                     {
                         path: "popup",
                         component: () => import("../pages/base/popup.vue")
+                    },
+                    {
+                        path: "checkbox",
+                        component: () => import("../pages/base/checkbox.vue")
                     }
                 ]
             }, {
