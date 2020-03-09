@@ -214,6 +214,9 @@ export default {
   position: relative;
   height: 45px;
   overflow-x: auto;
+  box-sizing: border-box;
+  z-index: 200;
+  background: #fff;
   &::-webkit-scrollbar {
     display: none;
   }

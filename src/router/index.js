@@ -62,6 +62,14 @@ const routes = [
                     {
                         path: "checkbox",
                         component: () => import("../pages/base/checkbox.vue")
+                    },
+                    {
+                        path: "radio",
+                        component: () => import("../pages/base/radio.vue")
+                    },
+                    {
+                        path: "refresh",
+                        component: () => import("../pages/base/refresh.vue")
                     }
                 ]
             }, {

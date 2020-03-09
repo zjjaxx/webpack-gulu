@@ -1,8 +1,8 @@
 <!--  -->
 <template>
-  <div class="z-checkbox flex aligin-center">
+  <div class="z-radio flex aligin-center">
     <div class="input-wrap flex">
-      <input class="input" type="checkbox" :disabled="disabled" :checked="getChecked" @change="change" />
+      <input class="input" type="radio" :disabled="disabled" :checked="getChecked" @change="change" />
       <slot name="icon" :checked="getChecked">
         <z-icon :color="c_z_icon_class" iconName="i-checked" v-if="getChecked"></z-icon>
         <span :class="c_icon_class" v-else></span>
@@ -23,20 +23,12 @@ export default {
   },
   inject: {
     _event: {
-      from: '_event',
       default: () => {
         return new Vue()
       }
     }
   },
   props: {
-    checked: {
-      //选中状态
-      type: Boolean,
-      default: () => {
-        return false
-      }
-    },
     disabled: {
       //禁用状态
       type: Boolean,
@@ -64,10 +56,7 @@ export default {
   },
   computed: {
     getChecked(){
-      if(this.$parent&&this.$parent.value){
-         return this.$parent.value.includes(this.name)
-      }
-      return this.checked
+      return this.$parent.value==this.name
     },
     c_icon_class() {
       return [this.getChecked ? 'active-icon' : 'inactive-icon']
@@ -85,9 +74,7 @@ export default {
       if (this.disabled) {
         return
       }
-      this.$emit('change', !this.checked)
-      let value = !this.getChecked ? 'add' : 'remove'
-      this._event.$emit('checkedChange', this.name, value)
+      this._event.$emit('checkedChange', this.name)
     }
   },
   created() {},
@@ -97,11 +84,11 @@ export default {
 }
 </script>
 <style lang='less' scoped>
-.z-checkbox /deep/ .icon {
+.z-radio /deep/ .icon {
   height: 20px;
   width: 20px;
 }
-.z-checkbox {
+.z-radio {
   .input-wrap {
     position: relative;
     .input {

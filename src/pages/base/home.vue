@@ -13,7 +13,9 @@
       <z-menu-item title="粘性布局" :path="{path:'/home/sticky'}"></z-menu-item>
       <z-menu-item title="Tab标签页" :path="{path:'/home/tabs'}"></z-menu-item>
       <z-menu-item title="Popup弹出层" :path="{path:'/home/popup'}"></z-menu-item>
-       <z-menu-item title="复选框" :path="{path:'/home/checkbox'}"></z-menu-item>
+      <z-menu-item title="复选框" :path="{path:'/home/checkbox'}"></z-menu-item>
+      <z-menu-item title="单选框" :path="{path:'/home/radio'}"></z-menu-item>
+        <z-menu-item title="下拉刷新" :path="{path:'/home/refresh'}"></z-menu-item>
     </z-body>
     <router-view></router-view>
   </div>
