@@ -38,7 +38,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(100% + 50px);
+  height:100%;
   background: #fff;
   z-index: 210;
   .left-wrap {
