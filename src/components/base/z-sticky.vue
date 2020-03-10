@@ -19,7 +19,9 @@ export default {
   components: {},
   data() {
     return {
-      isSticky: false
+      isSticky: false,
+      scrollRoot: null,
+      eleToTop: 0
     }
   },
   computed: {
@@ -34,19 +36,28 @@ export default {
   methods: {
     //监听滚动事件并设置吸顶
     setScrollListener() {
-      let scrollRoot = this.getScroll(this.$el)
-      let eleToTop = this.$el.getBoundingClientRect().top
-      scrollRoot.addEventListener('scroll', () => {
-        if (scrollRoot.scrollTop >= eleToTop - this.offsetTop) {
-          this.isSticky = true
-        } else {
-          this.isSticky = false
-        }
-        //放在下面，不然会出现抖动(吸顶已经浮动，但是添加高度还未0)
-        this.$emit('scroll', {
-          scrollTop: scrollRoot.scrollTop,
-          isSticky: this.isSticky
-        })
+      this.scrollRoot = this.getScroll(this.$el)
+      let scrollTop =
+        'scrollTop' in this.scrollRoot
+          ? this.scrollRoot.scrollTop
+          : this.scrollRoot.pageYOffset
+      this.eleToTop = this.$el.getBoundingClientRect().top+scrollTop
+      this.scrollRoot.addEventListener('scroll', this.scrollEvent)
+    },
+    scrollEvent() {
+      let scrollTop =
+        'scrollTop' in this.scrollRoot
+          ? this.scrollRoot.scrollTop
+          : this.scrollRoot.pageYOffset
+      if (scrollTop >= this.eleToTop - this.offsetTop) {
+        this.isSticky = true
+      } else {
+        this.isSticky = false
+      }
+      //放在下面，不然会出现抖动(吸顶已经浮动，但是添加高度还未0)
+      this.$emit('scroll', {
+        scrollTop: this.scrollRoot.scrollTop,
+        isSticky: this.isSticky
       })
     },
     //获取最近的滚动的父级容器
@@ -78,10 +89,16 @@ export default {
   },
   created() {},
   mounted() {
-    this.setScrollListener()
+    //防止Vue-router路由切换时触发scroll函数
+    this.$nextTick(() => {
+      this.setScrollListener()
+    })
   },
   updated() {}, //生命周期 - 更新之后
-  destroyed() {} //生命周期 - 销毁完成
+  destroyed() {
+    this.scrollRoot.removeEventListener('scroll', this.scrollEvent)
+    this.scrollRoot = null
+  } //生命周期 - 销毁完成
 }
 </script>
 <style lang='less' scoped>

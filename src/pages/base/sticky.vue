@@ -12,12 +12,11 @@
       <z-title title="默认"></z-title>
       <div :class="isSticky?'polyfill-height':''">
         <z-sticky :offsetTop="offsetTop" @scroll="scroll">
-        <div class="flex justify-center aligin-center">
-          <z-button type="custom">吸顶</z-button>
-        </div>
-      </z-sticky>
-      </div>  
-      
+          <div class="flex justify-center aligin-center">
+            <z-button type="custom">吸顶</z-button>
+          </div>
+        </z-sticky>
+      </div>
       <div class="test1">
         <z-menu-item title="菜单1"></z-menu-item>
         <z-menu-item title="菜单2"></z-menu-item>
@@ -60,7 +59,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height:100%;
+  height: 100%;
   background: #fff;
   z-index: 210;
   .left-wrap {
@@ -80,7 +79,7 @@ export default {
   .test1 {
     height: 1000px;
   }
-  .polyfill-height{
+  .polyfill-height {
     height: 32px;
   }
 }

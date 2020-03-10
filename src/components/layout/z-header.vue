@@ -52,7 +52,7 @@ export default {
   left: 0;
   width: 100%;
   height: 45px;
-  z-index: 200;
+  z-index: 220;
   background: #fff;
   box-sizing: border-box;
   .left {

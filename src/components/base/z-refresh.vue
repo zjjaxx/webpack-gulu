@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="z-refresh" :style="c_style">
+  <div class="z-refresh flex flex-column" :style="c_style">
     <div class="loading-wrap">
       <slot name="loadingSlot">
         <div class="loading-content flex aligin-center justify-center">
@@ -16,9 +16,9 @@
     </div>
     <div
       class="refresh-content"
-      @touchstart="touchstart"
-      @touchmove="touchmove"
-      @touchend="touchend"
+      @touchstart.prevent="touchstart"
+      @touchmove.prevent="touchmove"
+      @touchend.prevent="touchend"
     >
       <slot></slot>
     </div>
@@ -27,27 +27,25 @@
 
 <script>
 const MIN_DISTANCE = 10
-
 function getDirection(x, y) {
   if (x > y && x > MIN_DISTANCE) {
     return 'horizontal'
   }
-
   if (y > x && y > MIN_DISTANCE) {
     return 'vertical'
   }
-
   return ''
 }
-
 export default {
   components: {},
+  model:{
+    prop:"value",
+    event:"change"
+  },
   props: {
-    duration: {
-      type: Number,
-      default: () => {
-        return 1000
-      }
+    value:{
+      type:Boolean,
+      required:true
     }
   },
   data() {
@@ -84,15 +82,17 @@ export default {
       }
     }
   },
-  watch: {},
+  watch: {
+  },
   methods: {
     touchend() {
       if (this.status == 'pull') {
         this.status = 'loading'
         this.distance = this.maxHeight
-        setTimeout(() => {
-          this.resetTouchStatus()
-        }, this.duration)
+        this.$emit("change",true)
+        this.$nextTick(() => {
+          this.$emit("refresh",this.resetTouchStatus)
+        })
       } else {
         this.resetTouchStatus()
       }
@@ -101,7 +101,6 @@ export default {
       ev = ev || event
       this.startX = ev.touches[0].clientX
       this.startY = ev.touches[0].clientY
-      //   console.log('startX', this.startX, 'startX', this.startY)
     },
     touchmove(ev) {
       ev = ev || event
@@ -163,7 +162,7 @@ export default {
       }
     }
     .loading-icon {
-      margin-right: 4px;
+      margin-right: 6px;
       animation: loading 2s infinite linear;
       @keyframes loading {
         0% {

@@ -4,6 +4,7 @@ import Index from "../pages/index.vue"
 import Home from "../pages/base/home.vue"
 Vue.use(VueRouter)
 const routes = [
+
     {
         path: "",
         redirect: "/home",
@@ -94,6 +95,10 @@ const routes = [
 
 
 ]
-const router = new VueRouter({ routes })
+const router = new VueRouter({
+    scrollBehavior(to, from, savedPosition) {
+        return { x: 0, y: 0 }
+    }, routes
+})
 
 export default router

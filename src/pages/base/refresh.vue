@@ -11,8 +11,8 @@
     <z-body>
       <z-tabs v-model="active">
         <z-tab title="基础用法">
-          <z-refresh>
-            <div class="refresh-content">下拉刷新。。。</div>
+          <z-refresh @refresh="onRefresh" v-model="isLoading">
+            <div class="refresh-content">刷新次数{{count}}</div>
           </z-refresh>
         </z-tab>
         <z-tab title="成功提示"></z-tab>
@@ -30,12 +30,22 @@ export default {
   components: { ZTabs, ZTab, ZRefresh },
   data() {
     return {
-      active: 0
+      active: 0,
+      count: 10,
+      isLoading: false
     }
   },
   computed: {},
   watch: {},
-  methods: {},
+  methods: {
+    onRefresh(resetTouchStatus) {
+      setTimeout(() => {
+        console.log('刷新成功')
+        this.count+=1
+        resetTouchStatus()
+      }, 2000)
+    }
+  },
   created() {},
   mounted() {},
   updated() {}, //生命周期 - 更新之后
@@ -48,7 +58,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height:100%;
+  height: 100%;
   background: #fff;
   z-index: 210;
   .left-wrap {
@@ -62,10 +72,12 @@ export default {
     }
   }
   .refresh-content {
-    padding: 10px;
+    padding: 10px 20px;
     height: calc(100vh - 90px);
     overflow-y: auto;
     box-sizing: border-box;
+    font-size: 15px;
+    color: #969799;
   }
 }
 </style>
