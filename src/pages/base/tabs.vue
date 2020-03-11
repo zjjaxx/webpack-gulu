@@ -56,8 +56,7 @@
         <z-tab :title="'tab-'+item" v-for="(item,index) in 8" :key="index">
           <div class="tab-content—sticky">
             <template v-for="(item,index) in 80">
-              <!-- <div class="item border-bottom-1px" :key="index">菜单{{index}}</div> -->
-              <z-menu-item title="菜单" :path="{path:'/icon'}"></z-menu-item>
+              <z-menu-item title="菜单" :path="{path:'/icon'}" :key="index"></z-menu-item>
             </template>
           </div>
         </z-tab>

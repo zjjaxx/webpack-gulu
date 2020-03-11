@@ -15,7 +15,9 @@
             <div class="refresh-content">刷新次数{{count}}</div>
           </z-refresh>
         </z-tab>
-        <z-tab title="成功提示"></z-tab>
+        <z-tab title="成功提示">
+          <z-button @click="count1+=1">{{count1}}</z-button>
+        </z-tab>
         <z-tab title="自定义提示"></z-tab>
       </z-tabs>
     </z-body>
@@ -23,34 +25,38 @@
 </template>
 
 <script>
-import ZTab from '../../components/base/z-tab.vue'
-import ZTabs from '../../components/base/z-tabs.vue'
-import ZRefresh from '../../components/base/z-refresh.vue'
+import ZTab from "../../components/base/z-tab.vue";
+import ZTabs from "../../components/base/z-tabs.vue";
+import ZRefresh from "../../components/base/z-refresh.vue";
+import ZButton from "../../components/base/z-button.vue";
 export default {
-  components: { ZTabs, ZTab, ZRefresh },
+  components: { ZTabs, ZTab, ZRefresh, ZButton },
   data() {
     return {
       active: 0,
       count: 10,
+      count1: 20,
       isLoading: false
-    }
+    };
   },
   computed: {},
   watch: {},
   methods: {
     onRefresh(resetTouchStatus) {
-      setTimeout(() => {
-        console.log('刷新成功')
-        this.count+=1
-        resetTouchStatus()
-      }, 2000)
+      this.count += 1;
+      resetTouchStatus();
+      // setTimeout(() => {
+      //   console.log("刷新成功");
+
+      //   resetTouchStatus();
+      // }, 2000);
     }
   },
   created() {},
   mounted() {},
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-}
+};
 </script>
 <style lang='less' scoped>
 .refresh-container {

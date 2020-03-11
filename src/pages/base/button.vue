@@ -18,7 +18,7 @@
       <z-title title="按钮类型(默认:default;支持custom、default)"></z-title>
       <div class="default-wrap">
         <z-button>按钮+default</z-button>
-        <z-button type="custom">点击+custom</z-button>
+        <z-button type="custom" @click="add">点击{{count}}</z-button>
       </div>
       <z-title title="禁用状态"></z-title>
       <div class="default-wrap">
@@ -61,12 +61,17 @@ export default {
   data() {
     return {
       isLoading: false,
-      isLoading_: false
+      isLoading_: false,
+      count:0
     }
   },
   computed: {},
   watch: {},
-  methods: {},
+  methods: {
+    add(){
+      this.count++
+    }
+  },
   created() {},
   mounted() {},
   updated() {}, //生命周期 - 更新之后
