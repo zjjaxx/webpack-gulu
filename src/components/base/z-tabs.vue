@@ -1,25 +1,3 @@
-<!--  -->
-<template>
-  <div class="z-tab-wrap">
-    <div :class="sticky?'polyfill-height':''" v-if="isSticky">
-      <z-sticky @scroll="stickyScroll" :offsetTop="offsetTop">
-        <div class="z-tabs border-bottom-1px flex" :class="c_tabs">
-          <slot></slot>
-          <div class="tab-line flex aligin-center justify-center" :style="c_style">
-            <span class="line"></span>
-          </div>
-        </div>
-      </z-sticky>
-    </div>
-    <div class="z-tabs border-bottom-1px flex" :class="c_tabs" v-else>
-      <slot></slot>
-      <div class="tab-line flex aligin-center justify-center" :style="c_style">
-        <span class="line"></span>
-      </div>
-    </div>
-    <div class="tab-content-wrap"></div>
-  </div>
-</template>
 
 <script>
 import Vue from 'vue'
@@ -58,13 +36,11 @@ export default {
   data() {
     return {
       length: 0,
-      sticky: false
+      sticky: false,
+      children: []
     }
   },
   computed: {
-    c_tabs() {
-      return [this.sticky ? 'z-tabs-sticky' : '']
-    },
     c_style() {
       return [
         {
@@ -119,7 +95,7 @@ export default {
       function step(newTimestamp) {
         if (direction == 'right') {
           if (tabs.scrollLeft >= totalScrollDistance) {
-            tabs.scrollLeft = totalScrollDistance   
+            tabs.scrollLeft = totalScrollDistance
             return
           }
         } else {
@@ -134,76 +110,83 @@ export default {
       window.requestAnimationFrame(step)
     },
     //设置v-model
-    setVModel(chidren) {
-      chidren.forEach((element, index) => {
+    setVModel() {
+      this.children.forEach((element, index) => {
         element.$el.onclick = () => {
           this.$emit('change', index)
           this.$emit('click', { index, title: element.title })
-          this.reset(chidren)
+          this.reset()
           element.isActive = true
           this.scroll(element)
         }
         if (index == this.active) {
           element.isActive = true
         }
-        this.setTabContent(index, element)
       })
-    },
-    //创建并添加tabContent组件
-    setTabContent(index, element) {
-      let that = this
-      let tabContentWrap = this.$el.querySelector('.tab-content-wrap')
-      let ZTabContent = {
-        props: {
-          index: {
-            type: Number,
-            default: () => {
-              return 0
-            },
-            required: true
-          }
-        },
-        render() {
-          return (
-            <div style={{ display: this.index == that.active ? '' : 'none' }}>
-              {element.$slots.default}
-            </div>
-          )
-        }
-      }
-      let ZTabContentConstructor = Vue.extend(ZTabContent)
-      let component = new ZTabContentConstructor({
-        propsData: {
-          index: index
-        }
-      })
-      let div = document.createElement('div')
-      tabContentWrap.appendChild(div)
-      component.$mount(div)
     },
     //重置tab激活样式
-    reset(chidren) {
-      chidren.forEach((element, index) => {
+    reset() {
+      this.children.forEach((element, index) => {
         element.isActive = false
       })
     }
   },
+  render() {
+    const zTabs = (
+      <div
+        class={[
+          'z-tabs',
+          'border-bottom-1px',
+          'flex',
+          this.sticky ? 'z-tabs-sticky' : ''
+        ]}
+      >
+        {this.$slots.default}
+        <div
+          class="tab-line flex aligin-center justify-center"
+          style={this.c_style}
+        >
+          <span class="line"></span>
+        </div>
+      </div>
+    )
+    let contentList = this.children.map((item, index) => {
+      return (
+        <div style={{ display: index == this.active ? '' : 'none' }}>
+          {item.$slots.default}
+        </div>
+      )
+    })
+    return (
+      <div class="z-tab-wrap">
+        {this.isSticky ? (
+          <div class={this.sticky ? 'polyfill-height' : ''}>
+            <z-sticky vOn:scroll={this.stickyScroll} offsetTop={this.offsetTop}>
+              {zTabs}
+            </z-sticky>
+          </div>
+        ) : (
+          zTabs
+        )}
+        <div class="tab-content-wrap">{contentList}</div>
+      </div>
+    )
+  },
   created() {},
   mounted() {
     //获取子元素列表
-    let chidren = []
     if (this.isSticky) {
       //有吸顶的情况
-      chidren = this.$children[0].$children
+      this.children = this.$children[0].$children
       //获取插槽个数
       this.length = this.$children[0].$children.length
     } else {
-      chidren = this.$children
+      this.children = this.$children
       //获取插槽个数
       this.length = this.$children.length
     }
     //设置v-model
-    this.setVModel(chidren)
+    this.setVModel()
   },
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
