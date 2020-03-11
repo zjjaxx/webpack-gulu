@@ -16,10 +16,6 @@
       <z-menu-item title="复选框" :path="{path:'/checkbox'}"></z-menu-item>
       <z-menu-item title="单选框" :path="{path:'/radio'}"></z-menu-item>
       <z-menu-item title="下拉刷新" :path="{path:'/refresh'}"></z-menu-item>
-      <z-menu-item title="单选框" :path="{path:'/radio'}"></z-menu-item>
-      <z-menu-item title="下拉刷新" :path="{path:'/refresh'}"></z-menu-item>
-      <z-menu-item title="单选框" :path="{path:'/radio'}"></z-menu-item>
-      <z-menu-item title="下拉刷新" :path="{path:'/refresh'}"></z-menu-item>
     </z-body>
     <router-view></router-view>
   </div>
