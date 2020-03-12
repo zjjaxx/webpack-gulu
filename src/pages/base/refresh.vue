@@ -25,10 +25,10 @@
 </template>
 
 <script>
-import ZTab from "../../components/base/z-tab.vue";
-import ZTabs from "../../components/base/z-tabs.vue";
-import ZRefresh from "../../components/base/z-refresh.vue";
-import ZButton from "../../components/base/z-button.vue";
+import ZTab from '../../components/base/z-tab.vue'
+import ZTabs from '../../components/base/z-tabs.vue'
+import ZRefresh from '../../components/base/z-refresh.vue'
+import ZButton from '../../components/base/z-button.vue'
 export default {
   components: { ZTabs, ZTab, ZRefresh, ZButton },
   data() {
@@ -37,26 +37,24 @@ export default {
       count: 10,
       count1: 20,
       isLoading: false
-    };
+    }
   },
   computed: {},
   watch: {},
   methods: {
     onRefresh(resetTouchStatus) {
-      this.count += 1;
-      resetTouchStatus();
-      // setTimeout(() => {
-      //   console.log("刷新成功");
-
-      //   resetTouchStatus();
-      // }, 2000);
+      setTimeout(() => {
+        this.count += 1
+        console.log('count++')
+        resetTouchStatus()
+      }, 2000)
     }
   },
   created() {},
   mounted() {},
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-};
+}
 </script>
 <style lang='less' scoped>
 .refresh-container {
