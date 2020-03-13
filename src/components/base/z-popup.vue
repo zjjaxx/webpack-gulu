@@ -85,10 +85,24 @@ export default {
     }
   },
   watch: {},
-  methods: {},
+  methods: {
+    open() {
+      document.body.classList.add('z-overflow-hidden')
+    },
+    close() {
+      document.body.classList.remove('z-overflow-hidden')
+    }
+  },
   created() {},
   mounted() {},
-  updated() {}, //生命周期 - 更新之后
+  updated() {
+    if (this.show) {
+      this.open()
+    } else {
+      this.close()
+    }
+  }, //生命周期 - 更新之后
+  beforeDestroy() {},
   destroyed() {} //生命周期 - 销毁完成
 }
 </script>

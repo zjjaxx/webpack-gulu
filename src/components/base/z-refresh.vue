@@ -2,7 +2,7 @@
 <template>
   <div class="z-refresh flex flex-column" :style="c_style">
     <div class="loading-wrap">
-      <slot name="loadingSlot">
+      <slot name="loadingSlot" :pullStatus="status">
         <div class="loading-content flex aligin-center justify-center">
           <z-icon
             class="loading-icon"

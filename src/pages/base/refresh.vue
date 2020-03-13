@@ -20,7 +20,14 @@
             <div class="refresh-content">刷新次数{{count1}}</div>
           </z-refresh>
         </z-tab>
-        <z-tab title="自定义提示"></z-tab>
+        <z-tab title="自定义提示">
+          <z-refresh @refresh="onRefresh2" v-model="isLoading2">
+            <template v-slot:loadingSlot="{pullStatus}">
+              <div>{{pullStatus}}</div>
+            </template>
+            <div class="refresh-content">刷新次数{{count2}}</div>
+          </z-refresh>
+        </z-tab>
       </z-tabs>
     </z-body>
   </div>
@@ -38,8 +45,10 @@ export default {
       active: 0,
       count: 10,
       count1: 20,
+      count2: 20,
       isLoading: false,
-      isLoading1: false
+      isLoading1: false,
+      isLoading2: false
     }
   },
   computed: {},
@@ -57,6 +66,13 @@ export default {
       setTimeout(() => {
         this.count1 += 1
         this.isLoading1 = false
+      }, 2000)
+    },
+    onRefresh2() {
+      console.log('refresh')
+      setTimeout(() => {
+        this.count2 += 1
+        this.isLoading2 = false
       }, 2000)
     }
   },

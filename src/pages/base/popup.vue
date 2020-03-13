@@ -65,6 +65,7 @@
         </template>
       </z-menu-item>
       <z-popup round :closeIcon="true" v-model="showBottom_round" position="bottom"></z-popup>
+      <div class="test"></div>
     </z-body>
   </div>
 </template>
@@ -87,20 +88,25 @@ export default {
   },
   computed: {},
   watch: {},
-  methods: {},
+  methods: {
+   
+  },
   created() {},
-  mounted() {},
+  mounted() {
+  
+  },
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
 }
 </script>
 <style lang='less' scoped>
+
 .popup-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height:100%;
+  height: 100%;
   background: #fff;
   z-index: 210;
   .left-wrap {
@@ -112,6 +118,9 @@ export default {
     * {
       margin-right: 20px;
     }
+  }
+  .test {
+    height: 600px;
   }
 }
 </style>
