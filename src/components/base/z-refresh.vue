@@ -38,14 +38,26 @@ function getDirection(x, y) {
 }
 export default {
   components: {},
-  model:{
-    prop:"value",
-    event:"change"
+  model: {
+    prop: 'value',
+    event: 'change'
   },
   props: {
-    value:{
-      type:Boolean,
-      required:true
+    value: {
+      type: Boolean,
+      required: true
+    },
+    successTip: {
+      type: String,
+      default: () => {
+        return ''
+      }
+    },
+    successDuration: {
+      type: Number,
+      default: () => {
+        return 500
+      }
     }
   },
   data() {
@@ -78,20 +90,30 @@ export default {
         case 'loading':
           return '加载中'
         case 'success':
-          return '加载完成'
+          return this.successTip
       }
     }
   },
   watch: {
+    value(newValue, oldValue) {
+      if (!newValue && this.successTip) {
+        this.status = 'success'
+        setTimeout(() => {
+          this.resetTouchStatus()
+        }, this.successDuration)
+      } else if (!newValue) {
+        this.resetTouchStatus()
+      }
+    }
   },
   methods: {
     touchend() {
       if (this.status == 'pull') {
         this.status = 'loading'
         this.distance = this.maxHeight
-        this.$emit("change",true)
+        this.$emit('change', true)
         this.$nextTick(() => {
-          this.$emit("refresh",this.resetTouchStatus)
+          this.$emit('refresh', this.resetTouchStatus)
         })
       } else {
         this.resetTouchStatus()
@@ -137,11 +159,11 @@ export default {
     }
   },
   created() {},
-  mounted() {
+  mounted() {},
+  updated() {
     let loadingWrap = this.$el.querySelector('.loading-wrap')
     this.maxHeight = loadingWrap.offsetHeight
-  },
-  updated() {}, //生命周期 - 更新之后
+  }, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
 }
 </script>

@@ -198,7 +198,6 @@ export default {
     this.setVModel()
   },
   updated() {
-    console.log('触发刷新')
     this.calcPaneInstances()
   }, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成

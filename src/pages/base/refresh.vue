@@ -16,7 +16,9 @@
           </z-refresh>
         </z-tab>
         <z-tab title="成功提示">
-          <z-button @click="count1+=1">{{count1}}</z-button>
+          <z-refresh @refresh="onRefresh1" successTip="刷新成功" v-model="isLoading1">
+            <div class="refresh-content">刷新次数{{count1}}</div>
+          </z-refresh>
         </z-tab>
         <z-tab title="自定义提示"></z-tab>
       </z-tabs>
@@ -36,17 +38,25 @@ export default {
       active: 0,
       count: 10,
       count1: 20,
-      isLoading: false
+      isLoading: false,
+      isLoading1: false
     }
   },
   computed: {},
   watch: {},
   methods: {
-    onRefresh(resetTouchStatus) {
+    onRefresh() {
+      console.log('refresh')
       setTimeout(() => {
         this.count += 1
-        console.log('count++')
-        resetTouchStatus()
+        this.isLoading = false
+      }, 2000)
+    },
+    onRefresh1() {
+      console.log('refresh')
+      setTimeout(() => {
+        this.count1 += 1
+        this.isLoading1 = false
       }, 2000)
     }
   },
