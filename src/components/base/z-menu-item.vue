@@ -1,7 +1,7 @@
 <!-- 、 -->
 <template>
     <div class="menu-item-wrap" @click="clickEvent">
-      <div class="menu-item border-bottom-1px flex justify-between aligin-center">
+      <div class="menu-item flex justify-between aligin-center">
         <slot name="left"></slot>
         <span class="content-title">{{title}}</span>
         <slot name="right"></slot>
@@ -52,7 +52,10 @@ export default {
 </script>
 <style lang='less' scoped>
 .menu-item-wrap {
-  padding-left: @cell-padding-left-right;
+  margin-left: @cell-padding-left-right;
+  &:last-child{
+    border-bottom: none;
+  }
   .menu-item {
     padding: @cell-padding-top-bottom @cell-padding-left-right
       @cell-padding-top-bottom 0;

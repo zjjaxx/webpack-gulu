@@ -17,21 +17,24 @@ Vue.component("z-icon", ZIcon)
 import ZHeader from "./components/layout/z-header.vue"
 Vue.component("z-header", ZHeader)
 
+import ZMenuGroup from "./components/base/z-menu-group.vue"
+Vue.component("z-menu-group", ZMenuGroup)
+
 import ZMenuItem from "./components/base/z-menu-item.vue"
-Vue.component("z-menu-item",ZMenuItem)
+Vue.component("z-menu-item", ZMenuItem)
 
 import ZBody from "./components/layout/z-body.vue"
-Vue.component("z-body",ZBody)
+Vue.component("z-body", ZBody)
 
 import ZTitle from "./components/base/z-title.vue"
-Vue.component("z-title",ZTitle)
+Vue.component("z-title", ZTitle)
 
 
 
 //插件
 import Toast from "./utils/plugins"
 Vue.use(Toast)
- 
+
 // import VConsole from "vconsole"
 // var vConsoleInstance = new VConsole();
 // Vue.use(vConsoleInstance)

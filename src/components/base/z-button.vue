@@ -6,7 +6,7 @@
  -->
 
 <template>
-  <button :class="c_type" @click="$emit('click')">
+  <button :class="c_type" :style="c_style" @click="$emit('click')">
     <z-icon
       :iconName="iconName"
       v-if="iconName&&!isLoading"
@@ -43,6 +43,10 @@ export default {
     //icon style
     classStyle() {
       return [this.iconPosition == 'right' ? 'icon-right' : 'icon-left']
+    },
+    //自定义背景
+    c_style(){
+      return {background:this.bg,color:this.bg?"#fff":"",border:this.bg?"none":""}
     }
   },
   props: {
@@ -92,6 +96,12 @@ export default {
       },
       validator: value => {
         return value == 'left' || value == 'right'
+      }
+    },
+    bg:{
+      type:String,
+      default:()=>{
+        return ""
       }
     }
   },

@@ -30,6 +30,11 @@
         <z-button type="custom" iconName="i-setting">设置</z-button>
         <z-button iconName="i-right" iconPosition="right">下一页</z-button>
       </div>
+       <z-title title="按钮+自定义背景"></z-title>
+      <div class="default-wrap">
+        <z-button bg="#07c160" iconName="i-setting">设置</z-button>
+        <z-button bg="#ee0a24" iconName="i-setting">设置</z-button>
+      </div>
       <z-title title="按钮尺寸"></z-title>
       <div class="default-wrap">
         <z-button size="small" type="custom" iconName="i-setting">设置</z-button>

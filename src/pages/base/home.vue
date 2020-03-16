@@ -3,19 +3,22 @@
   <div class="home">
     <z-header title="基本组件"></z-header>
     <z-body>
-      <z-menu-item title="按钮" :path="{path:'/button'}"></z-menu-item>
-      <z-menu-item title="标题栏" :path="{path:'/title'}"></z-menu-item>
-      <z-menu-item title="图标" :path="{path:'/icon'}"></z-menu-item>
-      <z-menu-item title="Cell单元格" :path="{path:'/menuItem'}"></z-menu-item>
-      <z-menu-item title="输入框" :path="{path:'/input'}"></z-menu-item>
-      <z-menu-item title="Toast" :path="{path:'/toast'}"></z-menu-item>
-      <z-menu-item title="对话框" :path="{path:'/dialog'}"></z-menu-item>
-      <z-menu-item title="粘性布局" :path="{path:'/sticky'}"></z-menu-item>
-      <z-menu-item title="Tab标签页" :path="{path:'/tabs'}"></z-menu-item>
-      <z-menu-item title="Popup弹出层" :path="{path:'/popup'}"></z-menu-item>
-      <z-menu-item title="复选框" :path="{path:'/checkbox'}"></z-menu-item>
-      <z-menu-item title="单选框" :path="{path:'/radio'}"></z-menu-item>
-      <z-menu-item title="下拉刷新" :path="{path:'/refresh'}"></z-menu-item>
+      <z-menu-group>
+        <z-menu-item title="按钮" :path="{path:'/button'}"></z-menu-item>
+        <z-menu-item title="标题栏" :path="{path:'/title'}"></z-menu-item>
+        <z-menu-item title="图标" :path="{path:'/icon'}"></z-menu-item>
+        <z-menu-item title="Cell单元格" :path="{path:'/menuItem'}"></z-menu-item>
+        <z-menu-item title="输入框" :path="{path:'/input'}"></z-menu-item>
+        <z-menu-item title="Toast" :path="{path:'/toast'}"></z-menu-item>
+        <z-menu-item title="对话框" :path="{path:'/dialog'}"></z-menu-item>
+        <z-menu-item title="粘性布局" :path="{path:'/sticky'}"></z-menu-item>
+        <z-menu-item title="Tab标签页" :path="{path:'/tabs'}"></z-menu-item>
+        <z-menu-item title="Popup弹出层" :path="{path:'/popup'}"></z-menu-item>
+        <z-menu-item title="复选框" :path="{path:'/checkbox'}"></z-menu-item>
+        <z-menu-item title="单选框" :path="{path:'/radio'}"></z-menu-item>
+        <z-menu-item title="下拉刷新" :path="{path:'/refresh'}"></z-menu-item>
+        <z-menu-item title="SwipeCell 滑动单元格" :path="{path:'/swipeCell'}"></z-menu-item>
+      </z-menu-group>
     </z-body>
     <router-view></router-view>
   </div>

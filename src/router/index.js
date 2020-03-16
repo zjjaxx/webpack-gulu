@@ -81,6 +81,10 @@ const routes = [
         component: () => import("../pages/base/refresh.vue")
     },
     {
+        path: "/swipeCell",
+        component: () => import("../pages/base/swipeCell.vue")
+    },
+    {
         path: "/row-col",
         component: () => import("../pages/layout/row-col.vue")
     },
