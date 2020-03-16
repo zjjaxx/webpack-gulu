@@ -22,8 +22,27 @@
         </z-tab>
         <z-tab title="自定义提示">
           <z-refresh @refresh="onRefresh2" v-model="isLoading2">
-            <template v-slot:loadingSlot="{pullStatus}">
-              <div>{{pullStatus}}</div>
+            <template v-slot:loadingSlot="{pullStatus,pullDistance,hideHeight}">
+              <img
+                id="img"
+                v-if="pullStatus=='normal'"
+                class="img"
+                src="https://img.yzcdn.cn/vant/doge.png"
+                alt
+                :style="{transform: `scale(${pullDistance/hideHeight})`}"
+              />
+              <img
+                v-else-if="pullStatus=='pull'"
+                class="img"
+                src="https://img.yzcdn.cn/vant/doge.png"
+                alt
+              />
+              <img
+                v-else-if="pullStatus=='loading'"
+                class="img"
+                src="https://img.yzcdn.cn/vant/doge-fire.jpg"
+                alt
+              />
             </template>
             <div class="refresh-content">刷新次数{{count2}}</div>
           </z-refresh>
@@ -48,7 +67,7 @@ export default {
       count2: 20,
       isLoading: false,
       isLoading1: false,
-      isLoading2: false
+      isLoading2: false,
     }
   },
   computed: {},
@@ -78,7 +97,8 @@ export default {
   },
   created() {},
   mounted() {},
-  updated() {}, //生命周期 - 更新之后
+  updated() {
+  }, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
 }
 </script>
@@ -100,6 +120,13 @@ export default {
     * {
       margin-right: 20px;
     }
+  }
+  .img {
+    display: block;
+    margin: 0 auto;
+    width: 140px;
+    height: 72px;
+    border-radius: 4px;
   }
   .refresh-content {
     padding: 10px 20px;

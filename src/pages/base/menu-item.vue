@@ -12,7 +12,7 @@
       <z-title title="默认Cell单元格"></z-title>
       <z-menu-item title="个人信息"></z-menu-item>
       <z-title title="Cell单元格+路由link"></z-title>
-      <z-menu-item title="地址管理" :path="{path:'/home/icon'}">
+      <z-menu-item title="地址管理" :path="{path:'/icon'}">
         <template v-slot:right>
           <z-icon icon-name="i-right"></z-icon>
         </template>
