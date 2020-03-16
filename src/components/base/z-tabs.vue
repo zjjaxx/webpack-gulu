@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import ZSticky from '../../components/base/z-sticky.vue'
 import router from '../../router/index.js'
+import {scrollToLeft} from "../../utils/animate"
 export default {
   components: { ZSticky },
   model: {
@@ -82,49 +83,8 @@ export default {
       let offsetLeft = el.offsetLeft - tabs.scrollLeft
       let half_width = el.offsetWidth / 2
       let half_window_width = window_width / 2
-      let scrollL = tabs.scrollLeft
-      let totalScrollDistance =
-        scrollL + (offsetLeft - half_window_width) + half_width
-      if (totalScrollDistance > tabs.scrollWidth - window_width) {
-        totalScrollDistance = tabs.scrollWidth - window_width
-      } else if (totalScrollDistance < 0) {
-        totalScrollDistance = 0
-      }
       let to_scrollLeft = offsetLeft - half_window_width + half_width
-      let params = {
-        scrollDuration: 1000,
-        tabs,
-        to_scrollLeft,
-        totalScrollDistance,
-        direction: to_scrollLeft > 0 ? 'right' : 'left'
-      }
-      this.animate(params)
-    },
-    animate({
-      scrollDuration,
-      tabs,
-      to_scrollLeft,
-      totalScrollDistance,
-      direction
-    }) {
-      let scrollCount = (scrollDuration / 1000) * 15
-      let stepDistance = to_scrollLeft / scrollCount
-      function step(newTimestamp) {
-        if (direction == 'right') {
-          if (tabs.scrollLeft >= totalScrollDistance) {
-            tabs.scrollLeft = totalScrollDistance
-            return
-          }
-        } else {
-          if (tabs.scrollLeft <= totalScrollDistance) {
-            tabs.scrollLeft = totalScrollDistance
-            return
-          }
-        }
-        tabs.scrollLeft = (tabs.scrollLeft * 100 + stepDistance * 100) / 100
-        window.requestAnimationFrame(step)
-      }
-      window.requestAnimationFrame(step)
+      scrollToLeft(tabs,to_scrollLeft,500)
     },
     //设置v-model
     setVModel() {
