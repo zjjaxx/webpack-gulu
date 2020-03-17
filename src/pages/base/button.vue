@@ -43,7 +43,7 @@
           commonText="Activate"
           loadingText="Waiting"
           complateText="Activated"
-          :buttonStauts="buttonStauts"
+          :status="buttonStauts"
           :turnOnSuper="true"
           @click="click"
         >下载</z-button>
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import ZButton from '../../components/base/z-button.vue'
+import ZButton from "../../components/base/z-button.vue";
 export default {
   components: { ZButton },
   data() {
@@ -64,24 +64,24 @@ export default {
       isLoading: false,
       isLoading_: false,
       count: 0,
-      buttonStauts:"common"
-    }
+      buttonStauts: "common"
+    };
   },
   computed: {},
   watch: {},
   methods: {
     add() {
-      this.count++
+      this.count++;
     },
-    click(){
-         if (this.buttonStauts=="common") {
-        this.buttonStauts="loading"
+    click() {
+      if (this.buttonStauts == "common") {
+        this.buttonStauts = "loading";
         setTimeout(() => {
-          this.buttonStauts="complate"
+          this.buttonStauts = "complate";
           setTimeout(() => {
-          this.buttonStauts="common"
-          }, 1600)
-        }, 3200)
+            this.buttonStauts = "common";
+          }, 1600);
+        }, 3200);
       }
     }
   },
@@ -89,7 +89,7 @@ export default {
   mounted() {},
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-}
+};
 </script>
 <style lang='less' scoped>
 .button-container {

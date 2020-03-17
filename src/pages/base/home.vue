@@ -1,8 +1,8 @@
 <!--  -->
 <template>
   <div class="home">
+    <img class="img-bg" src="../../assets/imgs/home-bg.jpg" alt />
     <z-body>
-      <img class="img-bg" src="../../assets/imgs/home-bg.jpg" alt />
       <div class="nav-list">
         <router-link
           tag="div"
@@ -45,67 +45,67 @@ export default {
     return {
       elements: [
         {
-          title: '按钮',
-          name: 'button',
-          color: 'purple',
-          cuIcon: 'vipcard'
+          title: "按钮",
+          name: "button",
+          color: "purple",
+          cuIcon: "vipcard"
         },
         {
-          title: '图标 ',
-          name: 'icon',
-          color: 'mauve',
-          cuIcon: 'formfill'
+          title: "图标 ",
+          name: "icon",
+          color: "mauve",
+          cuIcon: "formfill"
         },
         {
-          title: '列表',
-          name: 'list',
-          color: 'pink',
-          cuIcon: 'list'
+          title: "列表",
+          name: "list",
+          color: "pink",
+          cuIcon: "list"
         },
         {
-          title: '卡片',
-          name: 'card',
-          color: 'brown',
-          cuIcon: 'newsfill'
+          title: "卡片",
+          name: "card",
+          color: "brown",
+          cuIcon: "newsfill"
         },
         {
-          title: '表单',
-          name: 'form',
-          color: 'red',
-          cuIcon: 'formfill'
+          title: "表单",
+          name: "form",
+          color: "red",
+          cuIcon: "formfill"
         },
         {
-          title: '时间轴',
-          name: 'timeline',
-          color: 'orange',
-          cuIcon: 'timefill'
+          title: "时间轴",
+          name: "timeline",
+          color: "orange",
+          cuIcon: "timefill"
         },
         {
-          title: '聊天',
-          name: 'chat',
-          color: 'green',
-          cuIcon: 'messagefill'
+          title: "聊天",
+          name: "chat",
+          color: "green",
+          cuIcon: "messagefill"
         },
         {
-          title: '轮播',
-          name: 'swiper',
-          color: 'olive',
-          cuIcon: 'album'
+          title: "轮播",
+          name: "swiper",
+          color: "olive",
+          cuIcon: "album"
         },
         {
-          title: '模态框',
-          name: 'modal',
-          color: 'grey',
-          cuIcon: 'squarecheckfill'
+          title: "模态框",
+          name: "modal",
+          color: "grey",
+          cuIcon: "squarecheckfill"
         },
         {
-          title: '步骤条',
-          name: 'steps',
-          color: 'cyan',
-          cuIcon: 'roundcheckfill'
+          title: "步骤条",
+          name: "steps",
+          color: "cyan",
+          cuIcon: "roundcheckfill"
         }
       ]
-    }
+    };
   },
   computed: {},
   watch: {},
@@ -114,36 +114,42 @@ export default {
   mounted() {},
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-}
+};
 </script>
 <style lang='less' scoped>
 .home {
   position: relative;
-  height: 100%;
-  background: #f1f1f1;
+  padding-top: 240px;
+  padding-bottom: 20px;
+  background: #4178f8;
   .img-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
     display: block;
     height: 240px;
     width: 100%;
   }
   .nav-list {
+    border-radius: 15px;
+    margin: 20px 10px 0;
     display: flex;
     flex-wrap: wrap;
-    padding: 0px 20px 0px;
+    padding-top: 20px;
+    background: #fff;
     justify-content: space-between;
     .nav-li {
       padding: 15px;
       border-radius: 6px;
       width: 45%;
       margin: 0 2.5% 20px;
-      background-image: url(https://cdn.nlark.com/yuque/0/2019/png/280374/1552996358352-assets/web-upload/cc3b1807-c684-4b83-8f80-80e5b8a6b975.png);
       background-size: cover;
       background-position: center;
       position: relative;
       z-index: 1;
       box-sizing: border-box;
       .nav-li::after {
-        content: '';
+        content: "";
         position: absolute;
         z-index: -1;
         background-color: inherit;
@@ -174,7 +180,7 @@ export default {
         margin-top: 10px;
         position: relative;
         &::before {
-          content: '';
+          content: "";
           position: absolute;
           display: block;
           width: 20px;
@@ -185,7 +191,7 @@ export default {
           opacity: 0.5;
         }
         &::after {
-          content: '';
+          content: "";
           position: absolute;
           display: block;
           width: 100px;

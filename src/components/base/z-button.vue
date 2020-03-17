@@ -9,11 +9,11 @@
   <button :class="c_type" :style="c_style" @click="$emit('click')">
     <z-icon
       :iconName="iconName"
-      v-if="iconName&&buttonStatus=='common'"
+      v-if="iconName&&status=='common'"
       :class="classStyle"
       :color="this.type == 'custom' ?'#fff':'' "
     ></z-icon>
-    <slot v-if="buttonStatus=='loading'" name="loading-icon">
+    <slot v-if="status=='loading'" name="loading-icon">
       <z-icon
         class="loading"
         icon-name="i-loading"
@@ -21,15 +21,13 @@
         :class="[iconPosition=='right'?'loading-right':'']"
       ></z-icon>
     </slot>
-    <slot v-else-if="buttonStatus=='complate'" name="complate-icon">
+    <slot v-else-if="status=='complate'" name="complate-icon">
       <z-icon
-        color="#3fdc75"
-        class="loading"
-        icon-name="i-complate"
-        :class="[iconPosition=='right'?'loading-right':'']"
+        color="#fff"
+        icon-name="i-wancheng"
+        :class="classStyle"
       ></z-icon>
     </slot>
-
     <slot v-if="!turnOnSuper"></slot>
     <span class="super-wrap" v-else>
       <span class="item">{{commonText}}</span>
@@ -40,34 +38,44 @@
 </template>
 
 <script>
-import ZIcon from './z-icon.vue'
+import ZIcon from "./z-icon.vue";
 export default {
   components: { ZIcon },
+  watch: {
+    stauts(newValue, oldValue) {
+      console.log("newValue", newValue);
+    }
+  },
   computed: {
     //button style
     c_type() {
+      console.log("enter", this.status);
       return [
-        this.type == 'default' ? 'z-button' : 'z-custom-button',
-        this.size == 'small'
-          ? 'size-small'
-          : this.size == 'large'
-          ? 'size-large'
-          : '',
-        this.block ? 'button-block' : '',
-        this.buttonStatus=='loading'?'loading':this.buttonStatus=='done'?'done':''
-      ]
+        this.type == "default" ? "z-button" : "z-custom-button",
+        this.size == "small"
+          ? "size-small"
+          : this.size == "large"
+          ? "size-large"
+          : "",
+        this.block ? "button-block" : "",
+        this.status == "loading"
+          ? "loading"
+          : this.status == "complate"
+          ? "done"
+          : ""
+      ];
     },
     //icon style
     classStyle() {
-      return [this.iconPosition == 'right' ? 'icon-right' : 'icon-left']
+      return [this.iconPosition == "right" ? "icon-right" : "icon-left"];
     },
     //自定义背景
     c_style() {
       return {
         background: this.bg,
-        color: this.bg ? '#fff' : '',
-        border: this.bg ? 'none' : ''
-      }
+        color: this.bg ? "#fff" : "",
+        border: this.bg ? "none" : ""
+      };
     }
   },
   props: {
@@ -75,91 +83,91 @@ export default {
     block: {
       type: Boolean,
       default: () => {
-        return false
+        return false;
       }
     },
     //类型
     type: {
       type: String,
       default: () => {
-        return 'default'
+        return "default";
       },
-      validator: value => value == 'default' || value == 'custom'
+      validator: value => value == "default" || value == "custom"
     },
     //尺寸
     size: {
       type: String,
       default: () => {
-        return 'common'
+        return "common";
       },
       validator: value =>
-        value == 'small' || value == 'large' || value == 'common'
+        value == "small" || value == "large" || value == "common"
     },
     //是否下载状态
-    buttonStatus: {
+    status: {
       type: String,
       default: () => {
-        return 'common'
+        return "common";
       },
       validator: value =>
-        value == 'common' || value == 'loading' || value == 'complate'
+        value == "common" || value == "loading" || value == "complate"
     },
     //是否开启超级按钮
     turnOnSuper: {
       type: Boolean,
       default: () => {
-        return false
+        return false;
       }
     },
     //完成文本
     complateText: {
       type: String,
       default: () => {
-        return ''
+        return "";
       }
     },
     //默认文本
     commonText: {
       type: String,
       default: () => {
-        return ''
+        return "";
       }
     },
     //加载文本
     loadingText: {
       type: String,
       default: () => {
-        return ''
+        return "";
       }
     },
     //icon
     iconName: {
       type: String,
       default: () => {
-        return ''
+        return "";
       }
     },
     //icon 位置
     iconPosition: {
       type: String,
       default: () => {
-        return 'left'
+        return "left";
       },
       validator: value => {
-        return value == 'left' || value == 'right'
+        return value == "left" || value == "right";
       }
     },
     bg: {
       type: String,
       default: () => {
-        return ''
+        return "";
       }
     }
   },
   mounted() {
-    document.body.addEventListener('touchstart', function() {})
+    document.body.addEventListener("touchstart", function() {});
   }
-}
+};
 </script>
 <style lang='less' scoped>
 .z-button /deep/ .fill-white.icon {
@@ -174,7 +182,7 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 0 1em;
-  transition: all 0.3s ease;
+  transition: all 1s ease;
   border-radius: 4px;
   &:disabled {
     opacity: 0.6;
@@ -216,8 +224,10 @@ export default {
       position: absolute;
       backface-visibility: hidden;
       top: 0;
+      left: 0;
       bottom: 0;
-      width: 100%;
+      white-space: nowrap;
+      height: 100%;
       transform-origin: 50% 50%;
       transform: rotateX(0deg) translateZ(10px);
       &:nth-child(2) {
@@ -226,16 +236,6 @@ export default {
       &:nth-child(3) {
         transform: rotateX(-180deg) translateZ(10px);
       }
-    }
-  }
-  .loading{
-    .super-wrap{
-      transform: rotateX(90deg);
-    }
-  }
-  .done{
-    .super-wrap{
-       transform: rotateX(180deg);
     }
   }
 }
@@ -260,6 +260,17 @@ export default {
   &:active {
     background: @button-custom-active-bg;
     transform: scale(0.9, 0.9);
+  }
+}
+.loading {
+  .super-wrap {
+    transform: rotateX(90deg);
+  }
+}
+.done {
+  background: #3fdc75;
+  .super-wrap {
+    transform: rotateX(180deg);
   }
 }
 .size-small {
