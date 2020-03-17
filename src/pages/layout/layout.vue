@@ -7,7 +7,6 @@
       <z-menu-item title="内容区" :path="{path:'/body'}"></z-menu-item>
       <z-menu-item title="Grid栅格" :path="{path:'/row-col'}"></z-menu-item>
     </z-body>
-    <router-view></router-view>
   </div>
 </template>
 

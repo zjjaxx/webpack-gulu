@@ -1,11 +1,14 @@
 <!--  -->
 <template>
-  <div class></div>
+  <div class="button-container">
+      <z-super-button></z-super-button>
+  </div>
 </template>
 
 <script>
+import ZSuperButton from '../../components/super/z-super-button.vue'
 export default {
-  components: {},
+  components: { ZSuperButton },
   data() {
     return {}
   },
@@ -19,4 +22,6 @@ export default {
 }
 </script>
 <style lang='less' scoped>
+.button-container {
+}
 </style>

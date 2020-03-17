@@ -9,17 +9,33 @@
   <button :class="c_type" :style="c_style" @click="$emit('click')">
     <z-icon
       :iconName="iconName"
-      v-if="iconName&&!isLoading"
+      v-if="iconName&&buttonStatus=='common'"
       :class="classStyle"
       :color="this.type == 'custom' ?'#fff':'' "
-    ></z-icon> 
-    <z-icon
-      class="loading"
-      v-if="isLoading"
-      icon-name="i-loading"
-      :class="[iconPosition=='right'?'loading-right':'']"
     ></z-icon>
-    <slot></slot>
+    <slot v-if="buttonStatus=='loading'" name="loading-icon">
+      <z-icon
+        class="loading"
+        icon-name="i-loading"
+        color="#fff"
+        :class="[iconPosition=='right'?'loading-right':'']"
+      ></z-icon>
+    </slot>
+    <slot v-else-if="buttonStatus=='complate'" name="complate-icon">
+      <z-icon
+        color="#3fdc75"
+        class="loading"
+        icon-name="i-complate"
+        :class="[iconPosition=='right'?'loading-right':'']"
+      ></z-icon>
+    </slot>
+
+    <slot v-if="!turnOnSuper"></slot>
+    <span class="super-wrap" v-else>
+      <span class="item">{{commonText}}</span>
+      <span class="item">{{loadingText}}</span>
+      <span class="item">{{complateText}}</span>
+    </span>
   </button>
 </template>
 
@@ -37,7 +53,8 @@ export default {
           : this.size == 'large'
           ? 'size-large'
           : '',
-        this.block ? 'button-block' : ''
+        this.block ? 'button-block' : '',
+        this.buttonStatus=='loading'?'loading':this.buttonStatus=='done'?'done':''
       ]
     },
     //icon style
@@ -45,8 +62,12 @@ export default {
       return [this.iconPosition == 'right' ? 'icon-right' : 'icon-left']
     },
     //自定义背景
-    c_style(){
-      return {background:this.bg,color:this.bg?"#fff":"",border:this.bg?"none":""}
+    c_style() {
+      return {
+        background: this.bg,
+        color: this.bg ? '#fff' : '',
+        border: this.bg ? 'none' : ''
+      }
     }
   },
   props: {
@@ -75,10 +96,40 @@ export default {
         value == 'small' || value == 'large' || value == 'common'
     },
     //是否下载状态
-    isLoading: {
+    buttonStatus: {
+      type: String,
+      default: () => {
+        return 'common'
+      },
+      validator: value =>
+        value == 'common' || value == 'loading' || value == 'complate'
+    },
+    //是否开启超级按钮
+    turnOnSuper: {
       type: Boolean,
       default: () => {
         return false
+      }
+    },
+    //完成文本
+    complateText: {
+      type: String,
+      default: () => {
+        return ''
+      }
+    },
+    //默认文本
+    commonText: {
+      type: String,
+      default: () => {
+        return ''
+      }
+    },
+    //加载文本
+    loadingText: {
+      type: String,
+      default: () => {
+        return ''
       }
     },
     //icon
@@ -98,10 +149,10 @@ export default {
         return value == 'left' || value == 'right'
       }
     },
-    bg:{
-      type:String,
-      default:()=>{
-        return ""
+    bg: {
+      type: String,
+      default: () => {
+        return ''
       }
     }
   },
@@ -153,6 +204,39 @@ export default {
     margin-left: 0.3em;
     margin-right: 0;
     order: 2;
+  }
+  .super-wrap {
+    display: inline-block;
+    height: @button-font-size;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+    width: 50px;
+    .item {
+      position: absolute;
+      backface-visibility: hidden;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      transform-origin: 50% 50%;
+      transform: rotateX(0deg) translateZ(10px);
+      &:nth-child(2) {
+        transform: rotateX(-90deg) translateZ(10px);
+      }
+      &:nth-child(3) {
+        transform: rotateX(-180deg) translateZ(10px);
+      }
+    }
+  }
+  .loading{
+    .super-wrap{
+      transform: rotateX(90deg);
+    }
+  }
+  .done{
+    .super-wrap{
+       transform: rotateX(180deg);
+    }
   }
 }
 .z-button {

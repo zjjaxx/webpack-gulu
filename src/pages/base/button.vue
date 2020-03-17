@@ -37,13 +37,15 @@
       </div>
       <z-title title="按钮+loading"></z-title>
       <div class="default-wrap">
-        <z-button iconName="i-download" :isLoading="isLoading" @click="isLoading=!isLoading">下载</z-button>
         <z-button
           type="custom"
           iconName="i-download"
-          iconPosition="right"
-          :isLoading="isLoading_"
-          @click="isLoading_=!isLoading_"
+          commonText="Activate"
+          loadingText="Waiting"
+          complateText="Activated"
+          :buttonStauts="buttonStauts"
+          :turnOnSuper="true"
+          @click="click"
         >下载</z-button>
       </div>
       <z-title title="块级元素"></z-title>
@@ -61,7 +63,8 @@ export default {
     return {
       isLoading: false,
       isLoading_: false,
-      count: 0
+      count: 0,
+      buttonStauts:"common"
     }
   },
   computed: {},
@@ -69,6 +72,17 @@ export default {
   methods: {
     add() {
       this.count++
+    },
+    click(){
+         if (this.buttonStauts=="common") {
+        this.buttonStauts="loading"
+        setTimeout(() => {
+          this.buttonStauts="complate"
+          setTimeout(() => {
+          this.buttonStauts="common"
+          }, 1600)
+        }, 3200)
+      }
     }
   },
   created() {},

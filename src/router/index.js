@@ -25,7 +25,7 @@ const routes = [
 
             }, {
                 path: "person",
-                component: () => import(/*webpackChunkName:"person"*/"../pages/person.vue")
+                component: () => import(/*webpackChunkName:"person"*/"../pages/super/person.vue")
             }]
     },
     {
@@ -95,7 +95,11 @@ const routes = [
     {
         path: "/body",
         component: () => import("../pages/layout/body.vue")
-    }
+    },
+    {
+        path: "/superButton",
+        component: () => import("../pages/super/button.vue")
+    },
 
 
 ]

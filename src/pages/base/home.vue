@@ -35,7 +35,6 @@
         <z-menu-item title="SwipeCell 滑动单元格" :path="{path:'/swipeCell'}"></z-menu-item>
       </z-menu-group>-->
     </z-body>
-    <router-view></router-view>
   </div>
 </template>
 
