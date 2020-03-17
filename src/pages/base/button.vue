@@ -7,13 +7,7 @@
 <!--  -->
 <template>
   <div class="button-container">
-    <z-header title="按钮">
-      <template v-slot:left>
-        <div class="left-wrap flex justify-center aligin-center" @click="$router.back()">
-          <z-icon icon-name="i-left"></z-icon>
-        </div>
-      </template>
-    </z-header>
+    <z-header title="按钮" bg="linear-gradient(45deg, #0081ff, #1cbbb4)"></z-header>
     <z-body>
       <z-title title="按钮类型(默认:default;支持custom、default)"></z-title>
       <div class="default-wrap">
@@ -30,7 +24,7 @@
         <z-button type="custom" iconName="i-setting">设置</z-button>
         <z-button iconName="i-right" iconPosition="right">下一页</z-button>
       </div>
-       <z-title title="按钮+自定义背景"></z-title>
+      <z-title title="按钮+自定义背景"></z-title>
       <div class="default-wrap">
         <z-button bg="#07c160" iconName="i-setting">设置</z-button>
         <z-button bg="#ee0a24" iconName="i-setting">设置</z-button>
@@ -67,13 +61,13 @@ export default {
     return {
       isLoading: false,
       isLoading_: false,
-      count:0
+      count: 0
     }
   },
   computed: {},
   watch: {},
   methods: {
-    add(){
+    add() {
       this.count++
     }
   },
@@ -89,7 +83,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height:100%;
+  height: 100%;
   background: #fff;
   z-index: 210;
   .left-wrap {

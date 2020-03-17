@@ -1,18 +1,12 @@
 <!--  -->
 <template>
   <div class="body-container">
-      <z-header title="z-header">
-      <template v-slot:left>
-        <div class="left-wrap flex justify-center aligin-center" @click="$router.back()">
-          <z-icon icon-name="i-left"></z-icon>
-        </div>
-      </template>
-    </z-header>
+    <z-header title="z-header" bg="linear-gradient(45deg, #0081ff, #1cbbb4)"></z-header>
     <z-body>
       <z-title title="z-body"></z-title>
-     <template v-for="(item,index) in 50">
-       <z-menu-item :title="'position:'+item"></z-menu-item>
-     </template>
+      <template v-for="(item,index) in 50">
+        <z-menu-item :title="'position:'+item"></z-menu-item>
+      </template>
     </z-body>
   </div>
 </template>
@@ -38,7 +32,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height:100%;
+  height: 100%;
   background: #fff;
   z-index: 210;
   .left-wrap {

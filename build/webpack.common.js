@@ -80,6 +80,7 @@ module.exports = {
                     {
                         loader: 'url-loader',
                         options: {
+                            esModule: false, // 这里设置为false
                             limit: 8192,
                             name: "[name]-zz.[ext]",
                             outputPath: 'images/'

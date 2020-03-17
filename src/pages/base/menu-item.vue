@@ -1,12 +1,7 @@
 <!--  -->
 <template>
   <div class="menu-item-container">
-    <z-header title="Cell单元格">
-      <template v-slot:left>
-        <div class="left-wrap flex justify-center aligin-center" @click="$router.back()">
-          <z-icon icon-name="i-left"></z-icon>
-        </div>
-      </template>
+    <z-header title="Cell单元格" bg="linear-gradient(45deg, #0081ff, #1cbbb4)">
     </z-header>
     <z-body>
       <z-title title="默认Cell单元格"></z-title>

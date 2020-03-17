@@ -1,9 +1,9 @@
 <!--  -->
 <template>
   <div class="index">
-    <z-navbar :bottomMenu="bottomMenu" activeColor="#ee0a24" inactiveColor="#333">
+    <z-navbar :bottomMenu="bottomMenu" activeColor="#39b54a" inactiveColor="#aaaaaa">
       <template v-slot="{item,active}">
-        <z-icon :iconName="item.iconName" :info="item.info" :color="active?'#ee0a24':'#333'"></z-icon>
+        <z-icon :iconName="item.iconName" :info="item.info" :color="active?'#39b54a':'#aaaaaa'"></z-icon>
       </template>
     </z-navbar>
     <z-body>
@@ -22,8 +22,8 @@ export default {
       bottomMenu: [
         {
           path: '/home',
-          iconName: 'i-home',
-          name: '基本组件'
+          iconName: 'i-zujian',
+          name: '组件'
         },
         {
           path: '/layout',

@@ -1,9 +1,24 @@
 <!--  -->
 <template>
   <div class="home">
-    <z-header title="基本组件"></z-header>
     <z-body>
-      <z-menu-group>
+      <img class="img-bg" src="../../assets/imgs/home-bg.jpg" alt />
+      <div class="nav-list">
+        <router-link
+          tag="div"
+          :to="'/' + item.name"
+          class="nav-li"
+          :class="'bg-'+item.color"
+          :style="[{animation: 'delayShow ' + ((index+1)*0.2+1) + 's 1'}]"
+          v-for="(item,index) in elements"
+          :key="index"
+        >
+          <div class="nav-title">{{item.title}}</div>
+          <div class="nav-name">{{item.name}}</div>
+          <span :class="'cuIcon-' + item.cuIcon"></span>
+        </router-link>
+      </div>
+      <!-- <z-menu-group>
         <z-menu-item title="按钮" :path="{path:'/button'}"></z-menu-item>
         <z-menu-item title="标题栏" :path="{path:'/title'}"></z-menu-item>
         <z-menu-item title="图标" :path="{path:'/icon'}"></z-menu-item>
@@ -18,7 +33,7 @@
         <z-menu-item title="单选框" :path="{path:'/radio'}"></z-menu-item>
         <z-menu-item title="下拉刷新" :path="{path:'/refresh'}"></z-menu-item>
         <z-menu-item title="SwipeCell 滑动单元格" :path="{path:'/swipeCell'}"></z-menu-item>
-      </z-menu-group>
+      </z-menu-group>-->
     </z-body>
     <router-view></router-view>
   </div>
@@ -28,7 +43,70 @@
 export default {
   components: {},
   data() {
-    return {}
+    return {
+      elements: [
+        {
+          title: '按钮',
+          name: 'button',
+          color: 'purple',
+          cuIcon: 'vipcard'
+        },
+        {
+          title: '图标 ',
+          name: 'icon',
+          color: 'mauve',
+          cuIcon: 'formfill'
+        },
+        {
+          title: '列表',
+          name: 'list',
+          color: 'pink',
+          cuIcon: 'list'
+        },
+        {
+          title: '卡片',
+          name: 'card',
+          color: 'brown',
+          cuIcon: 'newsfill'
+        },
+        {
+          title: '表单',
+          name: 'form',
+          color: 'red',
+          cuIcon: 'formfill'
+        },
+        {
+          title: '时间轴',
+          name: 'timeline',
+          color: 'orange',
+          cuIcon: 'timefill'
+        },
+        {
+          title: '聊天',
+          name: 'chat',
+          color: 'green',
+          cuIcon: 'messagefill'
+        },
+        {
+          title: '轮播',
+          name: 'swiper',
+          color: 'olive',
+          cuIcon: 'album'
+        },
+        {
+          title: '模态框',
+          name: 'modal',
+          color: 'grey',
+          cuIcon: 'squarecheckfill'
+        },
+        {
+          title: '步骤条',
+          name: 'steps',
+          color: 'cyan',
+          cuIcon: 'roundcheckfill'
+        }
+      ]
+    }
   },
   computed: {},
   watch: {},
@@ -43,5 +121,102 @@ export default {
 .home {
   position: relative;
   height: 100%;
+  background: #f1f1f1;
+  .img-bg {
+    display: block;
+    height: 240px;
+    width: 100%;
+  }
+  .nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 20px 0px;
+    justify-content: space-between;
+    .nav-li {
+      padding: 15px;
+      border-radius: 6px;
+      width: 45%;
+      margin: 0 2.5% 20px;
+      background-image: url(https://cdn.nlark.com/yuque/0/2019/png/280374/1552996358352-assets/web-upload/cc3b1807-c684-4b83-8f80-80e5b8a6b975.png);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      z-index: 1;
+      box-sizing: border-box;
+      .nav-li::after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        background-color: inherit;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        bottom: -10%;
+        border-radius: 5px;
+        opacity: 0.2;
+        transform: scale(0.9, 0.9);
+      }
+      .nav-li.cur {
+        color: #fff;
+        background: rgb(94, 185, 94);
+        box-shadow: 2px 2px 3px rgba(94, 185, 94, 0.4);
+      }
+      .nav-title {
+        font-size: 16px;
+        font-weight: 300;
+        &::first-letter {
+          font-size: 20px;
+          margin-right: 2px;
+        }
+      }
+      .nav-name {
+        font-size: 14px;
+        text-transform: Capitalize;
+        margin-top: 10px;
+        position: relative;
+        &::before {
+          content: '';
+          position: absolute;
+          display: block;
+          width: 20px;
+          height: 3px;
+          background: #fff;
+          bottom: 0;
+          right: 0;
+          opacity: 0.5;
+        }
+        &::after {
+          content: '';
+          position: absolute;
+          display: block;
+          width: 100px;
+          height: 1px;
+          background: #fff;
+          bottom: 0;
+          right: 20px;
+          opacity: 0.3;
+        }
+        &::first-letter {
+          font-weight: bold;
+          font-size: 18px;
+          margin-right: 1px;
+        }
+      }
+      span {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        font-size: 26px;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+      }
+
+      .text-light {
+        font-weight: 300;
+      }
+    }
+  }
 }
 </style>

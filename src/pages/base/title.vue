@@ -1,12 +1,7 @@
 <!--  -->
 <template>
   <div class="title-container">
-    <z-header title="标题栏">
-      <template v-slot:left>
-        <div class="left-wrap flex justify-center aligin-center" @click="$router.back()">
-          <z-icon icon-name="i-left"></z-icon>
-        </div>
-      </template>
+    <z-header title="标题栏" bg="linear-gradient(45deg, #0081ff, #1cbbb4)">
     </z-header>
     <z-body>
       <z-title title="默认标题栏"></z-title>

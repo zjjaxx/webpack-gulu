@@ -1,12 +1,7 @@
 <!--  -->
 <template>
   <div class="input-container">
-    <z-header title="输入框">
-      <template v-slot:left>
-        <div class="left-wrap flex justify-center aligin-center" @click="$router.back()">
-          <z-icon icon-name="i-left"></z-icon>
-        </div>
-      </template>
+    <z-header title="输入框" bg="linear-gradient(45deg, #0081ff, #1cbbb4)">
     </z-header>
     <z-body>
       <z-title title="输入框+placeholder"></z-title>

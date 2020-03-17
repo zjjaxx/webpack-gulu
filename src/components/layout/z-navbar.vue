@@ -8,7 +8,7 @@
         :key="index"
       >
         <slot :item="item" :active="$route.path.match(item.path)"></slot>
-        <div class="mt-2" :style="c_style(item)">{{item.name}}</div>
+        <div class="mt-3 f-12" :style="c_style(item)">{{item.name}}</div>
       </router-link>
     </template>
   </div>
@@ -80,8 +80,11 @@ export default {
     height: 100%;
     font-size: 14px;
   }
-  .mt-2 {
-    margin-top: 2px;
+  .mt-3 {
+    margin-top: 3px;
+  }
+  .f-12{
+    font-size: 12px;
   }
 }
 </style>
