@@ -102,7 +102,9 @@ export default {
       this.close()
     }
   }, //生命周期 - 更新之后
-  beforeDestroy() {},
+  beforeDestroy() {
+     this.close()
+  },
   destroyed() {} //生命周期 - 销毁完成
 }
 </script>
