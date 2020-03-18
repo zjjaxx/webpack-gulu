@@ -13,23 +13,18 @@
       :class="classStyle"
       :color="this.type == 'custom' ?'#fff':'' "
     ></z-icon>
-    <slot v-if="status=='loading'" name="loading-icon">
-      <z-icon
-        class="loading"
-        icon-name="i-loading"
-        color="#fff"
-        :class="[iconPosition=='right'?'loading-right':'']"
-      ></z-icon>
-    </slot>
-    <slot v-else-if="status=='complate'" name="complate-icon">
-      <z-icon
-        color="#fff"
-        icon-name="i-wancheng"
-        :class="classStyle"
-      ></z-icon>
-    </slot>
+    <span class="loading" :class="classStyle">
+      <slot v-if="status=='loading'" name="loading-icon">
+        <z-icon icon-name="i-loading" color="#fff"></z-icon>
+      </slot>
+    </span>
+    <span v-if="status=='complate'" :class="classStyle">
+      <slot name="complate-icon">
+        <z-icon color="#fff" icon-name="i-wancheng"></z-icon>
+      </slot>
+    </span>
     <slot v-if="!turnOnSuper"></slot>
-    <span class="super-wrap" v-else>
+    <span class="super-wrap" :style="c_width+'px'" v-else>
       <span class="item">{{commonText}}</span>
       <span class="item">{{loadingText}}</span>
       <span class="item">{{complateText}}</span>
@@ -38,136 +33,159 @@
 </template>
 
 <script>
-import ZIcon from "./z-icon.vue";
+import ZIcon from './z-icon.vue'
 export default {
   components: { ZIcon },
-  watch: {
-    stauts(newValue, oldValue) {
-      console.log("newValue", newValue);
-    }
-  },
+  watch: {},
   computed: {
     //button style
     c_type() {
-      console.log("enter", this.status);
       return [
-        this.type == "default" ? "z-button" : "z-custom-button",
-        this.size == "small"
-          ? "size-small"
-          : this.size == "large"
-          ? "size-large"
-          : "",
-        this.block ? "button-block" : "",
-        this.status == "loading"
-          ? "loading"
-          : this.status == "complate"
-          ? "done"
-          : ""
-      ];
+        this.type == 'default' ? 'z-button' : 'z-custom-button',
+        this.size == 'small'
+          ? 'size-small'
+          : this.size == 'large'
+          ? 'size-large'
+          : '',
+        this.block ? 'button-block' : '',
+        this.status == 'loading'
+          ? 'loading'
+          : this.status == 'complate'
+          ? 'done'
+          : ''
+      ]
     },
     //icon style
     classStyle() {
-      return [this.iconPosition == "right" ? "icon-right" : "icon-left"];
+      return [this.iconPosition == 'right' ? 'icon-right' : 'icon-left']
     },
     //自定义背景
     c_style() {
       return {
         background: this.bg,
-        color: this.bg ? "#fff" : "",
-        border: this.bg ? "none" : ""
-      };
+        color: this.bg ? '#fff' : '',
+        border: this.bg ? 'none' : '',
+        borderRadius: this.rect ? '0' : ''
+      }
     }
   },
   props: {
+    rect: {
+      //无圆角
+      type: Boolean,
+      default: () => {
+        return false
+      }
+    },
     //块级元素
     block: {
       type: Boolean,
       default: () => {
-        return false;
+        return false
       }
     },
     //类型
     type: {
       type: String,
       default: () => {
-        return "default";
+        return 'default'
       },
-      validator: value => value == "default" || value == "custom"
+      validator: value => value == 'default' || value == 'custom'
     },
     //尺寸
     size: {
       type: String,
       default: () => {
-        return "common";
+        return 'common'
       },
       validator: value =>
-        value == "small" || value == "large" || value == "common"
+        value == 'small' || value == 'large' || value == 'common'
     },
     //是否下载状态
     status: {
       type: String,
       default: () => {
-        return "common";
+        return 'common'
       },
       validator: value =>
-        value == "common" || value == "loading" || value == "complate"
+        value == 'common' || value == 'loading' || value == 'complate'
     },
     //是否开启超级按钮
     turnOnSuper: {
       type: Boolean,
       default: () => {
-        return false;
+        return false
       }
     },
     //完成文本
     complateText: {
       type: String,
       default: () => {
-        return "";
+        return ''
       }
     },
     //默认文本
     commonText: {
       type: String,
       default: () => {
-        return "";
+        return ''
       }
     },
     //加载文本
     loadingText: {
       type: String,
       default: () => {
-        return "";
+        return ''
       }
     },
     //icon
     iconName: {
       type: String,
       default: () => {
-        return "";
+        return ''
       }
     },
     //icon 位置
     iconPosition: {
       type: String,
       default: () => {
-        return "left";
+        return 'left'
       },
       validator: value => {
-        return value == "left" || value == "right";
+        return value == 'left' || value == 'right'
       }
     },
     bg: {
       type: String,
       default: () => {
-        return "";
+        return ''
+      }
+    }
+  },
+  data() {
+    return {
+      c_width: 0
+    }
+  },
+  methods: {
+    comput_width() {
+      let itemList = this.$el.querySelectorAll('.super-wrap .item')
+      if (itemList.length) {
+        itemList=Array.prototype.slice.call(itemList)
+        let widthList = itemList.map(item => {
+          let cssObject = window.getComputedStyle(item)
+          return cssObject.width
+        })
+        console.log(widthList)
+        this.c_width = Math.max(widthList)
+        console.log("this.c_width",this.c_width)
       }
     }
   },
   mounted() {
-    document.body.addEventListener("touchstart", function() {});
+    document.body.addEventListener('touchstart', function() {})
   }
-};
+}
 </script>
 <style lang='less' scoped>
 .z-button /deep/ .fill-white.icon {
@@ -182,7 +200,7 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 0 1em;
-  transition: all 1s ease;
+  transition: all 0.3s ease;
   border-radius: 4px;
   &:disabled {
     opacity: 0.6;
@@ -199,6 +217,7 @@ export default {
     margin-left: 0;
     margin-right: 0.3em;
     animation: loading 2s infinite linear;
+    transform-origin: 50% 50%;
     @keyframes loading {
       0% {
         transform: rotate(0deg);
@@ -219,7 +238,6 @@ export default {
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.3s ease;
-    width: 50px;
     .item {
       position: absolute;
       backface-visibility: hidden;

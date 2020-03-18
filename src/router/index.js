@@ -96,10 +96,6 @@ const routes = [
         path: "/body",
         component: () => import("../pages/layout/body.vue")
     },
-    {
-        path: "/superButton",
-        component: () => import("../pages/super/button.vue")
-    },
 
 
 ]

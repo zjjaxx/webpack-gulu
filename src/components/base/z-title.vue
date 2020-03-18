@@ -34,11 +34,12 @@ export default {
 <style lang='less' scoped>
 .z-title {
   padding-left: 15px;
-  background: #f8f8f8;
+  background: #fff;
   .title-content{
       padding: 12px 15px 12px 0px;
       .title{
-          font-size: 14px;
+          font-size: 16px;
+          color: #999;
           border-left: 3px solid #c0c0c0;
           padding-left:10px;
       }
