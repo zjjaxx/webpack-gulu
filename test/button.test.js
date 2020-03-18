@@ -94,20 +94,6 @@ describe("Button", () => {
         button.$el.remove()
         button.$destroy()
     })
-    it("isLoading测试", () => {
-        let ButtonConstruct = Vue.extend(ZButton)
-        let button = new ButtonConstruct({
-            propsData: {
-                isLoading: true,
-                iconName: 'i-setting'
-            }
-        })
-        button.$mount()
-        let use = button.$el.querySelector("use")
-        expect(use.getAttribute('xlink:href')).to.equal("#i-loading")
-        button.$el.remove()
-        button.$destroy()
-    })
     it("iconPosition测试 left", () => {
         let div = document.createElement("div")
         document.body.appendChild(div)

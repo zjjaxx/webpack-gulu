@@ -24,7 +24,7 @@
       </slot>
     </span>
     <slot v-if="!turnOnSuper"></slot>
-    <span class="super-wrap" :style="c_width+'px'" v-else>
+    <span class="super-wrap" :style="{width:c_width+'px'}" v-else>
       <span class="item">{{commonText}}</span>
       <span class="item">{{loadingText}}</span>
       <span class="item">{{complateText}}</span>
@@ -174,16 +174,17 @@ export default {
         itemList=Array.prototype.slice.call(itemList)
         let widthList = itemList.map(item => {
           let cssObject = window.getComputedStyle(item)
-          return cssObject.width
+          return parseFloat(cssObject.width)
         })
-        console.log(widthList)
-        this.c_width = Math.max(widthList)
+        console.log(widthList,Math.max(...widthList))
+        this.c_width = Math.max(...widthList)
         console.log("this.c_width",this.c_width)
       }
     }
   },
   mounted() {
     document.body.addEventListener('touchstart', function() {})
+    this.comput_width()
   }
 }
 </script>

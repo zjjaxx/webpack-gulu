@@ -72,8 +72,7 @@
         </z-button>
       </div>
       <z-title title="块级元素"></z-title>
-      <z-button block type="custom" iconName="i-setting">设置</z-button>
-      <z-button style="marginTop:10px" size="large" block iconPosition="right">下一页</z-button>
+      <z-button block type="custom" style="marginBottom:20px">确定</z-button>
     </z-body>
   </div>
 </template>

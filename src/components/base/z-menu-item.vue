@@ -53,9 +53,6 @@ export default {
 <style lang='less' scoped>
 .menu-item-wrap {
   margin-left: @cell-padding-left-right;
-  &:last-child{
-    border-bottom: none;
-  }
   .menu-item {
     padding: @cell-padding-top-bottom @cell-padding-left-right
       @cell-padding-top-bottom 0;
