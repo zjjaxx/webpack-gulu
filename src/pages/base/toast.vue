@@ -7,47 +7,52 @@
 <!--  -->
 <template>
   <div class="toast-container">
-    <z-header title="toast" bg="linear-gradient(45deg, #0081ff, #1cbbb4)">
-    </z-header>
+    <z-header title="toast" bg="linear-gradient(45deg, #0081ff, #1cbbb4)"></z-header>
     <z-body>
-      <z-title title="默认toast"></z-title>
+      <z-title title="基础用法"></z-title>
       <div class="default-wrap">
-          <z-button @click="showToast">默认toast</z-button>
-           <z-button @click="showToastWrap">溢出换行</z-button>
+        <z-button @click="showToast">默认toast</z-button>
       </div>
-       <z-title title="不自动关闭toast"></z-title>
+      <z-title title="溢出换行"></z-title>
       <div class="default-wrap">
-          <z-button @click="showToastAllTime">不自动关闭toast</z-button>
+        <z-button @click="showToastWrap">溢出换行</z-button>
+      </div>
+      <z-title title="不自动关闭toast"></z-title>
+      <div class="default-wrap">
+        <z-button @click="showToastAllTime">不自动关闭toast</z-button>
       </div>
     </z-body>
   </div>
 </template>
 
 <script>
-import ZButton from "../../components/base/z-button.vue"
+import ZButton from "../../components/base/z-button.vue";
 export default {
-  components: {ZButton},
+  components: { ZButton },
   data() {
     return {};
   },
   computed: {},
   watch: {},
   methods: {
-      showToast(){
-          this.$toast("默认 toast")
-      },
-      showToastWrap(){
-         this.$toast("zui移动端UI组件库，模仿vant移动端组件库，仅供学习，不用于商业用途,版本v"+Math.random())
-      },
-      showToastAllTime(){
-        this.$toast('不自动关闭toast',{
-          title:"了解",
-          callback:(toast,close)=>{
-            close()
-            console.log("close toast")
-          }
-        })
-      }
+    showToast() {
+      this.$toast("默认 toast");
+    },
+    showToastWrap() {
+      this.$toast(
+        "zui移动端UI组件库，模仿vant移动端组件库，仅供学习，不用于商业用途,版本v" +
+          Math.random()
+      );
+    },
+    showToastAllTime() {
+      this.$toast("不自动关闭toast", {
+        title: "了解",
+        callback: (toast, close) => {
+          close();
+          console.log("close toast");
+        }
+      });
+    }
   },
   created() {},
   mounted() {},
@@ -61,7 +66,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height:100%;
+  height: 100%;
   background: #fff;
   z-index: 210;
   .left-wrap {

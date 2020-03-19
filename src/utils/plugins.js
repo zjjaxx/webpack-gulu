@@ -22,16 +22,18 @@ export default {
         })
 
         // 4. 添加实例方法
-        Vue.prototype.$toast = function (message,closeOption) {
+        Vue.prototype.$toast = function (option) {
+            let data={}
+            if(typeof option!="string"){
+                data=option
+            }
             if(currentToast){
                 currentToast.close()
             }
             //创建并挂载toast
             let ToastConstruct = Vue.extend(Toast)
             let toast = new ToastConstruct({
-                propsData:{
-                    customCloseButton:closeOption
-                }
+                propsData:data
             })
             toast.$slots.default = [message]
             toast.$on("beforeDestroy",()=>{
@@ -41,5 +43,6 @@ export default {
             document.body.appendChild(toast.$el)
             currentToast=toast
         }
+        
     }
 }
