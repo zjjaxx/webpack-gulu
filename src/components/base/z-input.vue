@@ -1,10 +1,16 @@
 <!--  -->
 <template>
-  <div class="z-input-wrap aligin-center">
-    <input class="z-input" :type="type" :disabled="disabled" :placeholder="placeholder" :value="value" v-on="c_inputListener" />
-    <div v-if="errorTip">
-      <span class="tip-error">{{errorTip}}</span>
-    </div>
+  <div class="z-input-wrap" :class="c_round">
+    <input
+      :class="c_class"
+      class="z-input"
+      :type="type"
+      :disabled="disabled"
+      :placeholder="placeholder"
+      :value="value"
+      v-on="c_inputListener"
+    />
+    <span class="label ellipsis" v-if="label">{{label}}</span>
     <div class="clear flex justify-center aligin-center" @click="$emit('input','')">
       <z-icon v-show="value &&!disabled" color="gray" iconName="i-error"></z-icon>
     </div>
@@ -16,41 +22,53 @@ import ZIcon from './z-icon.vue'
 export default {
   components: { ZIcon },
   props: {
-    placeholder:{ //提示
-      type:String,
-      default:()=>{
-        return "请输入内容"
+    placeholder: {
+      //提示
+      type: String,
+      default: () => {
+        return '请输入内容'
       }
     },
-    label:{//标签
-      type:String,
-      default:()=>{
-        return "label"
+    label: {
+      //标签
+      type: String,
+      default: () => {
+        return ''
       }
     },
-    value:{ //输入值
-      type:[String,Number],
-      default:()=>{
-        return ""
-      },
-      required:true
-    },
-    type:{ //类型
-      type:String,
-      default:()=>{
-        return ""
-      }
-    },
-    disabled:{ //禁用状态
+    round:{//圆角
       type:Boolean,
       default:()=>{
         return false
       }
     },
-    errorTip:{ //错误提示
-      type:String,
-      default:()=>{
-        return ""
+    value: {
+      //输入值
+      type: [String, Number],
+      default: () => {
+        return ''
+      },
+      required: true
+    },
+    type: {
+      //类型
+      type: String,
+      default: () => {
+        return ''
+      }
+    },
+    disabled: {
+      //禁用状态
+      type: Boolean,
+      default: () => {
+        return false
+      }
+    },
+    errorTip: {
+      //错误提示
+      type: String,
+      default: () => {
+        return ''
       }
     }
   },
@@ -58,6 +76,12 @@ export default {
     return {}
   },
   computed: {
+    c_round(){
+      return this.round?'input-round':''
+    },
+    c_class() {
+      return this.label ? '' : 'pl-14'
+    },
     c_inputListener() {
       var vm = this
       // `Object.assign` 将所有的对象合并为一个新对象
@@ -73,7 +97,7 @@ export default {
             vm.$emit('input', event.target.value)
           },
           focus: function(event) {
-            event.target.scrollIntoView()
+            // event.target.scrollIntoView()
           }
         }
       )
@@ -88,30 +112,52 @@ export default {
 }
 </script>
 <style lang='less' scoped>
+.z-input-wrap /deep/ .icon {
+  width: 18px;
+  width: 18px;
+}
 .z-input-wrap {
   position: relative;
   font-size: 14px;
-  * {
-    margin-right: 4px;
-    &:last-child {
-      margin-right: 0;
-    }
+  box-shadow: 0px 5px 20px 2px rgba(162, 162, 162, 0.19);
+  overflow: hidden;
+  .label {
+    position: absolute;
+    height: 100%;
+    width: 80px;
+    left: 0;
+    top: 0;
+    transition: all 0.3s ease;
+    color: #fff;
+    font-size: 14px;
+    line-height: 35px;
+    text-align: center;
+    background: @z-input-label-bg;
   }
   .z-input {
     width: 100%;
-    padding: 0 28px 0 14px;
-    font-size: 14px;
-    line-height: 32px;
-    border-radius: 5px;
+    padding: 2px 30px 2px 94px;
     box-sizing: border-box;
+    font-size: 14px;
+    color: #333;
+    line-height: 30px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
     &:focus {
       outline: none;
+      padding-left: 14px;
+    }
+    &:focus + .label {
+      transform: translateX(-100%);
     }
     &[disabled] {
       border-color: #ccc;
       color: #ccc;
       cursor: not-allowed;
     }
+  }
+  .pl-14 {
+    padding-left: 14px;
   }
   .z-input[disabled].z-input::placeholder {
     color: #ccc;
@@ -128,8 +174,11 @@ export default {
     position: absolute;
     right: 0;
     top: 0;
-    height: 32px;
-    width: 28px;
+    height: 35px;
+    width: 30px;
   }
+}
+.input-round{
+  border-radius: 5px;
 }
 </style>

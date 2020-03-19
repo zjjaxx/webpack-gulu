@@ -171,7 +171,7 @@ export default {
     comput_width() {
       let itemList = this.$el.querySelectorAll('.super-wrap .item')
       if (itemList.length) {
-        itemList=Array.prototype.slice.call(itemList)
+        itemList = Array.prototype.slice.call(itemList)
         let widthList = itemList.map(item => {
           let cssObject = window.getComputedStyle(item)
           return parseFloat(cssObject.width)
@@ -182,6 +182,9 @@ export default {
   },
   mounted() {
     document.body.addEventListener('touchstart', function() {})
+    this.comput_width()
+  },
+  updated() {
     this.comput_width()
   }
 }

@@ -16,8 +16,7 @@ export default {
       type: String,
       default: () => {
         return ''
-      },
-      required: true
+      }
     }
   },
   components: {},

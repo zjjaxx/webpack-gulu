@@ -19,7 +19,6 @@
         </router-link>
       </div>
       <!-- <z-menu-group>
-        <z-menu-item title="输入框" :path="{path:'/input'}"></z-menu-item>
         <z-menu-item title="Toast" :path="{path:'/toast'}"></z-menu-item>
         <z-menu-item title="对话框" :path="{path:'/dialog'}"></z-menu-item>
         <z-menu-item title="Popup弹出层" :path="{path:'/popup'}"></z-menu-item>
@@ -87,8 +86,8 @@ export default {
           cuIcon: "album"
         },
         {
-          title: "模态框",
-          name: "modal",
+          title: "Toast",
+          name: "toast",
           color: "grey",
           cuIcon: "squarecheckfill"
         },
