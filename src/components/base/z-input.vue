@@ -22,6 +22,12 @@ export default {
         return "请输入内容"
       }
     },
+    label:{//标签
+      type:String,
+      default:()=>{
+        return "label"
+      }
+    },
     value:{ //输入值
       type:[String,Number],
       default:()=>{

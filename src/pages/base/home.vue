@@ -81,8 +81,8 @@ export default {
           cuIcon: "messagefill"
         },
         {
-          title: "轮播",
-          name: "swiper",
+          title: "输入框",
+          name: "input",
           color: "olive",
           cuIcon: "album"
         },

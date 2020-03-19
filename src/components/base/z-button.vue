@@ -176,9 +176,7 @@ export default {
           let cssObject = window.getComputedStyle(item)
           return parseFloat(cssObject.width)
         })
-        console.log(widthList,Math.max(...widthList))
         this.c_width = Math.max(...widthList)
-        console.log("this.c_width",this.c_width)
       }
     }
   },
