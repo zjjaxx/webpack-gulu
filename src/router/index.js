@@ -96,7 +96,10 @@ const routes = [
         path: "/body",
         component: () => import("../pages/layout/body.vue")
     },
-
+    {
+        path: "/form",
+        component: () => import("../pages/base/form.vue")
+    },
 
 ]
 const router = new VueRouter({

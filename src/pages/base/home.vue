@@ -92,8 +92,8 @@ export default {
           cuIcon: "squarecheckfill"
         },
         {
-          title: "步骤条",
-          name: "steps",
+          title: "表单",
+          name: "form",
           color: "cyan",
           cuIcon: "roundcheckfill"
         }

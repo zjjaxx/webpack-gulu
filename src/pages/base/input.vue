@@ -26,7 +26,7 @@
       </div>
       <z-title title="圆角输入框"></z-title>
       <div class="input-wrap">
-        <z-input label="详细地址" v-model="value_five" round :placeholder="请输入详细地址"></z-input>
+        <z-input label="详细地址" v-model="value_five" round placeholder="请输入详细地址"></z-input>
       </div>
     </z-body>
   </div>

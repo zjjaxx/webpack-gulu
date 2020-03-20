@@ -4,15 +4,13 @@
     <input
       :class="c_class"
       class="z-input"
-      :type="type"
-      :disabled="disabled"
-      :placeholder="placeholder"
+      v-bind="$attrs"
       :value="value"
       v-on="c_inputListener"
     />
     <span class="label ellipsis" v-if="label">{{label}}</span>
     <div class="clear flex justify-center aligin-center" @click="$emit('input','')">
-      <z-icon v-show="value &&!disabled" color="gray" iconName="i-error"></z-icon>
+      <z-icon v-show="c_clear" color="gray" iconName="i-error"></z-icon>
     </div>
   </div>
 </template>
@@ -20,15 +18,9 @@
 <script>
 import ZIcon from './z-icon.vue'
 export default {
+  inheritAttrs: false,//不希望组件的根元素继承 attribute，
   components: { ZIcon },
   props: {
-    placeholder: {
-      //提示
-      type: String,
-      default: () => {
-        return '请输入内容'
-      }
-    },
     label: {
       //标签
       type: String,
@@ -50,20 +42,6 @@ export default {
       },
       required: true
     },
-    type: {
-      //类型
-      type: String,
-      default: () => {
-        return ''
-      }
-    },
-    disabled: {
-      //禁用状态
-      type: Boolean,
-      default: () => {
-        return false
-      }
-    },
     errorTip: {
       //错误提示
       type: String,
@@ -76,6 +54,9 @@ export default {
     return {}
   },
   computed: {
+    c_clear(){
+      return this.value&&!this.$attrs.disabled
+    },
     c_round(){
       return this.round?'input-round':''
     },

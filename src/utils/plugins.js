@@ -35,7 +35,9 @@ export default {
             let toast = new ToastConstruct({
                 propsData:data
             })
-            toast.$slots.default = [message]
+            if(typeof option=="string"){
+                toast.$slots.default = [option]
+            }
             toast.$on("beforeDestroy",()=>{
                 currentToast=null
             })
