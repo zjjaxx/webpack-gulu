@@ -17,9 +17,18 @@
 
 <script>
 import ZIcon from './z-icon.vue'
+import mixin from "../../mixin/emitter"
 export default {
+  mixins:[mixin],
   inheritAttrs: false,//不希望组件的根元素继承 attribute，
   components: { ZIcon },
+  inject:{
+    rules:{
+      default:()=>{
+        return {}
+      }
+    }
+  },
   props: {
     label: {
       //标签
@@ -48,6 +57,12 @@ export default {
       default: () => {
         return ''
       }
+    },
+    validateEvent:{
+      type:Boolean,
+      default:()=>{
+        return true
+      }
     }
   },
   data() {
@@ -75,7 +90,15 @@ export default {
         {
           // 这里确保组件配合 `v-model` 的工作
           input: function(event) {
-            vm.$emit('input', event.target.value)
+            vm.$emit('input', event.target.type=="number"?event.target.valueAsNumber:event.target.value)
+            if(vm.validateEvent){
+              vm.dispatch("ZFormItem","validate",event.target.value)
+            }
+          },
+          blur:function(event){
+            if(vm.validateEvent){
+              vm.dispatch("ZFormItem","validate",event.target.value)
+            }
           },
           focus: function(event) {
             // event.target.scrollIntoView()
@@ -87,7 +110,8 @@ export default {
   watch: {},
   methods: {},
   created() {},
-  mounted() {},
+  mounted() {
+  },
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
 }

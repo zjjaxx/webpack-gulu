@@ -2,21 +2,24 @@
 <template>
   <div class="z-form-item">
     <div class="flex aligin-center">
-      <div class="label-wrap flex aligin-center justify-center">
-        <span class="need" v-if="label">*</span>
-        <span class="label" v-if="label">{{label}}</span>
+      <div class="label-wrap flex aligin-center justify-center" v-if="label">
+        <span class="need">*</span>
+        <span class="label">{{label}}</span>
       </div>
       <div class="content">
         <slot></slot>
       </div>
     </div>
-    <div v-if="errorMessage" class="validate">{{errorMessage}}</div>
+    <div v-if="errorMessage" :class="c_class">{{errorMessage}}</div>
   </div>
 </template>
 
 <script>
+import schema from 'async-validator'
 export default {
+  name: 'ZFormItem',
   components: {},
+  inject: ['model', 'rules'],
   props: {
     label: {
       //标签
@@ -35,14 +38,36 @@ export default {
   },
   data() {
     return {
-      errorMessage: ''
+      errorMessage: '',
+      validator: null
     }
   },
-  computed: {},
+  computed: {
+    c_class() {
+      return this.label ? 'validate' : 'no-label-validate'
+    }
+  },
   watch: {},
-  methods: {},
+  methods: {
+    validate(value) {
+      let descriptor = {
+        [this.prop]: this.rules[this.prop]
+      }
+      this.validator = new schema(descriptor)
+      this.validator
+        .validate({ [this.prop]: this.model[this.prop] })
+        .then(() => {
+           this.errorMessage=""
+        }) 
+        .catch(({ errors, fields }) => {
+          this.errorMessage=errors[0].message
+        })
+    }
+  },
   created() {},
-  mounted() {},
+  mounted() {
+    this.$on('validate', this.validate)
+  },
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
 }
@@ -54,14 +79,24 @@ export default {
     width: 80px;
     font-size: 14px;
     color: #333;
-    .need{
-        margin-right: 4px;
-        color: #f40;
+    .need {
+      margin-right: 4px;
+      color: #f40;
     }
   }
   .content {
-    margin-right: 20px;
     flex: 1;
+  }
+  .validate {
+    margin-top: 10px;
+    margin-left: 80px;
+    font-size: 14px;
+    color: #ee0a24;
+  }
+  .no-label-validate {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ee0a24;
   }
 }
 </style>

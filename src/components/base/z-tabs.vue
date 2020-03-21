@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import ZSticky from '../../components/base/z-sticky.vue'
 import router from '../../router/index.js'
-import {scrollToLeft} from "../../utils/animate"
+import { scrollToLeft } from '../../utils/animate'
 export default {
   components: { ZSticky },
   model: {
@@ -55,20 +55,22 @@ export default {
   },
   methods: {
     calcPaneInstances(forceUpdated = false) {
-      let slots = this.$slots.default.filter(
-        item =>
-          item.tag &&
-          item.componentOptions &&
-          item.componentOptions.Ctor.options.name === 'ZTab'
-      )
-      this.length = slots.length
-      let children = slots.map(item => item.componentInstance)
-      const panesChanged = !(
-        this.children.length === children.length &&
-        children.every((pane, index) => pane === this.children[index]) 
-      )
-      if (panesChanged ||forceUpdated) {
-        this.children = children
+      if (this.$slots.default) {
+        let slots = this.$slots.default.filter(
+          item =>
+            item.tag &&
+            item.componentOptions &&
+            item.componentOptions.Ctor.options.name === 'ZTab'
+        )
+        this.length = slots.length
+        let children = slots.map(item => item.componentInstance)
+        const panesChanged = !(
+          this.children.length === children.length &&
+          children.every((pane, index) => pane === this.children[index])
+        )
+        if (panesChanged || forceUpdated) {
+          this.children = children
+        }
       }
     },
     stickyScroll({ scrollTop, isSticky }) {
@@ -84,7 +86,7 @@ export default {
       let half_width = el.offsetWidth / 2
       let half_window_width = window_width / 2
       let to_scrollLeft = offsetLeft - half_window_width + half_width
-      scrollToLeft(tabs,to_scrollLeft,500)
+      scrollToLeft(tabs, to_scrollLeft, 500)
     },
     //设置v-model
     setVModel() {
@@ -150,16 +152,14 @@ export default {
     )
   },
   created() {
-    this.$on('tabUpdate', this.calcPaneInstances.bind(null, true))
+    this.$on('tabUpdate', this.calcPaneInstances.bind(this, true))
   },
   mounted() {
     this.calcPaneInstances()
     //设置v-model
     this.setVModel()
   },
-  updated() {
-    this.calcPaneInstances()
-  }, //生命周期 - 更新之后
+  updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
 }
 </script>

@@ -6,8 +6,16 @@
 </template>
 
 <script>
+import mixin from "../../mixin/emitter"
 export default {
+  mixins:[mixin],
   components: {},
+  provide(){
+    return {
+      model:this.model,
+      rules:this.rules
+    }
+  },
   props: {
     model: {
       //表单数据
@@ -25,14 +33,21 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      
+    }
   },
   computed: {},
   watch: {},
   methods: {
       //校验
       validate(){
-
+        let children= this.getChildren(this,"ZFormItem")
+        return new Promise((resolve,reject)=>{
+          children.forEach(element => {
+            element.validate()
+          });
+        })
       }
   },
   created() {},

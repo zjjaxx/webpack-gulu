@@ -47,11 +47,11 @@
       </z-tabs>
       <z-title title="吸顶sticky"></z-title>
       <z-tabs v-model="active3" :isSticky="true" :offsetTop="offsetTop">
-        <z-tab :title="item" v-for="(item,index) in list2" :key="index">
+        <z-tab :title="item.name" v-for="(item,index) in list2" :key="index">
           <div class="tab-content—sticky">
             <z-menu-group>
-              <template v-for="(item,index) in 80">
-                <z-menu-item :title="'菜单'+index" :key="index"></z-menu-item>
+              <template v-for="(_item,_index) in item.list">
+                <z-menu-item :title="item.name+_index" :key="_index"></z-menu-item>
               </template>
             </z-menu-group>
           </div>
@@ -69,16 +69,6 @@ export default {
   data() {
     return {
       list: [
-        "水果",
-        "蔬菜",
-        "奶茶",
-        "电影",
-        "家电",
-        "肉类",
-        "汗蒸",
-        "按摩",
-        "网吧",
-        "水上乐园"
       ],
       list2: ["零食", "日用", "数码", "旅游", "抽奖", "教育", "文学"],
       active: 0,
@@ -99,6 +89,21 @@ export default {
   mounted() {
     let header = document.getElementById("header");
     this.offsetTop = header.offsetHeight;
+    this.list2=this.list2.map(item=>{
+      return {name:item,list:[1,23,3,3,4,5,6,333,4,3,3,45,4423,222,98,89]}
+    })
+    this.list=[
+        "水果",
+        "蔬菜",
+        "奶茶",
+        "电影",
+        "家电",
+        "肉类",
+        "汗蒸",
+        "按摩",
+        "网吧",
+        "水上乐园"
+      ]
   },
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
