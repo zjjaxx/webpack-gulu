@@ -49,16 +49,19 @@ export default {
   },
   watch: {},
   methods: {
-    validate(value) {
+    validate(trigger) {
       let descriptor = {
-        [this.prop]: this.rules[this.prop]
+        [this.prop]: trigger
+          ? this.rules[this.prop].filter(item => item.trigger == trigger||!item.trigger)
+          : this.rules[this.prop]
       };
       this.validator = new schema(descriptor);
       return this.validator.validate(
         { [this.prop]: this.model[this.prop] },
         (errors, fields) => {
           if (errors) {
-            this.errorMessage = errors[0].message;
+            console.log("errors", errors);
+            this.errorMessage = errors.find(item => item.message).message;
           } else {
             this.errorMessage = "";
           }
@@ -68,8 +71,8 @@ export default {
   },
   created() {},
   mounted() {
-    this.$on("validate", ()=>{
-      this.validate()
+    this.$on("validate", trigger => {
+      this.validate(trigger);
     });
   },
   updated() {}, //生命周期 - 更新之后

@@ -6,7 +6,7 @@
         <z-input v-model="form.name"></z-input>
       </z-form-item>
       <z-form-item style="marginLeft:20px;marginRight:20px" prop="age" label="年龄">
-        <z-input type="number" v-model="form.age"></z-input>
+        <z-input v-model.number="form.age"></z-input>
       </z-form-item>
       <z-form-item style="marginLeft:20px;marginRight:20px" prop="from">
         <z-input v-model="form.from" placeholder="请输入籍贯"></z-input>
@@ -37,14 +37,20 @@ export default {
       rule: {
         name: [
           {
-            type: "string",
             required: true,
             message: "请输入名字",
             trigger: "blur"
           }
         ],
-        age: [{ type: "number", required: true, message: "请输入年龄" ,trigger:"change"}],
-        from: [{ type: "string", required: true, message: "请输入籍贯" }]
+        age: [
+          {required: true, message: "请输入年龄?", trigger: "blur" },
+          {
+            type: "number",
+            message: "年龄必须为数字"
+          },
+          { type: "number", min: 18, max: 36, message: "年龄必须为18至36之间" }
+        ],
+        from: [{ required: true, message: "请输入籍贯", trigger: "blur" }]
       }
     };
   },
@@ -59,7 +65,7 @@ export default {
         })
         .catch(error => {
           console.log("error", error);
-        }); 
+        });
     }
   },
   created() {},

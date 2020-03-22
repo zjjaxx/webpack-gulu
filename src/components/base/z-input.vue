@@ -64,13 +64,14 @@ export default {
     return {};
   },
   computed: {
-    c_trigger() {
+    c_trigger_list() {
       let parent = this.getParent("ZFormItem");
-      return parent
-        ? parent.rules[parent.prop][0].trigger
-          ? parent.rules[parent.prop][0].trigger
-          : "blur"
-        : "";
+      return (
+        parent &&
+        parent.rules[parent.prop]
+          .map(element => element.trigger)
+          .filter(item => item)
+      );
     },
     c_clear() {
       return this.value && !this.$attrs.disabled;
@@ -83,7 +84,18 @@ export default {
     },
     c_inputListener() {
       var vm = this;
-      // `Object.assign` 将所有的对象合并为一个新对象
+      let events = [];
+      if (this.c_trigger_list) {
+        events = this.c_trigger_list.map(item => {
+          return {
+            [item]: function(event) {
+              if (vm.validateEvent) {
+                vm.dispatch("ZFormItem", "validate", item);
+              }
+            }
+          };
+        });
+      }
       return Object.assign(
         {},
         // 我们从父级添加所有的监听器
@@ -95,23 +107,14 @@ export default {
           input: function(event) {
             vm.$emit(
               "input",
-              event.target.type == "number"
-                ? event.target.valueAsNumber
-                : event.target.value
+               event.target.value
             );
             if (vm.validateEvent) {
-              vm.dispatch("ZFormItem", "validate", event.target.value);
+              vm.dispatch("ZFormItem", "validate", "input");
             }
-          },
-          [this.c_trigger]: function(event) {
-            if (vm.validateEvent) {
-              vm.dispatch("ZFormItem", "validate", event.target.value);
-            }
-          },
-          focus: function(event) {
-            // event.target.scrollIntoView()
           }
-        }
+        },
+        ...events
       );
     }
   },
