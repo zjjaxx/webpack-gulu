@@ -23,6 +23,17 @@ export default {
                 }
             });
         },
+        getParent(componentName){
+            let parent = this.$parent || this.$root;
+            let name = parent.$options.name;
+            while (parent && (!name || name !== componentName)) {
+                parent = parent.$parent;
+                if (parent) {
+                    name = parent.$options.name;
+                }
+            }
+            return parent
+        },
         getChildren(parent,componentName){
             return parent.$children.map(child => {
                 let name = child.$options.name;

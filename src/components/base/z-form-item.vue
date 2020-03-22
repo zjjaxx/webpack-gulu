@@ -15,36 +15,36 @@
 </template>
 
 <script>
-import schema from 'async-validator'
+import schema from "async-validator";
 export default {
-  name: 'ZFormItem',
+  name: "ZFormItem",
   components: {},
-  inject: ['model', 'rules'],
+  inject: ["model", "rules"],
   props: {
     label: {
       //标签
       type: String,
       default: () => {
-        return ''
+        return "";
       }
     },
     prop: {
       //校验属性
       type: String,
       default: () => {
-        return ''
+        return "";
       }
     }
   },
   data() {
     return {
-      errorMessage: '',
+      errorMessage: "",
       validator: null
-    }
+    };
   },
   computed: {
     c_class() {
-      return this.label ? 'validate' : 'no-label-validate'
+      return this.label ? "validate" : "no-label-validate";
     }
   },
   watch: {},
@@ -52,25 +52,29 @@ export default {
     validate(value) {
       let descriptor = {
         [this.prop]: this.rules[this.prop]
-      }
-      this.validator = new schema(descriptor)
-      this.validator
-        .validate({ [this.prop]: this.model[this.prop] })
-        .then(() => {
-           this.errorMessage=""
-        }) 
-        .catch(({ errors, fields }) => {
-          this.errorMessage=errors[0].message
-        })
+      };
+      this.validator = new schema(descriptor);
+      return this.validator.validate(
+        { [this.prop]: this.model[this.prop] },
+        (errors, fields) => {
+          if (errors) {
+            this.errorMessage = errors[0].message;
+          } else {
+            this.errorMessage = "";
+          }
+        }
+      );
     }
   },
   created() {},
   mounted() {
-    this.$on('validate', this.validate)
+    this.$on("validate", ()=>{
+      this.validate()
+    });
   },
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-}
+};
 </script>
 <style lang='less' scoped>
 .z-form-item {

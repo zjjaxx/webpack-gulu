@@ -42,11 +42,18 @@ export default {
   methods: {
       //校验
       validate(){
-        let children= this.getChildren(this,"ZFormItem")
+        let children= this.getChildren(this,"ZFormItem").filter(item=>item.prop)
         return new Promise((resolve,reject)=>{
-          children.forEach(element => {
+          let resultList=children.map(element => 
             element.validate()
-          });
+          );
+          Promise.all(resultList).then(res=>{
+            resolve(true)
+          })
+          .catch(()=>{
+            reject(false)
+          })
+          
         })
       }
   },

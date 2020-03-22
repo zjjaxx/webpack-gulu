@@ -21,45 +21,52 @@
 </template>
 
 <script>
-import ZForm from '../../components/base/z-form.vue'
-import ZFormItem from '../../components/base/z-form-item.vue'
-import ZInput from '../../components/base/z-input.vue'
-import ZButton from '../../components/base/z-button.vue'
+import ZForm from "../../components/base/z-form.vue";
+import ZFormItem from "../../components/base/z-form-item.vue";
+import ZInput from "../../components/base/z-input.vue";
+import ZButton from "../../components/base/z-button.vue";
 export default {
   components: { ZForm, ZFormItem, ZInput, ZButton },
   data() {
     return {
       form: {
-        name: '小明',
-        age: '',
-        from: ''
+        name: "小明",
+        age: "",
+        from: ""
       },
       rule: {
         name: [
           {
-            type: 'string',
+            type: "string",
             required: true,
-            message: '请输入名字',
-            trigger: 'blur'
+            message: "请输入名字",
+            trigger: "blur"
           }
         ],
-        age: [{ type: 'number', required: true, message: '请输入年龄' }],
-        from: [{ type: 'string', required: true, message: '请输入籍贯' }]
+        age: [{ type: "number", required: true, message: "请输入年龄" ,trigger:"change"}],
+        from: [{ type: "string", required: true, message: "请输入籍贯" }]
       }
-    }
+    };
   },
   computed: {},
   watch: {},
   methods: {
     submit(ref) {
-      this.$refs[ref].validate()
+      this.$refs[ref]
+        .validate()
+        .then(valid => {
+          console.log("valid", valid);
+        })
+        .catch(error => {
+          console.log("error", error);
+        }); 
     }
   },
   created() {},
   mounted() {},
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-}
+};
 </script>
 <style lang='less' scoped>
 //@import url(); 引入公共css类

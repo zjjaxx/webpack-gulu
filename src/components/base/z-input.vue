@@ -1,13 +1,7 @@
 <!--  -->
 <template>
   <div class="z-input-wrap" :class="c_round">
-    <input
-      :class="c_class"
-      class="z-input"
-      v-bind="$attrs"
-      :value="value"
-      v-on="c_inputListener"
-    />
+    <input :class="c_class" class="z-input" v-bind="$attrs" :value="value" v-on="c_inputListener" />
     <span class="label ellipsis" v-if="label">{{label}}</span>
     <div class="clear flex justify-center aligin-center" @click="$emit('input','')">
       <z-icon v-show="c_clear" color="gray" iconName="i-error"></z-icon>
@@ -16,16 +10,16 @@
 </template>
 
 <script>
-import ZIcon from './z-icon.vue'
-import mixin from "../../mixin/emitter"
+import ZIcon from "./z-icon.vue";
+import mixin from "../../mixin/emitter";
 export default {
-  mixins:[mixin],
-  inheritAttrs: false,//不希望组件的根元素继承 attribute，
+  mixins: [mixin],
+  inheritAttrs: false, //不希望组件的根元素继承 attribute，
   components: { ZIcon },
-  inject:{
-    rules:{
-      default:()=>{
-        return {}
+  inject: {
+    rules: {
+      default: () => {
+        return {};
       }
     }
   },
@@ -34,20 +28,21 @@ export default {
       //标签
       type: String,
       default: () => {
-        return ''
+        return "";
       }
     },
-    round:{//圆角
-      type:Boolean,
-      default:()=>{
-        return false
+    round: {
+      //圆角
+      type: Boolean,
+      default: () => {
+        return false;
       }
     },
     value: {
       //输入值
       type: [String, Number],
       default: () => {
-        return ''
+        return "";
       },
       required: true
     },
@@ -55,31 +50,39 @@ export default {
       //错误提示
       type: String,
       default: () => {
-        return ''
+        return "";
       }
     },
-    validateEvent:{
-      type:Boolean,
-      default:()=>{
-        return true
+    validateEvent: {
+      type: Boolean,
+      default: () => {
+        return true;
       }
     }
   },
   data() {
-    return {}
+    return {};
   },
   computed: {
-    c_clear(){
-      return this.value&&!this.$attrs.disabled
+    c_trigger() {
+      let parent = this.getParent("ZFormItem");
+      return parent
+        ? parent.rules[parent.prop][0].trigger
+          ? parent.rules[parent.prop][0].trigger
+          : "blur"
+        : "";
     },
-    c_round(){
-      return this.round?'input-round':''
+    c_clear() {
+      return this.value && !this.$attrs.disabled;
+    },
+    c_round() {
+      return this.round ? "input-round" : "";
     },
     c_class() {
-      return this.label ? '' : 'pl-14'
+      return this.label ? "" : "pl-14";
     },
     c_inputListener() {
-      var vm = this
+      var vm = this;
       // `Object.assign` 将所有的对象合并为一个新对象
       return Object.assign(
         {},
@@ -90,31 +93,35 @@ export default {
         {
           // 这里确保组件配合 `v-model` 的工作
           input: function(event) {
-            vm.$emit('input', event.target.type=="number"?event.target.valueAsNumber:event.target.value)
-            if(vm.validateEvent){
-              vm.dispatch("ZFormItem","validate",event.target.value)
+            vm.$emit(
+              "input",
+              event.target.type == "number"
+                ? event.target.valueAsNumber
+                : event.target.value
+            );
+            if (vm.validateEvent) {
+              vm.dispatch("ZFormItem", "validate", event.target.value);
             }
           },
-          blur:function(event){
-            if(vm.validateEvent){
-              vm.dispatch("ZFormItem","validate",event.target.value)
+          [this.c_trigger]: function(event) {
+            if (vm.validateEvent) {
+              vm.dispatch("ZFormItem", "validate", event.target.value);
             }
           },
           focus: function(event) {
             // event.target.scrollIntoView()
           }
         }
-      )
+      );
     }
   },
   watch: {},
   methods: {},
   created() {},
-  mounted() {
-  },
+  mounted() {},
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-}
+};
 </script>
 <style lang='less' scoped>
 .z-input-wrap /deep/ .icon {
@@ -183,7 +190,7 @@ export default {
     width: 30px;
   }
 }
-.input-round{
+.input-round {
   border-radius: 5px;
 }
 </style>
