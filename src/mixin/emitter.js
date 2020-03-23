@@ -23,7 +23,7 @@ export default {
                 }
             });
         },
-        getParent(componentName){
+        getParent(componentName) {
             let parent = this.$parent || this.$root;
             let name = parent.$options.name;
             while (parent && (!name || name !== componentName)) {
@@ -34,14 +34,16 @@ export default {
             }
             return parent
         },
-        getChildren(parent,componentName){
-            return parent.$children.map(child => {
+        getChildren(parent, componentName) {
+            let children = []
+            parent.$children.forEach(child => {
                 let name = child.$options.name;
-                if (name === componentName) {
-                    return child
+                if (name == componentName) {
+                    children.push(child)
                 }
-                getChildren(child)
+                children.push(...this.getChildren(child, componentName))
             })
+            return children
         }
     },
 

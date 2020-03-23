@@ -36,7 +36,25 @@
 import ZIcon from './z-icon.vue'
 export default {
   components: { ZIcon },
-  watch: {},
+  name:"ZButton",
+  watch: {
+    status(newValue, oldValue) {
+      switch (newValue) {
+        case 'common':
+          this.index=0
+          this.comput_width()
+          break
+        case 'loading':
+          this.index=1
+          this.comput_width()
+          break
+        case 'complate':
+          this.index=2
+          this.comput_width()
+          break
+      }
+    }
+  },
   computed: {
     //button style
     c_type() {
@@ -164,7 +182,8 @@ export default {
   },
   data() {
     return {
-      c_width: 0
+      c_width: 0,
+      index:0
     }
   },
   methods: {
@@ -176,7 +195,7 @@ export default {
           let cssObject = window.getComputedStyle(item)
           return parseFloat(cssObject.width)
         })
-        this.c_width = Math.max(...widthList)
+        this.c_width = widthList[this.index]
       }
     }
   },
@@ -185,7 +204,6 @@ export default {
     this.comput_width()
   },
   updated() {
-    this.comput_width()
   }
 }
 </script>

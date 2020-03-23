@@ -112,6 +112,11 @@ export default {
             if (vm.validateEvent) {
               vm.dispatch("ZFormItem", "validate", "input");
             }
+          },
+          blur: function(event) {
+            if (vm.validateEvent) {
+              vm.dispatch("ZFormItem", "validate", "blur");
+            }
           }
         },
         ...events

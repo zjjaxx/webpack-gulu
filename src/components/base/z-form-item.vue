@@ -3,7 +3,7 @@
   <div class="z-form-item">
     <div class="flex aligin-center">
       <div class="label-wrap flex aligin-center justify-center" v-if="label">
-        <span class="need">*</span>
+        <span class="need" v-if="c_need">*</span>
         <span class="label">{{label}}</span>
       </div>
       <div class="content">
@@ -45,22 +45,29 @@ export default {
   computed: {
     c_class() {
       return this.label ? "validate" : "no-label-validate";
+    },
+    c_need(){
+      return this.rules[this.prop].find(item=>item.required)
     }
   },
   watch: {},
   methods: {
     validate(trigger) {
-      let descriptor = {
-        [this.prop]: trigger
+      let ruleList= trigger
           ? this.rules[this.prop].filter(item => item.trigger == trigger||!item.trigger)
           : this.rules[this.prop]
+      //要删除不然会出问题。。。。。。
+      ruleList.forEach(element => {
+        delete element.trigger
+      });
+      let descriptor = {
+        [this.prop]:ruleList
       };
       this.validator = new schema(descriptor);
       return this.validator.validate(
         { [this.prop]: this.model[this.prop] },
         (errors, fields) => {
           if (errors) {
-            console.log("errors", errors);
             this.errorMessage = errors.find(item => item.message).message;
           } else {
             this.errorMessage = "";

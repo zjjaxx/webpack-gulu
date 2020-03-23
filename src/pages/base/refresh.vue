@@ -1,8 +1,7 @@
 <!--  -->
 <template>
   <div class="refresh-container">
-    <z-header title="下拉刷新" bg="linear-gradient(45deg, #0081ff, #1cbbb4)">
-    </z-header>
+    <z-header title="下拉刷新" bg="linear-gradient(45deg, #0081ff, #1cbbb4)"></z-header>
     <z-body>
       <z-tabs v-model="active">
         <z-tab title="基础用法">
@@ -12,7 +11,23 @@
         </z-tab>
         <z-tab title="成功提示">
           <z-refresh @refresh="onRefresh1" successTip="刷新成功" v-model="isLoading1">
-            <div class="refresh-content">刷新次数{{count1}}</div>
+            <z-button
+              type="custom"
+              commonText="提交"
+              loadingText="上传中"
+              complateText="已完成"
+              iconPosition="right"
+              :status="buttonStauts"
+              :turnOnSuper="true"
+              @click="submit('Form')"
+            >
+              <template v-slot:loading-icon>
+                <z-icon color="#fff" iconName="i-loading_one"></z-icon>
+              </template>
+              <template v-slot:complate-icon>
+                <z-icon color="#fff" iconName="i-yiwancheng"></z-icon>
+              </template>
+            </z-button>
           </z-refresh>
         </z-tab>
         <z-tab title="自定义提示">
@@ -63,6 +78,7 @@ export default {
       isLoading: false,
       isLoading1: false,
       isLoading2: false,
+      buttonStauts: 'common',
     }
   },
   computed: {},
@@ -92,8 +108,7 @@ export default {
   },
   created() {},
   mounted() {},
-  updated() {
-  }, //生命周期 - 更新之后
+  updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
 }
 </script>

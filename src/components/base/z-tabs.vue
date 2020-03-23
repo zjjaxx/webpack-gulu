@@ -4,7 +4,9 @@ import Vue from 'vue'
 import ZSticky from '../../components/base/z-sticky.vue'
 import router from '../../router/index.js'
 import { scrollToLeft } from '../../utils/animate'
+import mixin from '../../mixin/emitter'
 export default {
+  mixins: [mixin],
   components: { ZSticky },
   model: {
     prop: 'active',
@@ -93,6 +95,12 @@ export default {
       this.children.forEach((element, index) => {
         element.$el.onclick = () => {
           this.$emit('change', index)
+          let buttonList = this.getChildren(this, 'ZButton')
+          this.$nextTick(() => {
+            buttonList.forEach(element => {
+              element.comput_width()
+            })
+          })
           this.$emit('click', { index, title: element.title })
           this.reset()
           element.isActive = true
@@ -130,6 +138,7 @@ export default {
       </div>
     )
     let contentList = this.children.map((item, index) => {
+      let content = index == this.active ? <div>{item.$slots.default}</div> : ''
       return (
         <div style={{ display: index == this.active ? '' : 'none' }}>
           {item.$slots.default}
