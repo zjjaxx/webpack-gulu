@@ -11,23 +11,7 @@
         </z-tab>
         <z-tab title="成功提示">
           <z-refresh @refresh="onRefresh1" successTip="刷新成功" v-model="isLoading1">
-            <z-button
-              type="custom"
-              commonText="提交"
-              loadingText="上传中"
-              complateText="已完成"
-              iconPosition="right"
-              :status="buttonStauts"
-              :turnOnSuper="true"
-              @click="submit('Form')"
-            >
-              <template v-slot:loading-icon>
-                <z-icon color="#fff" iconName="i-loading_one"></z-icon>
-              </template>
-              <template v-slot:complate-icon>
-                <z-icon color="#fff" iconName="i-yiwancheng"></z-icon>
-              </template>
-            </z-button>
+            <div class="refresh-content">刷新次数{{count1}}</div>
           </z-refresh>
         </z-tab>
         <z-tab title="自定义提示">
