@@ -33,6 +33,7 @@
 
 <script>
 export default {
+  name:"ZPopup",
   model: {
     prop: 'show',
     event: 'change'
@@ -91,7 +92,7 @@ export default {
     },
     close() {
       document.body.classList.remove('z-overflow-hidden')
-    }
+    },
   },
   created() {},
   mounted() {},

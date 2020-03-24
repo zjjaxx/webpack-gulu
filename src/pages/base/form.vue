@@ -35,6 +35,7 @@
                 <z-icon color="#fff" iconName="i-yiwancheng"></z-icon>
               </template>
             </z-button>
+            <z-button style="marginLeft:20px" @click="show">取消</z-button>
           </div>
         </z-form-item>
       </z-form>
@@ -47,8 +48,9 @@ import ZForm from '../../components/base/z-form.vue'
 import ZFormItem from '../../components/base/z-form-item.vue'
 import ZInput from '../../components/base/z-input.vue'
 import ZButton from '../../components/base/z-button.vue'
+import ZPopup from "../../components/base/z-popup.vue"
 export default {
-  components: { ZForm, ZFormItem, ZInput, ZButton },
+  components: { ZForm, ZFormItem, ZInput, ZButton,ZPopup },
   data() {
     return {
       buttonStauts: 'common',
@@ -102,6 +104,9 @@ export default {
         .catch(error => {
           this.$toast('校验失败')
         })
+    },
+    show(){
+      this.$create(ZPopup,{show:true})
     }
   },
   created() {},

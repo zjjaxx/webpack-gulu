@@ -45,6 +45,19 @@ export default {
             document.body.appendChild(toast.$el)
             currentToast=toast
         }
+        Vue.prototype.$create=function(componentName,props){
+            let component=new Vue({
+                render(h){
+                    return h(componentName,{props})
+                }
+            }).$mount()
+            document.body.appendChild(component.$el)
+            setTimeout(()=>{
+                component.$el.remove()
+                component.$destroy()
+            },3000)   
+            return component.$children[0]
+        }
         
     }
 }
