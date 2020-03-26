@@ -16,7 +16,8 @@ export default {
   methods: {},
   created() {},
   mounted() {},
-  updated() {}, //生命周期 - 更新之后
+  updated() {
+  }, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
 }
 </script>

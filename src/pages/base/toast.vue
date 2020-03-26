@@ -49,7 +49,6 @@ export default {
         title: "了解",
         callback: (toast, close) => {
           close();
-          console.log("close toast");
         }
       });
     }

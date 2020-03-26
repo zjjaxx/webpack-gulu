@@ -1,7 +1,9 @@
 <!--  -->
 <template>
-  <div class="z-sticky" :class="c_class" :style="c_style">
-    <slot></slot>
+  <div :style="c_wrap_style">
+    <div class="z-sticky" :class="c_class" :style="c_style">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -21,10 +23,16 @@ export default {
     return {
       isSticky: false,
       scrollRoot: null,
-      eleToTop: 0
+      eleToTop: 0,
+      height:0
     }
   },
   computed: {
+    c_wrap_style() {
+      return {
+        height: this.isSticky ? `${this.height}px` : null
+      }
+    },
     c_class() {
       return [this.isSticky ? 'z-sticky-fixed' : '']
     },
@@ -37,18 +45,15 @@ export default {
     //监听滚动事件并设置吸顶
     setScrollListener() {
       this.scrollRoot = this.getScroll(this.$el)
-      let scrollTop =
-        'scrollTop' in this.scrollRoot
-          ? this.scrollRoot.scrollTop
-          : this.scrollRoot.pageYOffset
-      this.eleToTop = this.$el.getBoundingClientRect().top+scrollTop
       this.scrollRoot.addEventListener('scroll', this.scrollEvent)
     },
     scrollEvent() {
+      this.height = this.$el.offsetHeight
       let scrollTop =
         'scrollTop' in this.scrollRoot
           ? this.scrollRoot.scrollTop
           : this.scrollRoot.pageYOffset
+      this.eleToTop = this.$el.getBoundingClientRect().top + scrollTop
       if (scrollTop >= this.eleToTop - this.offsetTop) {
         this.isSticky = true
       } else {

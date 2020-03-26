@@ -8,7 +8,9 @@
 </template>
 
 <script>
+import mixin from "../../mixin/emitter"
 export default {
+  mixins:[mixin],
   name:"ZTab",
   props: {
     title: {
@@ -35,7 +37,7 @@ export default {
   created() {},
   mounted() {},
   updated() {
-    this.$parent.$emit("tabUpdate")
+    this.getParent("ZTabs").$emit("tabUpdate")
   }, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
 }

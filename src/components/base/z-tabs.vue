@@ -6,6 +6,7 @@ import router from '../../router/index.js'
 import { scrollToLeft } from '../../utils/animate'
 import mixin from '../../mixin/emitter'
 export default {
+  name:"ZTabs",
   mixins: [mixin],
   components: { ZSticky },
   model: {
@@ -124,8 +125,7 @@ export default {
         class={[
           'z-tabs',
           'border-bottom-1px',
-          'flex',
-          this.sticky ? 'z-tabs-sticky' : ''
+          'flex'
         ]}
       >
         {this.$slots.default}
@@ -148,11 +148,9 @@ export default {
     return (
       <div class="z-tab-wrap">
         {this.isSticky ? (
-          <div class={this.sticky ? 'polyfill-height' : ''}>
             <z-sticky vOn:scroll={this.stickyScroll} offsetTop={this.offsetTop}>
               {zTabs}
             </z-sticky>
-          </div>
         ) : (
           zTabs
         )}
@@ -168,7 +166,10 @@ export default {
     //设置v-model
     this.setVModel()
   },
-  updated() {}, //生命周期 - 更新之后
+  updated() {
+    this.calcPaneInstances()
+    this.setVModel()
+  }, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
 }
 </script>

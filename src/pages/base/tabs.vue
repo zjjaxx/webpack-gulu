@@ -68,8 +68,7 @@ export default {
   components: { ZTabs, ZTab },
   data() {
     return {
-      list: [
-      ],
+      list: [],
       list2: ["零食", "日用", "数码", "旅游", "抽奖", "教育", "文学"],
       active: 0,
       active2: 0,
@@ -105,7 +104,9 @@ export default {
         "水上乐园"
       ]
   },
-  updated() {}, //生命周期 - 更新之后
+  updated() {
+    
+  }, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
 };
 </script>

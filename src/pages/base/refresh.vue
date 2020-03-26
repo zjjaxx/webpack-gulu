@@ -69,21 +69,21 @@ export default {
   watch: {},
   methods: {
     onRefresh() {
-      console.log('refresh')
+    
       setTimeout(() => {
         this.count += 1
         this.isLoading = false
       }, 2000)
     },
     onRefresh1() {
-      console.log('refresh')
+    
       setTimeout(() => {
         this.count1 += 1
         this.isLoading1 = false
       }, 2000)
     },
     onRefresh2() {
-      console.log('refresh')
+   
       setTimeout(() => {
         this.count2 += 1
         this.isLoading2 = false
