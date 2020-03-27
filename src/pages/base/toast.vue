@@ -17,9 +17,9 @@
       <div class="default-wrap">
         <z-button @click="showToastWrap">溢出换行</z-button>
       </div>
-      <z-title title="不自动关闭toast"></z-title>
+      <z-title title="加载提示"></z-title>
       <div class="default-wrap">
-        <z-button @click="showToastAllTime">不自动关闭toast</z-button>
+        <z-button @click="loadingToast">加载提示</z-button>
       </div>
     </z-body>
   </div>
@@ -27,6 +27,7 @@
 
 <script>
 import ZButton from "../../components/base/z-button.vue";
+import Toast from "../../utils/toast/Toast"
 export default {
   components: { ZButton },
   data() {
@@ -36,22 +37,19 @@ export default {
   watch: {},
   methods: {
     showToast() {
-      this.$toast("默认 toast");
+      Toast("默认 toast")
+      // this.$toast("默认 toast");
     },
     showToastWrap() {
-      this.$toast(
-        "zui移动端UI组件库，模仿vant移动端组件库，仅供学习，不用于商业用途,版本v" +
-          Math.random()
-      );
+      Toast( "zui移动端UI组件库，模仿vant移动端组件库，仅供学习，不用于商业用途,版本v" +Math.random())
+      // this.$toast(
+      //   "zui移动端UI组件库，模仿vant移动端组件库，仅供学习，不用于商业用途,版本v" +
+      //     Math.random()
+      // );
     },
-    showToastAllTime() {
-      this.$toast("不自动关闭toast", {
-        title: "了解",
-        callback: (toast, close) => {
-          close();
-        }
-      });
-    }
+    loadingToast(){
+      Toast.loading("加载中...")
+    },
   },
   created() {},
   mounted() {},

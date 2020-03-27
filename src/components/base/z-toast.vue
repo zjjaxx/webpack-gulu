@@ -7,66 +7,79 @@
 <!--  -->
 <template>
   <div class="z-toast">
-    <slot></slot>
+    <template v-if="type=='common'">{{message}}</template>
+    <template v-else-if="type=='loading'">
+      <div class="loading-wrap flex aligin-center justify-center">
+        <z-icon class="loading" iconName="i-loading-out"></z-icon>
+        <div>{{message}}</div>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
+import ZIcon from '../../components/base/z-icon.vue'
 export default {
-  components: {},
+  components: { ZIcon },
   props: {
-    autoClose: {
-      type: Boolean,
+    message: {
+      type: String,
       default: () => {
-        return true;
-      }
+        return ''
+      },
+      required: true
     },
-    time: {
+    type: {
+      type: String,
+      default: () => {
+        return 'common'
+      },
+      validator: value => value == 'loading' || value == 'common'
+    },
+    duration: {
       type: Number,
       default: () => {
-        return 2000;
-      }
-    },
-    customCloseButton: {
-      type: Object,
-      default: () => {
-        return {
-          title: "知道了",
-          callback: (toast, close) => {
-            toast.close();
-          }
-        };
+        return 10000
       }
     }
   },
   data() {
-    return {};
+    return {}
   },
   computed: {},
   watch: {},
   methods: {
     close() {
-      this.$el.remove();
-      this.$emit("beforeDestroy")
-      this.$destroy();
-    },
-    closeToast() {
-      this.customCloseButton.callback(this, this.close);
+      this.$el.remove()
+      this.$destroy()
     }
   },
   created() {},
   mounted() {
-    if (this.autoClose) {
-      setTimeout(() => {
-        this.close();
-      }, this.time);
-    }
+    setTimeout(() => {
+      this.close()
+    }, this.duration)
+  },
+  beforeDestroy() {
+    this.$emit('beforeDestroy')
   },
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-};
+}
 </script>
 <style lang='less' scoped>
+.z-toast /deep/ .icon{
+  height: 40px;
+  width: 40px;
+}
+.z-fixed{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100;
+  z-index: 300;
+}
 .z-toast {
   position: fixed;
   top: 50%;
@@ -82,11 +95,29 @@ export default {
   z-index: 300;
   animation: fade_in 0.3s ease;
   @keyframes fade_in {
-    0%{
+    0% {
       opacity: 0;
     }
-    100%{
+    100% {
       opacity: 1;
+    }
+  }
+  .loading-wrap {
+    font-size: 14px;
+    color: #fff;
+    flex-direction: column;
+    .loading {
+      margin-bottom: 5px;
+      animation: loading 2s infinite linear;
+      transform-origin: 50% 50%;
+      @keyframes loading {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
     }
   }
 }

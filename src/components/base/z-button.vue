@@ -236,7 +236,7 @@ export default {
   .loading {
     margin-left: 0;
     margin-right: 0.3em;
-    animation: loading 2s infinite linear;
+    animation: loading 1s infinite linear;
     transform-origin: 50% 50%;
     @keyframes loading {
       0% {

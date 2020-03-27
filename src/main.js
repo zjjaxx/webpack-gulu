@@ -32,7 +32,7 @@ Vue.component("z-title", ZTitle)
 
 
 //插件
-import Toast from "./utils/plugins"
+import Toast from "./utils/toast/ToastPlugins"
 Vue.use(Toast)
 
 // import VConsole from "vconsole"

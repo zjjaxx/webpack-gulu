@@ -1,4 +1,4 @@
-import Toast from "../components/base/z-toast.vue"
+import Toast from "../../components/base/z-toast.vue"
 let currentToast=null
 export default {
     install: (Vue, options) => {
