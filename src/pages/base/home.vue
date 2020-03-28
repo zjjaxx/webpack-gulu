@@ -15,16 +15,13 @@
         >
           <div class="nav-title">{{item.title}}</div>
           <div class="nav-name">{{item.name}}</div>
-          <span :class="'cuIcon-' + item.cuIcon"></span>
+
         </router-link>
       </div>
       <!-- <z-menu-group>
-        <z-menu-item title="Toast" :path="{path:'/toast'}"></z-menu-item>
         <z-menu-item title="对话框" :path="{path:'/dialog'}"></z-menu-item>
-        <z-menu-item title="Popup弹出层" :path="{path:'/popup'}"></z-menu-item>
         <z-menu-item title="复选框" :path="{path:'/checkbox'}"></z-menu-item>
         <z-menu-item title="单选框" :path="{path:'/radio'}"></z-menu-item>
-        <z-menu-item title="下拉刷新" :path="{path:'/refresh'}"></z-menu-item>
         <z-menu-item title="SwipeCell 滑动单元格" :path="{path:'/swipeCell'}"></z-menu-item>
       </z-menu-group>-->
     </z-body>
@@ -40,62 +37,57 @@ export default {
         {
           title: "按钮",
           name: "button",
-          color: "purple",
-          cuIcon: "vipcard"
+          color: "purple"
         },
         {
           title: "图标 ",
           name: "icon",
-          color: "mauve",
-          cuIcon: "formfill"
+          color: "mauve"
         },
         {
           title: "Cell单元格",
           name: "menuItem",
-          color: "pink",
-          cuIcon: "list"
+          color: "pink"
         },
         {
           title: "粘性布局",
           name: "sticky",
-          color: "brown",
-          cuIcon: "newsfill"
+          color: "brown"
         },
         {
           title: "Tab标签页",
           name: "tabs",
-          color: "red",
-          cuIcon: "formfill"
+          color: "red"
         },
         {
           title: "下拉刷新",
           name: "refresh",
-          color: "orange",
-          cuIcon: "timefill"
+          color: "orange"
         },
         {
           title: "Popup弹出层",
           name: "popup",
-          color: "green",
-          cuIcon: "messagefill"
+          color: "green"
         },
         {
           title: "输入框",
           name: "input",
-          color: "olive",
-          cuIcon: "album"
+          color: "olive"
         },
         {
           title: "Toast",
           name: "toast",
-          color: "grey",
-          cuIcon: "squarecheckfill"
+          color: "grey"
+        },
+         {
+          title: "对话框",
+          name: "dialog",
+          color: "purple"
         },
         {
           title: "表单",
           name: "form",
-          color: "cyan",
-          cuIcon: "roundcheckfill"
+          color: "cyan"
         }
       ]
     };

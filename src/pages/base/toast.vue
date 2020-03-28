@@ -20,7 +20,13 @@
       <z-title title="加载提示"></z-title>
       <div class="default-wrap">
         <z-button @click="loadingToast">加载提示</z-button>
+        <z-button @click="failToast">失败提示</z-button>
+        <z-button @click="successToast">成功提示</z-button>
       </div>
+      <z-title title="组件内调用"></z-title>
+        <div class="default-wrap">
+        <z-button @click="componentToast">组件内调用</z-button>
+        </div>
     </z-body>
   </div>
 </template>
@@ -38,18 +44,22 @@ export default {
   methods: {
     showToast() {
       Toast("默认 toast")
-      // this.$toast("默认 toast");
     },
     showToastWrap() {
       Toast( "zui移动端UI组件库，模仿vant移动端组件库，仅供学习，不用于商业用途,版本v" +Math.random())
-      // this.$toast(
-      //   "zui移动端UI组件库，模仿vant移动端组件库，仅供学习，不用于商业用途,版本v" +
-      //     Math.random()
-      // );
     },
     loadingToast(){
       Toast.loading("加载中...")
     },
+    failToast(){
+       Toast.fail("fail")
+    },
+    successToast(){
+       Toast.success("success")
+    },
+    componentToast(){
+      this.$toast("组件内调用")
+    }
   },
   created() {},
   mounted() {},

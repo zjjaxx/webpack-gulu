@@ -33,7 +33,8 @@ Vue.component("z-title", ZTitle)
 
 //插件
 import Toast from "./utils/toast/ToastPlugins"
-Vue.use(Toast)
+import Dialog from "./utils/dialog/DialogPlugins"
+Vue.use(Toast).use(Dialog)
 
 // import VConsole from "vconsole"
 // var vConsoleInstance = new VConsole();

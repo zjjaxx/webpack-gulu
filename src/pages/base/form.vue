@@ -106,7 +106,7 @@ export default {
         })
     },
     show(){
-      this.$create(ZPopup,{show:true})
+
     }
   },
   created() {},

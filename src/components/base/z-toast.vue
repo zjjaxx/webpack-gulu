@@ -6,14 +6,28 @@
  -->
 <!--  -->
 <template>
-  <div class="z-toast">
-    <template v-if="type=='common'">{{message}}</template>
-    <template v-else-if="type=='loading'">
-      <div class="loading-wrap flex aligin-center justify-center">
-        <z-icon class="loading" iconName="i-loading-out"></z-icon>
-        <div>{{message}}</div>
-      </div>
-    </template>
+  <div class="z-mask">
+    <div class="z-toast">
+      <template v-if="type=='common'">{{message}}</template>
+      <template v-else-if="type=='loading'">
+        <div class="loading-wrap flex aligin-center justify-center">
+          <z-icon class="loading" iconName="i-loading-out"></z-icon>
+          <div>{{message}}</div>
+        </div>
+      </template>
+      <template v-else-if="type=='success'">
+        <div class="success-wrap flex aligin-center justify-center">
+          <z-icon iconName="i-tipssuccess"></z-icon>
+          <div class="message">{{message}}</div>
+        </div>
+      </template>
+      <template v-else-if="type=='fail'">
+        <div class="fail-wrap flex aligin-center justify-center">
+          <z-icon iconName="i-cloud-error"></z-icon>
+          <div class="message">{{message}}</div>
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -34,12 +48,16 @@ export default {
       default: () => {
         return 'common'
       },
-      validator: value => value == 'loading' || value == 'common'
+      validator: value =>
+        value == 'loading' ||
+        value == 'common' ||
+        value == 'success' ||
+        value == 'fail'
     },
     duration: {
       type: Number,
       default: () => {
-        return 10000
+        return 1000
       }
     }
   },
@@ -68,16 +86,24 @@ export default {
 }
 </script>
 <style lang='less' scoped>
-.z-toast /deep/ .icon{
-  height: 40px;
-  width: 40px;
+.z-toast .loading-wrap /deep/ .icon {
+  height: 50px;
+  width: 50px;
 }
-.z-fixed{
+.z-toast .success-wrap /deep/ .icon {
+  height: 50px;
+  width: 50px;
+}
+.z-toast .fail-wrap /deep/ .icon {
+  height: 50px;
+  width: 50px;
+}
+.z-mask {
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
-  width: 100;
+  width: 100%;
   z-index: 300;
 }
 .z-toast {
@@ -102,10 +128,14 @@ export default {
       opacity: 1;
     }
   }
-  .loading-wrap {
+  .success-wrap,
+  .loading-wrap,
+  .fail-wrap {
     font-size: 14px;
     color: #fff;
     flex-direction: column;
+  }
+  .loading-wrap {
     .loading {
       margin-bottom: 5px;
       animation: loading 2s infinite linear;
@@ -119,6 +149,9 @@ export default {
         }
       }
     }
+  }
+  .message {
+    margin-top: 5px;
   }
 }
 </style>

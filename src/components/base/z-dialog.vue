@@ -2,13 +2,12 @@
 <template>
   <div
     class="z-dialog-mask flex aligin-center justify-center"
-    v-if="dialogFlag"
-    @click="$emit('update:dialogFlag',false)"
+    v-if="value"
   >
     <div class="z-dialog" @click.stop>
       <div class="title">{{title}}</div>
       <div class="content">{{content}}</div>
-      <div class="close" @click="$emit('update:dialogFlag',false)">确认</div>
+      <div class="close" @click="$emit('input',false)">确认</div>
     </div>
   </div>
 </template>
@@ -29,7 +28,7 @@ export default {
       },
       required:true
     },
-    dialogFlag: {
+    value: {
       type: Boolean,
       default: () => {
         return false
