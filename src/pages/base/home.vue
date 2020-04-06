@@ -15,12 +15,9 @@
         >
           <div class="nav-title">{{item.title}}</div>
           <div class="nav-name">{{item.name}}</div>
-
         </router-link>
       </div>
       <!-- <z-menu-group>
-        <z-menu-item title="对话框" :path="{path:'/dialog'}"></z-menu-item>
-        <z-menu-item title="复选框" :path="{path:'/checkbox'}"></z-menu-item>
         <z-menu-item title="单选框" :path="{path:'/radio'}"></z-menu-item>
         <z-menu-item title="SwipeCell 滑动单元格" :path="{path:'/swipeCell'}"></z-menu-item>
       </z-menu-group>-->
@@ -79,10 +76,20 @@ export default {
           name: "toast",
           color: "grey"
         },
-         {
+        {
           title: "对话框",
           name: "dialog",
           color: "purple"
+        },
+        {
+          title: "复选框",
+          name: "checkbox",
+          color: "mauve"
+        },
+        {
+          title: "单选框",
+          name: "radio",
+          color: "orange"
         },
         {
           title: "表单",

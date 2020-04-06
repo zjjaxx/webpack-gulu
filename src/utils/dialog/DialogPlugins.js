@@ -22,7 +22,7 @@ export default {
 
         // 4. 添加实例方法
         Vue.prototype.$dialog = function (option) {
-            Dialog(option)     
+            return Dialog(option)     
         }   
     }
 }
