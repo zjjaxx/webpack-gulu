@@ -18,7 +18,6 @@
         </router-link>
       </div>
       <!-- <z-menu-group>
-        <z-menu-item title="单选框" :path="{path:'/radio'}"></z-menu-item>
         <z-menu-item title="SwipeCell 滑动单元格" :path="{path:'/swipeCell'}"></z-menu-item>
       </z-menu-group>-->
     </z-body>
@@ -32,72 +31,77 @@ export default {
     return {
       elements: [
         {
-          title: "按钮",
-          name: "button",
-          color: "purple"
+          title: '按钮',
+          name: 'button',
+          color: 'purple'
         },
         {
-          title: "图标 ",
-          name: "icon",
-          color: "mauve"
+          title: '图标 ',
+          name: 'icon',
+          color: 'mauve'
         },
         {
-          title: "Cell单元格",
-          name: "menuItem",
-          color: "pink"
+          title: 'Cell单元格',
+          name: 'menuItem',
+          color: 'pink'
         },
         {
-          title: "粘性布局",
-          name: "sticky",
-          color: "brown"
+          title: '粘性布局',
+          name: 'sticky',
+          color: 'brown'
         },
         {
-          title: "Tab标签页",
-          name: "tabs",
-          color: "red"
+          title: 'Tab标签页',
+          name: 'tabs',
+          color: 'red'
         },
         {
-          title: "下拉刷新",
-          name: "refresh",
-          color: "orange"
+          title: '下拉刷新',
+          name: 'refresh',
+          color: 'orange'
         },
         {
-          title: "Popup弹出层",
-          name: "popup",
-          color: "green"
+          title: 'Popup弹出层',
+          name: 'popup',
+          color: 'green'
         },
         {
-          title: "输入框",
-          name: "input",
-          color: "olive"
+          title: '输入框',
+          name: 'input',
+          color: 'olive'
         },
         {
-          title: "Toast",
-          name: "toast",
-          color: "grey"
+          title: 'Toast',
+          name: 'toast',
+          color: 'grey'
         },
         {
-          title: "对话框",
-          name: "dialog",
-          color: "purple"
+          title: '对话框',
+          name: 'dialog',
+          color: 'purple'
         },
         {
-          title: "复选框",
-          name: "checkbox",
-          color: "mauve"
+          title: '复选框',
+          name: 'checkbox',
+          color: 'mauve'
         },
         {
-          title: "单选框",
-          name: "radio",
-          color: "orange"
+          title: '单选框',
+          name: 'radio',
+          color: 'orange'
         },
         {
-          title: "表单",
-          name: "form",
-          color: "cyan"
+          title: 'Picker选择器',
+          name: 'picker',
+          color: 'olive'
+        },
+        {
+          title: '表单',
+          name: 'form',
+          color: 'cyan'
         }
       ]
-    };
+    }
   },
   computed: {},
   watch: {},
@@ -106,7 +110,7 @@ export default {
   mounted() {},
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-};
+}
 </script>
 <style lang='less' scoped>
 .home {
@@ -141,7 +145,7 @@ export default {
       z-index: 1;
       box-sizing: border-box;
       .nav-li::after {
-        content: "";
+        content: '';
         position: absolute;
         z-index: -1;
         background-color: inherit;
@@ -172,7 +176,7 @@ export default {
         margin-top: 10px;
         position: relative;
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           display: block;
           width: 20px;
@@ -183,7 +187,7 @@ export default {
           opacity: 0.5;
         }
         &::after {
-          content: "";
+          content: '';
           position: absolute;
           display: block;
           width: 100px;

@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="z-popup-mask" :class="c_class" v-if="show" @click="$emit('change',false)">
+  <div class="z-popup-mask"  :class="c_class" v-if="show" @click="$emit('change',false)">
     <div class="middle-wrap" v-if="position=='middle'" @click.stop>
       <slot>
         <span>内容</span>
@@ -37,6 +37,11 @@ export default {
   model: {
     prop: 'show',
     event: 'change'
+  },
+  provide(){
+    return {
+      event:this
+    }
   },
   props: {
     round: {
@@ -85,7 +90,13 @@ export default {
       return this.round ? 'bottom-round' : ''
     }
   },
-  watch: {},
+  watch: {
+    show(newValue,oldValue){
+      if(newValue){
+        this.$emit("popupShow")
+      }
+    }
+  },
   methods: {
     open() {
       document.body.classList.add('z-overflow-hidden')
@@ -124,7 +135,7 @@ export default {
     animation: show-out 0.3s ease;
   }
   .top-wrap {
-    height: @popup-top-bottom-height;
+    min-height: @popup-top-bottom-height;
     background: #fff;
     animation: top-in 0.3s ease;
   }
@@ -133,7 +144,7 @@ export default {
     width: 100%;
     bottom: 0;
     left: 0;
-    height: @popup-top-bottom-height;
+    min-height: @popup-top-bottom-height;
     background: #fff;
     animation: bottom-in 0.3s ease;
   }

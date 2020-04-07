@@ -89,6 +89,10 @@ const routes = [
         component: () => import("../pages/layout/row-col.vue")
     },
     {
+        path: "/picker",
+        component: () => import("../pages/base/picker.vue")
+    },
+    {
         path: "/header",
         component: () => import("../pages/layout/header.vue")
     },
