@@ -45,7 +45,7 @@ export default {
         let children= this.getChildren(this,"ZFormItem").filter(item=>item.prop)
         return new Promise((resolve,reject)=>{
           let resultList=children.map(element => 
-            element.validate()
+            element.validate("")
           );
           Promise.all(resultList).then(res=>{
             resolve(true)

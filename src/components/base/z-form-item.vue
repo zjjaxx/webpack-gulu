@@ -15,76 +15,87 @@
 </template>
 
 <script>
-import schema from "async-validator";
+import schema from 'async-validator'
 export default {
-  name: "ZFormItem",
+  name: 'ZFormItem',
   components: {},
-  inject: ["model", "rules"],
+  inject: ['model', 'rules'],
   props: {
     label: {
       //标签
       type: String,
       default: () => {
-        return "";
+        return ''
       }
     },
     prop: {
       //校验属性
       type: String,
       default: () => {
-        return "";
+        return ''
       }
     }
   },
   data() {
     return {
-      errorMessage: "",
+      errorMessage: '',
       validator: null
-    };
+    }
   },
   computed: {
     c_class() {
-      return this.label ? "validate" : "no-label-validate";
+      return this.label ? 'validate' : 'no-label-validate'
     },
-    c_need(){
-      return this.rules[this.prop].find(item=>item.required)
+    c_need() {
+      return (
+        this.rules[this.prop] &&
+        this.rules[this.prop].find(item => item.required)
+      )
     }
   },
   watch: {},
   methods: {
     validate(trigger) {
-      let ruleList= trigger
-          ? this.rules[this.prop].filter(item => item.trigger == trigger||!item.trigger)
-          : this.rules[this.prop]
+      console.log("trigger",trigger)
+      if(!this.rules[this.prop])return
+      //rule中没有trigger属性，input2个事件都触发，有trigger属性只匹配trigger事件触发
+      let ruleList = this.rules[this.prop].filter(item => {
+        if (!item.trigger||trigger=="") return true
+        if (Array.isArray(item.trigger)) {
+          return item.trigger.indexOf(trigger) > -1
+        } else {
+          return item.trigger === trigger
+        }
+      }).map(item => ({ ...item }))
       //要删除不然会出问题。。。。。。
       ruleList.forEach(element => {
         delete element.trigger
-      });
+      })
       let descriptor = {
-        [this.prop]:ruleList
-      };
-      this.validator = new schema(descriptor);
+        [this.prop]: ruleList
+      }
+      this.validator = new schema(descriptor)
       return this.validator.validate(
         { [this.prop]: this.model[this.prop] },
         (errors, fields) => {
           if (errors) {
-            this.errorMessage = errors.find(item => item.message).message;
+            this.errorMessage = errors.find(item => item.message).message
           } else {
-            this.errorMessage = "";
+            this.errorMessage = ''
           }
         }
-      );
+      )
     }
   },
   created() {},
   mounted() {
-    this.$on("validate", trigger => {
-      this.validate(trigger);
-    });
+    this.$on('validate', trigger => {
+      this.validate(trigger)
+    })
   },
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-};
+}
 </script>
 <style lang='less' scoped>
 .z-form-item {
@@ -103,7 +114,7 @@ export default {
   }
   .validate {
     margin-top: 10px;
-    margin-left: 80px;
+    margin-left: 94px;
     font-size: 14px;
     color: #ee0a24;
   }
