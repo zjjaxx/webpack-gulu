@@ -16,6 +16,9 @@
         <z-form-item style="marginLeft:20px;marginRight:20px" prop="address" label="邮箱">
           <z-input v-model="form.address" placeholder="请输入邮箱"></z-input>
         </z-form-item>
+         <z-form-item style="marginLeft:20px;marginRight:20px" label="不校验输入">
+          <z-input v-model="form.noCheck" placeholder="不校验输入"></z-input>
+        </z-form-item>
         <z-form-item style="marginLeft:20px;marginRight:20px">
           <div class="flex justify-center">
             <z-button
@@ -48,9 +51,9 @@ import ZForm from '../../components/base/z-form.vue'
 import ZFormItem from '../../components/base/z-form-item.vue'
 import ZInput from '../../components/base/z-input.vue'
 import ZButton from '../../components/base/z-button.vue'
-import ZPopup from "../../components/base/z-popup.vue"
+import ZPopup from '../../components/base/z-popup.vue'
 export default {
-  components: { ZForm, ZFormItem, ZInput, ZButton,ZPopup },
+  components: { ZForm, ZFormItem, ZInput, ZButton, ZPopup },
   data() {
     return {
       buttonStauts: 'common',
@@ -58,7 +61,8 @@ export default {
         name: '小明',
         age: '',
         from: '',
-        address: ''
+        address: '',
+        noCheck:""
       },
       rule: {
         name: [
@@ -69,16 +73,13 @@ export default {
           }
         ],
         age: [
-          { required: true, message: '请输入年龄', trigger: 'blur' },
-          {
-            type: 'number',
-            message: '年龄必须为数字'
-          },
-          { type: 'number', min: 18, max: 36, message: '年龄必须为18至36之间' }
+          { required: true, message: '请输入年龄' },
+          { type: 'number', message: '年龄必须为数字'},
+          { type: 'number', min: 18, max: 36, message: '年龄必须为18至36之间'}
         ],
         from: [{ required: true, message: '请输入籍贯', trigger: 'blur' }],
         address: [
-          { type: 'email', trigger: 'change', message: '请输入正确的邮箱' }
+          { type: 'email', trigger: 'blur', message: '请输入正确的邮箱' }
         ]
       }
     }
@@ -105,9 +106,7 @@ export default {
           this.$toast('校验失败')
         })
     },
-    show(){
-
-    }
+    show() {}
   },
   created() {},
   mounted() {},
