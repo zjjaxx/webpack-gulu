@@ -69,9 +69,9 @@ export default {
   position: relative;
   .icon {
     display: block;
-    width: 1.5em;
-    height: 1.5em;
-    vertical-align: -0.15em;
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
     fill: currentColor;
     overflow: hidden;
   }
