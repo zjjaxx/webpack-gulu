@@ -3,6 +3,7 @@
   <button
     :class="[
     {'z-border-radius-1px':type=='default'},
+    type=='default'?'rapple-default':'rapple-custom',
     {'z-border-1px':round},
     'z-default-button',
     buttonStatus==1?'loading':buttonStatus==2?'done':'',
@@ -10,7 +11,7 @@
     ]"
     @click="$emit('click')"
   >
-    <slot :class="{[slotName]:true}" :name="slotName" v-if="c_slotShow">
+    <slot  :name="slotName" v-if="c_slotShow">
       <z-icon :class="{[iconPosition]:true}" :iconName="iconName" :color="color"></z-icon>
     </slot>
     <!-- 加载icon   -->
@@ -206,10 +207,6 @@ export default {
   color: @button-color;
   font-size: @button-font-size;
   transition: all 0.3s ease;
-  &:active {
-    background: @button-active-bg;
-    transform: scale(0.9, 0.9);
-  }
   &:disabled {
     opacity: 0.6;
   }

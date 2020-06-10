@@ -141,14 +141,6 @@ export default {
     color: #fff;
     font-size: 14px;
     border-radius: 5px;
-    &:active {
-      background: linear-gradient(
-        66deg,
-        rgba(232, 48, 56, 1),
-        rgba(247, 88, 151, 1)
-      );
-      transform: scale(0.9, 0.9);
-    }
   }
 }
 </style>
