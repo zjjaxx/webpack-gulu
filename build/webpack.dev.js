@@ -19,7 +19,7 @@ module.exports = merge(common, {
     devtool: 'cheap-module-eval-source-map', //追踪到错误和警告在源代码中的原始位置
     devServer: {    //自动刷新浏览器
         host: "0.0.0.0",
-        port:8089,
+        port:8092,
         open: true, //自动打开浏览器
         hot: true,//启用 webpack 的模块热替换特性：vue 局部刷新 不会刷新
         proxy: {
