@@ -18,6 +18,8 @@ module.exports = {
         path: path.resolve(__dirname, '../dist'),
         // publicPath:"https://www.baidu.com/assets/"
     },
+    //代码分离
+    //把node_mudule中的第三方包打包成另一个文件
     optimization: {
         splitChunks: {
             chunks: "all"
@@ -27,7 +29,7 @@ module.exports = {
         // new MiniCssExtractPlugin({
         //     filename: 'style.css'
         // }),
-        new CleanWebpackPlugin(),
+        new CleanWebpackPlugin(), //清除dist
         new VueLoaderPlugin(),//vue 单文件配置
         new HtmlWebpackPlugin({ //自动生成html 并引入js
             title: 'gulu-webpack',

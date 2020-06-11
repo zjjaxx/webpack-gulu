@@ -1,6 +1,6 @@
 // Karma configuration
 // Generated on Mon Feb 03 2020 16:57:54 GMT+0800 (GMT+08:00)
-
+var webpackConfig = require('./build/webpack.test.js')
 module.exports = function(config) {
   config.set({
 
@@ -27,14 +27,16 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+   
     preprocessors: {
+      '**/*.test.js': ['webpack', 'sourcemap']
     },
 
-
+    webpack: webpackConfig,
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['spec'],
 
 
     // web server port

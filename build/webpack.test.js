@@ -1,5 +1,4 @@
 
-const common = require('./webpack.common.js');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //自动生成html 并引入js
 const VueLoaderPlugin = require('vue-loader/lib/plugin') //vue 单文件配置
@@ -8,9 +7,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin'); //清除dist
 module.exports = {
     entry: {
         button:path.resolve(__dirname, '../test/button.test.js'),
-        menuItem: path.resolve(__dirname, '../test/menu-item.test.js'),
-        icon:path.resolve(__dirname, '../test/icon.test.js'),
-        input:path.resolve(__dirname, '../test/input.test.js')
+        // menuItem: path.resolve(__dirname, '../test/menu-item.test.js'),
+        // icon:path.resolve(__dirname, '../test/icon.test.js'),
+        // input:path.resolve(__dirname, '../test/input.test.js')
     },
     mode: "production", //development
     devtool: 'source-map', //追踪到错误和警告在源代码中的原始位置
