@@ -17,7 +17,6 @@ Vue.config.productionTip = false
 Vue.config.devtools = false
 
 describe("Button", () => {
-
     it("存在", () => {
         let zButton = mount(ZButton)
         expect(zButton).to.be.an("object")
@@ -27,14 +26,23 @@ describe("Button", () => {
         let zButton = mount(ZButton, {
             propsData: {
                 buttonStatus: 0,
-                iconName:"i-download"
+                iconName: "i-download"
             }
         })
-        zButton.$on("click", async () => {
+        zButton.vm.$on("click", async () => {
             zButton.setProps({ buttonStatus: 1 })
             await Vue.nextTick()
-            expect(zButton.find(ZIcon).iconName).to.equal("i-loading")
+            expect(zButton.find(ZIcon).vm.iconName).to.equal("i-loading")
+
+            zButton.setProps({ buttonStatus: 2 })
+            await Vue.nextTick()
+            expect(zButton.find(ZIcon).vm.iconName).to.equal("i-wancheng")
+
+            zButton.setProps({ buttonStatus: 0 })
+            await Vue.nextTick()
+            expect(zButton.find(ZIcon).vm.iconName).to.equal("i-download")
         })
         zButton.trigger("click")
+        zButton.destroy()
     })
 })
