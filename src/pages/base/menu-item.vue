@@ -8,20 +8,20 @@
       <z-title title="Cell单元格+路由link"></z-title>
       <z-menu-item title="地址管理" :path="{path:'/icon'}">
         <template v-slot:right>
-          <z-icon icon-name="i-arrow-right"></z-icon>
+          <z-icon classPrefix="gulu" iconName="arrow-right"></z-icon>
         </template>
       </z-menu-item>
       <z-title title="Cell单元格+左边自定义"></z-title>
       <z-menu-item title="金华市婺城区">
         <template v-slot:left>
-          <z-icon iconName="i-location"></z-icon>
+          <z-icon classPrefix="gulu" iconName="location"></z-icon>
         </template>
       </z-menu-item>
       <z-title title="Cell单元格+右边自定义"></z-title>
       <z-menu-item title="个人中心">
         <template v-slot:right>
           <span>跳转</span>
-          <z-icon icon-name="i-arrow-right"></z-icon>
+          <z-icon classPrefix="gulu" iconName="arrow-right"></z-icon>
         </template>
       </z-menu-item>
       <z-title title="CellGroup"></z-title>

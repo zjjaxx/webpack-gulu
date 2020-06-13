@@ -63,4 +63,15 @@ describe("ZIcon",()=>{
         expect(iconWrapper.find("i").element.style.color).to.equal("rgb(255, 0, 0)")
         iconWrapper.destroy()
     })
+    it("size 有效",()=>{
+        let iconWrapper=mount(ZIcon,{
+            propsData:{
+                classPrefix:"gulu",
+                iconName:'img',
+                size:20
+            }
+        })
+        expect(iconWrapper.find("i").element.style.fontSize).to.equal("20px")
+        iconWrapper.destroy()
+    })
 })

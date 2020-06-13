@@ -24,6 +24,7 @@ describe("Button", () => {
         let zButton = mount(ZButton, {
             propsData: {
                 buttonStatus: 0,
+                superButton:true,
                 iconName: "i-download"
             }
         })
@@ -31,14 +32,22 @@ describe("Button", () => {
             zButton.setProps({ buttonStatus: 1 })
             await Vue.nextTick()
             expect(zButton.find(ZIcon).vm.iconName).to.equal("i-loading")
+            let superWrapLoadingStyle=window.getComputedStyle(zButton.find(".super-wrap").element) 
+            expect(superWrapLoadingStyle.transform).to.equal("rotateX(90deg)")
 
             zButton.setProps({ buttonStatus: 2 })
             await Vue.nextTick()
             expect(zButton.find(ZIcon).vm.iconName).to.equal("i-wancheng")
+            let superWrapComplateStyle=window.getComputedStyle(zButton.find(".super-wrap").element) 
+            expect(superWrapComplateStyle.transform).to.equal("rotateX(180deg)")
+
 
             zButton.setProps({ buttonStatus: 0 })
             await Vue.nextTick()
             expect(zButton.find(ZIcon).vm.iconName).to.equal("i-download")
+            let superWrapCommonStyle=window.getComputedStyle(zButton.find(".super-wrap").element) 
+            expect(superWrapCommonStyle.transform).to.equal("rotateX(0deg)")
+
         })
         zButton.trigger("click")
         zButton.destroy()
