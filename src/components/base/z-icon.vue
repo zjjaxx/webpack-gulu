@@ -7,9 +7,7 @@
 <!--  -->
 <template>
   <div class="z-icon-wrap">
-    <svg class="icon" :style="classStyle" aria-hidden="true">
-      <use :xlink:href="`#${iconName}`" />
-    </svg>
+    <i :class="[classPrefix,`${classPrefix}-${iconName}`]" :style="{fontSize:size+'px',color:color}"></i>
     <span class="dot" v-if="dot"></span>
     <span class="z-badge" v-if="info">{{info}}</span>
   </div>
@@ -19,43 +17,54 @@
 export default {
   components: {},
   props: {
+    //大小
+    size: {
+      type: [Number, String],
+      default: () => {
+        return '16'
+      }
+    },
+    //font-family
+    classPrefix: {
+      type: String,
+      default: () => {
+        return 'iconfont'
+      }
+    },
+    //icon 名称
     iconName: {
-      //icon 名称
       type: String,
       default: () => {
         return ''
-      }
+      },
+      required: true
     },
+    //右上角的小红点
     dot: {
-      //右上角的小红点
       type: Boolean,
       default: () => {
         return false
       }
     },
+    //角标
     info: {
-      //角标
       type: [Number, String],
       default: () => {
         return 0
       }
     },
+    //颜色
     color: {
-      //颜色
       type: String,
       default: () => {
-        return ''
+        return '#333'
       }
     }
   },
   data() {
     return {}
   },
-  computed: {
-    classStyle() {
-      return this.color && { fill: this.color }
-    }
-  },
+  computed: {},
   watch: {},
   methods: {},
   created() {},
@@ -100,7 +109,6 @@ export default {
     border: 1px solid #fff;
     border-radius: 16px;
     transform: translate(50%, -50%);
-    transform-origin: 100%;
   }
 }
 </style>

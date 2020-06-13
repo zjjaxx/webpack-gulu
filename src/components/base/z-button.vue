@@ -11,17 +11,27 @@
     ]"
     @click="$emit('click')"
   >
-    <slot  :name="slotName" v-if="c_slotShow">
-      <z-icon :class="{[iconPosition]:true}" :iconName="iconName" :color="color"></z-icon>
+    <slot :name="slotName" v-if="c_slotShow">
+      <z-icon
+        :class="{[iconPosition]:true}"
+        :size="size"
+        :classPrefix="classPrefix"
+        :iconName="iconName"
+        :color="color"
+      ></z-icon>
     </slot>
     <!-- 加载icon   -->
     <z-icon
+      :size="size"
+      :classPrefix="classPrefix"
       :class="[{[iconPosition]:true},'loading-icon']"
       :color="color"
       :iconName="loadingIconName"
       v-if="buttonStatus==1"
     ></z-icon>
     <z-icon
+      :size="size"
+      :classPrefix="classPrefix"
       :class="{[iconPosition]:true}"
       :color="color"
       :iconName="complateIconName"
@@ -39,14 +49,14 @@
 </template>
 
 <script>
-import ZIcon from "./z-icon.vue";
+import ZIcon from './z-icon.vue'
 export default {
   components: { ZIcon },
   props: {
     //block
-    block:{
-      type:Boolean,
-      default:()=>{
+    block: {
+      type: Boolean,
+      default: () => {
         return false
       }
     },
@@ -54,88 +64,102 @@ export default {
     buttonStatus: {
       type: Number,
       default: () => {
-        return 0;
+        return 0
       }
     },
     //特选按钮
     superButton: {
       type: Boolean,
       default: () => {
-        return false;
+        return false
       }
     },
     commonText: {
       type: String,
       default: () => {
-        return "待激活";
+        return '待激活'
       }
     },
     loadingText: {
       type: String,
       default: () => {
-        return "加载中";
+        return '加载中'
       }
     },
     complateText: {
       type: String,
       default: () => {
-        return "完成";
+        return '完成'
       }
     },
     //加载图标名称
     loadingIconName: {
       type: String,
       default: () => {
-        return "i-loading";
+        return 'loading'
       }
     },
     //完成图标名称
     complateIconName: {
       type: String,
       default: () => {
-        return "i-wancheng";
+        return 'wancheng'
       }
     },
     //方形
     round: {
       type: Boolean,
       default: () => {
-        return false;
+        return false
       }
     },
     //类型
     type: {
       type: String,
       default: () => {
-        return "default";
+        return 'default'
       },
-      validator: value => value == "default" || value == "custom"
+      validator: value => value == 'default' || value == 'custom'
     },
     //icon位置
     iconPosition: {
       type: String,
       default: () => {
-        return "iconPositionLeft";
+        return 'iconPositionLeft'
       },
       validator: value => {
-        return value == "iconPositionLeft" || value == "iconPositionRight";
+        return value == 'iconPositionLeft' || value == 'iconPositionRight'
       }
     },
     //插槽名
     slotName: {
       type: String,
       default: () => {
-        return "";
+        return ''
       },
       validator: value => {
-        return value == "leftSlot" || value == "rightSlot" || value == "";
+        return value == 'leftSlot' || value == 'rightSlot' || value == ''
       }
     },
     //icon名
     iconName: {
       type: String,
       default: () => {
-        return "";
+        return ''
+      }
+    },
+    //大小
+    size: {
+      type: [Number, String],
+      default: () => {
+        return '16'
+      }
+    },
+    //font-family
+    classPrefix: {
+      type: String,
+      default: () => {
+        return 'iconfont'
       }
     },
     //icon颜色
@@ -143,7 +167,7 @@ export default {
       //颜色
       type: String,
       default: () => {
-        return "";
+        return ''
       }
     }
   },
@@ -151,17 +175,17 @@ export default {
     return {
       c_width: 0,
       index: 0
-    };
+    }
   },
   computed: {
     c_slotShow() {
       if (this.iconName && this.buttonStatus == 0) {
-        return true;
+        return true
       } else {
         if (this.slotName) {
-          return true;
+          return true
         } else {
-          return false;
+          return false
         }
       }
     }
@@ -173,14 +197,14 @@ export default {
   },
   methods: {
     comput_width(index) {
-      let itemList = this.$el.querySelectorAll(".super-wrap .item");
+      let itemList = this.$el.querySelectorAll('.super-wrap .item')
       if (itemList.length) {
-        itemList = Array.prototype.slice.call(itemList);
+        itemList = Array.prototype.slice.call(itemList)
         let widthList = itemList.map(item => {
-          let cssObject = window.getComputedStyle(item);
-          return parseFloat(cssObject.width);
-        });
-        this.c_width = widthList[index];
+          let cssObject = window.getComputedStyle(item)
+          return parseFloat(cssObject.width)
+        })
+        this.c_width = widthList[index]
       }
     }
   },
@@ -188,14 +212,14 @@ export default {
   mounted() {
     if (this.$slots.leftSlot) {
     } else if (this.$slots.rightSlot) {
-      this.$children[0].$el.style.order = "2";
+      this.$children[0].$el.style.order = '2'
     }
-    document.body.addEventListener("touchstart", function() {});
-    this.comput_width(0);
+    document.body.addEventListener('touchstart', function() {})
+    this.comput_width(0)
   },
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-};
+}
 </script>
 <style lang='less' scoped>
 .z-default-button {
@@ -283,16 +307,16 @@ export default {
     transform: rotateX(180deg);
   }
 }
-.z-block{
+.z-block {
   width: 100%;
   justify-content: center;
   box-sizing: border-box;
 }
-.z-border-radius-1px{
+.z-border-radius-1px {
   border-radius: 5px;
   border: 1px solid #333;
 }
-.z-border-1px{
+.z-border-1px {
   border-radius: 0px;
   border: 1px solid #333;
 }

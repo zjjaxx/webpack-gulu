@@ -7,6 +7,7 @@
 import Vue from "vue"
 import ZIcon from "../src/components/base/z-icon.vue"
 //单元测试
+import {mount} from "@vue/test-utils"
 import chai from "chai"
 import chaiSpies from 'chai-spies';
 chai.use(chaiSpies);
@@ -17,67 +18,49 @@ describe("ZIcon",()=>{
     it("存在",()=>{
         expect(ZIcon).to.be.an("object")
     })
-    it("iconName 有效",()=>{
-        let ZIconConstructor=Vue.extend(ZIcon)
-        let icon =new ZIconConstructor({
+    it("classPrefix iconName 有效",()=>{
+        let iconWrapper=mount(ZIcon,{
             propsData:{
-                iconName:"i-setting"
+                classPrefix:"gulu",
+                iconName:'img'
             }
         })
-        icon.$mount()
-        let use=icon.$el.querySelector("use")
-        expect(use.getAttribute("xlink:href")).to.equal("#i-setting")
-        icon.$el.remove()
-        icon.$destroy()
+        expect(iconWrapper.find("i").classes()).to.include('gulu');
+        expect(iconWrapper.find("i").classes()).to.include('gulu-img');
+        iconWrapper.destroy()
     })
     it("dot 有效",()=>{
-        let div =document.createElement("div")
-        document.body.appendChild(div)
-        let ZIconConstructor=Vue.extend(ZIcon)
-        let icon =new ZIconConstructor({
+        let iconWrapper=mount(ZIcon,{
             propsData:{
-                iconName:"i-setting",
+                classPrefix:"gulu",
+                iconName:'img',
                 dot:true
             }
         })
-        icon.$mount(div)
-        let dot=icon.$el.querySelector(".dot")
-        expect(dot).to.exist
-        icon.$el.remove()
-        icon.$destroy()
+        expect(iconWrapper.find(".dot").exists()).to.equal(true)
+        iconWrapper.destroy()
     })
     it("info 有效",()=>{
-        let div =document.createElement("div")
-        document.body.appendChild(div)
-        let ZIconConstructor=Vue.extend(ZIcon)
-        let icon =new ZIconConstructor({
+        let iconWrapper=mount(ZIcon,{
             propsData:{
-                iconName:"i-setting",
-                dot:true,
-                info:"10"
+                classPrefix:"gulu",
+                iconName:'img',
+                info:10
             }
         })
-        icon.$mount(div)
-        let z_badge=icon.$el.querySelector(".z-badge")
-        expect(z_badge).to.exist
-        icon.$el.remove()
-        icon.$destroy()
+        expect(iconWrapper.find(".z-badge").exists()).to.equal(true)
+        expect(iconWrapper.find(".z-badge").text()).to.equal("10")
+        iconWrapper.destroy()
     })
     it("color 有效",()=>{
-        let div =document.createElement("div")
-        document.body.appendChild(div)
-        let ZIconConstructor=Vue.extend(ZIcon)
-        let icon =new ZIconConstructor({
+        let iconWrapper=mount(ZIcon,{
             propsData:{
-                iconName:"i-setting",
-                dot:true,
-                color:"#f50"
+                classPrefix:"gulu",
+                iconName:'img',
+                color:"#ff0000"
             }
         })
-        icon.$mount(div)
-        let _icon=icon.$el.querySelector(".icon")
-        expect(_icon.style.fill).to.equal("rgb(255, 85, 0)")
-        icon.$el.remove()
-        icon.$destroy()
+        expect(iconWrapper.find("i").element.style.color).to.equal("rgb(255, 0, 0)")
+        iconWrapper.destroy()
     })
 })

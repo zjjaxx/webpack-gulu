@@ -18,9 +18,7 @@ Vue.config.devtools = false
 
 describe("Button", () => {
     it("存在", () => {
-        let zButton = mount(ZButton)
-        expect(zButton).to.be.an("object")
-        zButton.destroy()
+        expect(ZButton).to.be.an("object")
     })
     it("button 状态测试", async () => {
         let zButton = mount(ZButton, {

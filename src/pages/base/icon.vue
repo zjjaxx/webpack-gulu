@@ -7,18 +7,18 @@
       <z-title title="图标 默认"></z-title>
       <div class="default-wrap flex">
         <div>
-          <z-icon iconName="i-wancheng"></z-icon>
+          <z-icon size="20" classPrefix="gulu" iconName="wancheng"></z-icon>
         </div>
       </div>
       <z-title title="图标 提示信息"></z-title>
       <div class="default-wrap flex">
-        <z-icon iconName="i-img" dot></z-icon>
-        <z-icon iconName="i-img" info="10"></z-icon>
-        <z-icon iconName="i-img" info="1"></z-icon>
+        <z-icon size="20" classPrefix="gulu"  iconName="img" dot></z-icon>
+        <z-icon size="20" classPrefix="gulu" iconName="img" info="10"></z-icon>
+        <z-icon size="20" classPrefix="gulu" iconName="img" info="1"></z-icon>
       </div>
       <z-title title="图标 颜色填充"></z-title>
       <div class="default-wrap flex">
-        <z-icon iconName="i-thumbs-up" color="#ee0a24" dot></z-icon>
+        <z-icon size="20" classPrefix="gulu" iconName="thumbs-up" color="#ee0a24" dot></z-icon>
       </div>
     </z-body>
   </div>

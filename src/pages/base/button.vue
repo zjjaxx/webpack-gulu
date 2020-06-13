@@ -26,45 +26,54 @@
       <z-title title="图标按钮"></z-title>
       <div class="default-wrap">
         <z-button
-          iconName="i-thumbs-up"
+          size="16"
+          classPrefix="gulu"
+          iconName="thumbs-up"
           style="marginRight:20px"
           iconPosition="iconPositionRight"
         >点赞</z-button>
         <z-button
+          size="16"
+          color="#fff"
+          classPrefix="gulu"
           type="custom"
           class="z-custom-button"
           style="marginRight:20px"
-          iconName="i-location"
+          iconName="location"
         >定位</z-button>
       </div>
       <z-title title="按钮+插槽自定义"></z-title>
       <div class="default-wrap">
         <z-button slotName="leftSlot" style="marginRight:20px">
           <template #leftSlot>
-            <z-icon style="marginRight:5px" iconName="i-setting"></z-icon>
+            <z-icon size="16" classPrefix="gulu" style="marginRight:5px" iconName="setting"></z-icon>
           </template>
           自定义左侧按钮
         </z-button>
         <z-button slotName="rightSlot" type="custom" class="z-custom-button">
           <template #rightSlot>
-            <z-icon style="marginLeft:5px" iconName="i-setting"></z-icon>
+            <z-icon size="16"  color="#fff" classPrefix="gulu" style="marginLeft:5px" iconName="setting"></z-icon>
           </template>自定义右侧按钮
         </z-button>
       </div>
       <z-title title="状态按钮"></z-title>
       <div class="default-wrap">
         <z-button
+          size="16"
+          classPrefix="gulu"
           style="marginRight:20px"
-          iconName="i-download"
+          iconName="download"
           :buttonStatus="buttonStatus"
           superButton
           @click="click"
         ></z-button>
         <z-button
+          size="16"
+          classPrefix="gulu"
           style="marginRight:20px"
           type="custom"
           class="z-custom-button"
-          iconName="i-download"
+          iconName="download"
           commonText="Activate"
           loadingText="Waiting"
           complateText="Activated"
@@ -81,11 +90,11 @@
 </template>
 
 <script>
-import ZButton from "../../components/base/z-button.vue";
-import ZIcon from "../../components/base/z-icon.vue";
-const COMMON_STATUS = 0; //待激活状态
-const LOADING_STATUS = 1; //加载状态
-const COMPLATE_STATUS = 2; //完成状态
+import ZButton from '../../components/base/z-button.vue'
+import ZIcon from '../../components/base/z-icon.vue'
+const COMMON_STATUS = 0 //待激活状态
+const LOADING_STATUS = 1 //加载状态
+const COMPLATE_STATUS = 2 //完成状态
 export default {
   components: { ZButton, ZIcon },
   data() {
@@ -93,20 +102,20 @@ export default {
       isLoading: false,
       isLoading_: false,
       buttonStatus: COMMON_STATUS
-    };
+    }
   },
   computed: {},
   watch: {},
   methods: {
     click() {
       if (this.buttonStatus == COMMON_STATUS) {
-        this.buttonStatus = LOADING_STATUS;
+        this.buttonStatus = LOADING_STATUS
         setTimeout(() => {
-          this.buttonStatus = COMPLATE_STATUS;
+          this.buttonStatus = COMPLATE_STATUS
           setTimeout(() => {
-            this.buttonStatus = COMMON_STATUS;
-          }, 1600);
-        }, 3200);
+            this.buttonStatus = COMMON_STATUS
+          }, 1600)
+        }, 3200)
       }
     }
   },
@@ -114,7 +123,7 @@ export default {
   mounted() {},
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-};
+}
 </script>
 <style lang='less' scoped>
 .button-container {
