@@ -9,6 +9,7 @@ module.exports = {
         button:path.resolve(__dirname, '../test/button.test.js'),
         // menuItem: path.resolve(__dirname, '../test/menu-item.test.js'),
         icon:path.resolve(__dirname, '../test/icon.test.js'),
+        navbar:path.resolve(__dirname, '../test/navbar.test.js')
         // input:path.resolve(__dirname, '../test/input.test.js')
     },
     mode: "production", //development

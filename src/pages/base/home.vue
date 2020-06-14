@@ -2,7 +2,7 @@
 <template>
   <div class="home">
     <img class="img-bg" src="../../assets/imgs/home-bg.jpg" alt />
-    <z-body>
+   
       <div class="nav-list">
         <router-link
           tag="div"
@@ -20,7 +20,7 @@
       <!-- <z-menu-group>
         <z-menu-item title="SwipeCell 滑动单元格" :path="{path:'/swipeCell'}"></z-menu-item>
       </z-menu-group>-->
-    </z-body>
+
   </div>
 </template>
 
@@ -127,6 +127,8 @@ export default {
     width: 100%;
   }
   .nav-list {
+    position: relative;
+    z-index: 10;
     border-radius: 15px;
     margin: 20px 10px 0;
     display: flex;

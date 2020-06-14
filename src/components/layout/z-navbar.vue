@@ -1,66 +1,55 @@
 <template>
-  <div class="z-navbar flex border-top-1px">
-    <template v-for="(item,index) in bottomMenu">
-      <router-link
-        tag="div"
-        :to="item.path"
-        class="menu-item flex justify-center aligin-center flex-column"
-        :key="index"
-      >
-        <slot :item="item" :active="$route.path.match(item.path)"></slot>
-        <div class="mt-3 f-12" :style="c_style(item)">{{item.name}}</div>
-      </router-link>
-    </template>
+  <div :class="{'placeholder':isPlaceholder}">
+    <div class="z-navbar flex border-top-1px">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  components: {},
+  provide(){
+    return {
+      activeColor:this.activeColor,
+      inactiveColor:this.inactiveColor
+    }
+  },
+  components: {
+  },
   props: {
-    bottomMenu: {
-      type: Array,
+    //是否有占位符空间
+    isPlaceholder: {
+      type: Boolean,
       default: () => {
-        return [
-          {
-            path: '/home',
-            name: '首页'
-          }
-        ]
+        return true;
       }
     },
+    //激活颜色
     activeColor: {
       type: String,
       default: () => {
-        return '#07c160'
+        return "#07c160";
       }
     },
+    //未激活颜色
     inactiveColor: {
       type: String,
       default: () => {
-        return '#000'
+        return "#000";
       }
     }
   },
   data() {
-    return {}
+    return {};
   },
   computed: {},
   watch: {},
-  methods: {
-    c_style(item) {
-      return {
-        color: this.$route.path.match(item.path)
-          ? this.activeColor
-          : this.inactiveColor
-      }
-    }
-  },
+  methods: {},
   created() {},
   mounted() {},
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-}
+};
 </script>
 <style lang='less' scoped>
 .z-navbar {
@@ -75,16 +64,17 @@ export default {
   background: #fff;
   box-sizing: border-box;
   z-index: 200;
-  .menu-item {
-    flex: 1;
-    height: 100%;
-    font-size: 14px;
-  }
-  .mt-3 {
-    margin-top: 3px;
-  }
-  .f-12{
-    font-size: 12px;
+}
+.placeholder {
+  &::after {
+    display: block;
+    content: " ";
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+    height: calc(50px + constant(safe-area-inset-bottom));
+    height: calc(50px + env(safe-area-inset-bottom));
+    box-sizing: border-box;
+    z-index: 200;
   }
 }
 </style>

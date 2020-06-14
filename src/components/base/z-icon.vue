@@ -103,11 +103,10 @@ export default {
     color: #fff;
     font-weight: 500;
     font-size: 12px;
-    line-height: 14px;
+    line-height: 16px;
     text-align: center;
     background-color: @z-badge-bg;
-    border: 1px solid #fff;
-    border-radius: 16px;
+    border-radius: 50%;
     transform: translate(50%, -50%);
   }
 }

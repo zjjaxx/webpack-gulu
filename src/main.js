@@ -23,8 +23,6 @@ Vue.component("z-menu-group", ZMenuGroup)
 import ZMenuItem from "./components/base/z-menu-item.vue"
 Vue.component("z-menu-item", ZMenuItem)
 
-import ZBody from "./components/layout/z-body.vue"
-Vue.component("z-body", ZBody)
 
 import ZTitle from "./components/base/z-title.vue"
 Vue.component("z-title", ZTitle)
