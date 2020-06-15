@@ -94,55 +94,58 @@ img {
 .justify-end {
     justify-content: flex-end;
 }
-.border-radius-1px{
+
+.border-top-1px{
     position: relative;
     &::after{
         content: " ";
         position: absolute;
         left: 0;
         top: 0;
-        transform-origin: top left;
-        border: 1px solid #999;
-        border-radius: 10px;
+        width: 100%;
+        transform-origin: 0 top;
+        border-top: 1px solid #999;
+        border-radius: 0;
     }
 }
-.border-1px{
+.border-bottom-1px{
     position: relative;
     &::after{
         content: " ";
         position: absolute;
         left: 0;
-        top: 0;
-        transform-origin: top left;
-        border: 1px solid #999;
+        bottom: 0;
+        width: 100%;
+        transform-origin: 0 bottom;
+        border-bottom: 1px solid #999;
         border-radius: 0;
     }
 }
 @media (min-resolution: 2dppx){
-    .border-1px{
+    .border-top-1px{
         &::after{
             width: 200%;
             height: 200%;
             transform: scale(0.5,0.5);
         }
     }
-    .border-radius-1px{
+    .border-bottom-1px{
         &::after{
-            width: 300%;
-            height: 300%;
-            transform: scale(0.33,0.33);
+            width: 200%;
+            height: 200%;
+            transform: scale(0.5,0.5);
         }
     }
 }
 @media (min-resolution: 3dppx){
-    .border-1px{
+    .border-top-1px{
         &::after{
             width: 300%;
             height: 300%;
             transform: scale(0.33,0.33);
         }
     }
-    .border-radius-1px{
+    .border-bottom-1px{
         &::after{
             width: 300%;
             height: 300%;

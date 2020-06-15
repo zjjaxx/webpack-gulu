@@ -2,19 +2,19 @@
 <template>
   <div class="index">
     <router-view></router-view>
-    <z-navbar activeColor="#39b54a" inactiveColor="#aaaaaa">
+    <z-tabbar activeColor="#39b54a" inactiveColor="#aaaaaa">
       <template v-for="(item,index) in bottomMenu">
-        <z-navbar-item :key="index" :buttomMenuItem="item"></z-navbar-item>
+        <z-tabbar-item :key="index" :buttomMenuItem="item"></z-tabbar-item>
       </template>
-    </z-navbar>
+    </z-tabbar>
   </div>
 </template>
 
 <script>
-import ZNavbar from "../components/layout/z-navbar.vue";
-import ZNavbarItem from "../components/layout/z-navbar-item.vue"
+import ZTabbar from "../components/layout/z-tabbar.vue";
+import ZTabbarItem from "../components/layout/z-tabbar-item.vue"
 export default {
-  components: { ZNavbar,ZNavbarItem},
+  components: { ZTabbar,ZTabbarItem},
   data() {
     return {
       bottomMenu: [
