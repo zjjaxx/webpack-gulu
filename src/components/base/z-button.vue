@@ -74,18 +74,21 @@ export default {
         return false
       }
     },
+    //待激活文字
     commonText: {
       type: String,
       default: () => {
         return '待激活'
       }
     },
+    //加载中文字
     loadingText: {
       type: String,
       default: () => {
         return '加载中'
       }
     },
+    //已完成文字
     complateText: {
       type: String,
       default: () => {

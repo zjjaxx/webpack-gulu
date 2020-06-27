@@ -1,6 +1,6 @@
 <template>
   <div :class="{'placeholder':isPlaceholder}">
-    <header
+    <div
       class="z-header"
       :style="{ background: this.bg,color: this.bg ? '#fff' : '' ,position:isFixed?'':'absolute'}"
     >
@@ -15,16 +15,17 @@
           <div class="title ellipsis" >{{title}}</div>
         </slot>
       </div>
-      <div class="right flex justify-center aligin-center">
+      <div class="right-wrap flex justify-center aligin-center">
         <slot name="right"></slot>
       </div>
-    </header>
+    </div>
   </div>
 </template>
 
 <script>
+import ZIcon from '../base/z-icon.vue'
 export default {
-  components: {},
+  components: {ZIcon},
   props: {
     //是否fixed布局
     isFixed:{
@@ -116,12 +117,14 @@ export default {
       max-width: 150px;
     }
   }
-  .right {
+  .right-wrap {
+    padding:0 10px;
     position: absolute;
     right: 0;
     top: 0;
     height: 100%;
     min-width: 45px;
+    box-sizing: border-box;
   }
 }
 .placeholder {
