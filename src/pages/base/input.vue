@@ -1,34 +1,33 @@
 <!--  -->
 <template>
   <div class="input-container">
-    <z-header title="输入框" bg="linear-gradient(45deg, #0081ff, #1cbbb4)"></z-header>
-    <z-body>
-      <z-title title="基础用法"></z-title>
-      <div class="input-wrap">
-        <z-input v-model="value"></z-input>
-      </div>
-      <z-title title="带标签输入框"></z-title>
-      <div class="input-wrap">
-        <z-input label="姓名" v-model="value_two"></z-input>
-      </div>
-      <z-title title="只读输入框"></z-title>
-      <div class="input-wrap">
-        <z-input v-model="value_three" :placeholder="placeholder_two" :disabled="disabled_three"></z-input>
-      </div>
-      <z-title title="数字输入框"></z-title>
-      <div class="input-wrap">
-        <z-input
-          label="身份证号码"
-          v-model="value_four"
-          :type="type_four"
-          :placeholder="placeholder_four"
-        ></z-input>
-      </div>
-      <z-title title="圆角输入框"></z-title>
-      <div class="input-wrap">
-        <z-input label="详细地址" v-model="value_five" round placeholder="请输入详细地址"></z-input>
-      </div>
-    </z-body>
+    <z-header
+      leftArrow
+      @leftEvent="$router.back()"
+      title="输入框"
+      bg="linear-gradient(45deg, #0081ff, #1cbbb4)"
+    ></z-header>
+
+    <z-title title="基础用法"></z-title>
+    <div class="input-wrap">
+      <z-input v-model="value"></z-input>
+    </div>
+    <z-title title="带标签输入框"></z-title>
+    <div class="input-wrap">
+      <z-input label="姓名" v-model="value_two"></z-input>
+    </div>
+    <z-title title="只读输入框"></z-title>
+    <div class="input-wrap">
+      <z-input v-model="value_three" :placeholder="placeholder_two" :disabled="disabled_three"></z-input>
+    </div>
+    <z-title title="数字输入框"></z-title>
+    <div class="input-wrap">
+      <z-input label="身份证号码" v-model="value_four" :type="type_four" :placeholder="placeholder_four"></z-input>
+    </div>
+    <z-title title="圆角输入框"></z-title>
+    <div class="input-wrap">
+      <z-input label="详细地址" v-model="value_five" round placeholder="请输入详细地址"></z-input>
+    </div>
   </div>
 </template>
 

@@ -83,7 +83,7 @@ describe("Button", () => {
         expect(instanceArray.at(2).text()).to.equal("已完成文字")
         instance.destroy()
     })
-    it("round 方形",()=>{
+    it("round 方形", () => {
         let testDiv = document.createElement("div")
         testDiv.id = "test"
         document.body.appendChild(testDiv)
@@ -97,7 +97,7 @@ describe("Button", () => {
         expect(cssObject.borderRadius).equal("0px")
         instance.destroy()
     })
-    it("type 类型",async()=>{
+    it("type 类型", async () => {
         let testDiv = document.createElement("div")
         testDiv.id = "test"
         document.body.appendChild(testDiv)
@@ -109,10 +109,68 @@ describe("Button", () => {
         expect(instance.classes()).include("rapple-default")
         instance.setProps({ type: "custom" })
         await Vue.nextTick()
-        console.log("classes",instance.classes())
-        let cssObject1 = window.getComputedStyle(instance.find(".z-default-button").element)
+        let cssObject1 = window.getComputedStyle(instance.element)
         expect(cssObject1.borderWidth).equal("0px")
         expect(instance.classes()).include("rapple-custom")
+        instance.destroy()
+    })
+    it("iconPosition icon位置", async () => {
+        let testDiv = document.createElement("div")
+        testDiv.id = "test"
+        document.body.appendChild(testDiv)
+        let instance = mount(ZButton, {
+            propsData: {
+                classPrefix: "gulu",
+                iconName: "download"
+            },
+            attachTo: "#test"
+        })
+        let cssObject=window.getComputedStyle(instance.findComponent(ZIcon).element)
+        expect(cssObject.order).to.equal("1")
+        let buttonTextCssObject=window.getComputedStyle(instance.find(".button-text").element)
+        expect(buttonTextCssObject.order).to.equal("2")
+        instance.setProps({ iconPosition: "iconPositionRight" })
+        await Vue.nextTick()
+        let cssObject1=window.getComputedStyle(instance.findComponent(ZIcon).element)
+        expect(cssObject1.order).to.equal("2")
+        let buttonTextCssObject1=window.getComputedStyle(instance.find(".button-text").element)
+        expect(buttonTextCssObject1.order).to.equal("1")
+        instance.destroy()
+    })
+    it("slotName leftSlot左插槽",async()=>{
+        let instance = mount(ZButton, {
+            propsData: {
+                classPrefix: "gulu",
+                iconName: "download",
+                slotName: "leftSlot"
+            },
+            slots: {
+                "leftSlot": "<z-icon size='16' classPrefix='gulu' style='marginRight:5px' iconName='setting'></z-icon>"
+            },
+            stubs:{
+                "ZIcon":ZIcon
+            }
+        })
+        expect(instance.findComponent(ZIcon).vm.iconName).equal("setting")
+        expect(instance.findComponent(ZIcon).element.style.order).equal("")
+        instance.destroy()
+    })
+    it("slotName rightSlot右插槽",async()=>{
+        let instance = mount(ZButton, {
+            propsData: {
+                classPrefix: "gulu",
+                iconName: "download",
+                slotName: "rightSlot"
+            },
+            slots: {
+                "rightSlot": "<z-icon size='16' classPrefix='gulu' style='marginRight:5px' iconName='setting'></z-icon>"
+            },
+            stubs:{
+                "ZIcon":ZIcon
+            }
+        })
+        expect(instance.findComponent(ZIcon).vm.iconName).equal("setting")
+        expect(instance.findComponent(ZIcon).element.style.order).equal("2")
         instance.destroy()
     })
 })

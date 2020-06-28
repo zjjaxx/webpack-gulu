@@ -1,48 +1,52 @@
 <!--  -->
 <template>
   <div class="form-container">
-    <z-header title="表单" bg="linear-gradient(45deg, #0081ff, #1cbbb4)"></z-header>
-    <z-body>
-      <z-form :model="form" ref="Form" :rules="rule">
-        <z-form-item style="marginLeft:20px;marginRight:20px" prop="name" label="姓名">
-          <z-input v-model="form.name"></z-input>
-        </z-form-item>
-        <z-form-item style="marginLeft:20px;marginRight:20px" prop="age" label="年龄">
-          <z-input v-model.number="form.age"></z-input>
-        </z-form-item>
-        <z-form-item style="marginLeft:20px;marginRight:20px" prop="from" label="籍贯">
-          <z-input v-model="form.from" placeholder="请输入籍贯"></z-input>
-        </z-form-item>
-        <z-form-item style="marginLeft:20px;marginRight:20px" prop="address" label="邮箱">
-          <z-input v-model="form.address" placeholder="请输入邮箱"></z-input>
-        </z-form-item>
-         <z-form-item style="marginLeft:20px;marginRight:20px" label="不校验输入">
-          <z-input v-model="form.noCheck" placeholder="不校验输入"></z-input>
-        </z-form-item>
-        <z-form-item style="marginLeft:20px;marginRight:20px">
-          <div class="flex justify-center">
-            <z-button
-              type="custom"
-              commonText="提交"
-              loadingText="上传中"
-              complateText="已完成"
-              iconPosition="right"
-              :status="buttonStauts"
-              :turnOnSuper="true"
-              @click="submit('Form')"
-            >
-              <template v-slot:loading-icon>
-                <z-icon color="#fff" iconName="i-loading_one"></z-icon>
-              </template>
-              <template v-slot:complate-icon>
-                <z-icon color="#fff" iconName="i-yiwancheng"></z-icon>
-              </template>
-            </z-button>
-            <z-button style="marginLeft:20px" @click="show">取消</z-button>
-          </div>
-        </z-form-item>
-      </z-form>
-    </z-body>
+    <z-header
+      leftArrow
+      @leftEvent="$router.back()"
+      title="表单"
+      bg="linear-gradient(45deg, #0081ff, #1cbbb4)"
+    ></z-header>
+
+    <z-form :model="form" ref="Form" :rules="rule">
+      <z-form-item style="marginLeft:20px;marginRight:20px" prop="name" label="姓名">
+        <z-input v-model="form.name"></z-input>
+      </z-form-item>
+      <z-form-item style="marginLeft:20px;marginRight:20px" prop="age" label="年龄">
+        <z-input v-model.number="form.age"></z-input>
+      </z-form-item>
+      <z-form-item style="marginLeft:20px;marginRight:20px" prop="from" label="籍贯">
+        <z-input v-model="form.from" placeholder="请输入籍贯"></z-input>
+      </z-form-item>
+      <z-form-item style="marginLeft:20px;marginRight:20px" prop="address" label="邮箱">
+        <z-input v-model="form.address" placeholder="请输入邮箱"></z-input>
+      </z-form-item>
+      <z-form-item style="marginLeft:20px;marginRight:20px" label="不校验输入">
+        <z-input v-model="form.noCheck" placeholder="不校验输入"></z-input>
+      </z-form-item>
+      <z-form-item style="marginLeft:20px;marginRight:20px">
+        <div class="flex justify-center">
+          <z-button
+            type="custom"
+            commonText="提交"
+            loadingText="上传中"
+            complateText="已完成"
+            iconPosition="right"
+            :status="buttonStauts"
+            :turnOnSuper="true"
+            @click="submit('Form')"
+          >
+            <template v-slot:loading-icon>
+              <z-icon color="#fff" iconName="i-loading_one"></z-icon>
+            </template>
+            <template v-slot:complate-icon>
+              <z-icon color="#fff" iconName="i-yiwancheng"></z-icon>
+            </template>
+          </z-button>
+          <z-button style="marginLeft:20px" @click="show">取消</z-button>
+        </div>
+      </z-form-item>
+    </z-form>
   </div>
 </template>
 
@@ -62,7 +66,7 @@ export default {
         age: '',
         from: '',
         address: '',
-        noCheck:""
+        noCheck: ''
       },
       rule: {
         name: [
@@ -74,8 +78,8 @@ export default {
         ],
         age: [
           { required: true, message: '请输入年龄' },
-          { type: 'number', message: '年龄必须为数字'},
-          { type: 'number', min: 18, max: 36, message: '年龄必须为18至36之间'}
+          { type: 'number', message: '年龄必须为数字' },
+          { type: 'number', min: 18, max: 36, message: '年龄必须为18至36之间' }
         ],
         from: [{ required: true, message: '请输入籍贯', trigger: 'blur' }],
         address: [

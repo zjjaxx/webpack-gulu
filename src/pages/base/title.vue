@@ -1,11 +1,14 @@
 <!--  -->
 <template>
   <div class="title-container">
-    <z-header title="标题栏" bg="linear-gradient(45deg, #0081ff, #1cbbb4)">
-    </z-header>
-    <z-body>
-      <z-title title="默认标题栏"></z-title>
-    </z-body>
+    <z-header
+      leftArrow
+      @leftEvent="$router.back()"
+      title="标题栏"
+      bg="linear-gradient(45deg, #0081ff, #1cbbb4)"
+    ></z-header>
+
+    <z-title title="默认标题栏"></z-title>
   </div>
 </template>
 
@@ -30,7 +33,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height:100%;
+  height: 100%;
   background: #fff;
   z-index: 210;
   .left-wrap {

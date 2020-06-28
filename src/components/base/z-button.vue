@@ -20,23 +20,26 @@
         :color="color"
       ></z-icon>
     </slot>
-    <!-- 加载icon   -->
-    <z-icon
-      :size="size"
-      :classPrefix="classPrefix"
-      :class="[{[iconPosition]:true},'loading-icon']"
-      :color="color"
-      :iconName="loadingIconName"
-      v-if="buttonStatus==1"
-    ></z-icon>
-    <z-icon
-      :size="size"
-      :classPrefix="classPrefix"
-      :class="{[iconPosition]:true}"
-      :color="color"
-      :iconName="complateIconName"
-      v-else-if="buttonStatus==2"
-    ></z-icon>
+    <template v-if="!slotName">
+      <!-- 加载icon   -->
+      <z-icon
+        :size="size"
+        :classPrefix="classPrefix"
+        :class="[{[iconPosition]:true},'loading-icon']"
+        :color="color"
+        :iconName="loadingIconName"
+        v-if="buttonStatus==1"
+      ></z-icon>
+      <!-- 完成icon -->
+      <z-icon
+        :size="size"
+        :classPrefix="classPrefix"
+        :class="{[iconPosition]:true}"
+        :color="color"
+        :iconName="complateIconName"
+        v-else-if="buttonStatus==2"
+      ></z-icon>
+    </template>
     <div class="button-text">
       <slot v-if="!superButton"></slot>
       <span class="super-wrap" :style="{width:c_width+'px'}" v-else>
@@ -226,6 +229,7 @@ export default {
 </script>
 <style lang='less' scoped>
 .z-default-button {
+  border: none;
   display: inline-flex;
   align-items: center;
   height: @button-height;

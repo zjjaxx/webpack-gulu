@@ -1,20 +1,25 @@
 <!--  -->
 <template>
   <div class="button-container">
-    <z-header id="header" title="粘性布局" bg="linear-gradient(45deg, #0081ff, #1cbbb4)"></z-header>
-    <z-body>
-      <z-title title="默认"></z-title>
-      <z-sticky :offsetTop="offsetTop" @scroll="scroll">
-        <img class="img" src="../../assets/imgs/funny.gif" alt />
-      </z-sticky>
-      <div>
-        <z-menu-group>
-          <template v-for="(item,index) in 30">
-            <z-menu-item :title="'菜单'+index" :key="index"></z-menu-item>
-          </template>
-        </z-menu-group>
-      </div>
-    </z-body>
+    <z-header
+      leftArrow
+      @leftEvent="$router.back()"
+      id="header"
+      title="粘性布局"
+      bg="linear-gradient(45deg, #0081ff, #1cbbb4)"
+    ></z-header>
+
+    <z-title title="默认"></z-title>
+    <z-sticky :offsetTop="offsetTop" @scroll="scroll">
+      <img class="img" src="../../assets/imgs/funny.gif" alt />
+    </z-sticky>
+    <div>
+      <z-menu-group>
+        <template v-for="(item,index) in 30">
+          <z-menu-item :title="'菜单'+index" :key="index"></z-menu-item>
+        </template>
+      </z-menu-group>
+    </div>
   </div>
 </template>
 

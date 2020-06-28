@@ -2,12 +2,15 @@
 <template>
   <div class="swipe-cell-container">
     <div class="button-container">
-      <z-header title="SwipeCell" bg="linear-gradient(45deg, #0081ff, #1cbbb4)">
-      </z-header>
-      <z-body>
-        <z-title title="基础用法"></z-title>
-        <z-swipe-cell></z-swipe-cell>
-      </z-body>
+      <z-header
+        leftArrow
+        @leftEvent="$router.back()"
+        title="SwipeCell"
+        bg="linear-gradient(45deg, #0081ff, #1cbbb4)"
+      ></z-header>
+
+      <z-title title="基础用法"></z-title>
+      <z-swipe-cell></z-swipe-cell>
     </div>
   </div>
 </template>
