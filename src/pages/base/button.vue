@@ -142,21 +142,21 @@
       >
         <template #rightSlot>
           <z-icon
-            size="14"
+            size="16"
             v-if="buttonStatus==0"
             classPrefix="gulu"
             style="marginLeft:5px"
             iconName="setting"
           ></z-icon>
           <z-icon
-            size="14"
+            size="16"
             v-if="buttonStatus==1"
             classPrefix="gulu"
             style="marginLeft:5px"
             iconName="download"
           ></z-icon>
           <z-icon
-            size="14"
+            size="16"
             v-if="buttonStatus==2"
             classPrefix="gulu"
             style="marginLeft:5px"

@@ -42,11 +42,11 @@
     </template>
     <div class="button-text">
       <slot v-if="!superButton"></slot>
-      <span class="super-wrap" :style="{width:c_width+'px'}" v-else>
+      <div class="super-wrap" :style="{width:c_width+'px'}" v-else>
         <span class="item">{{commonText}}</span>
         <span class="item">{{loadingText}}</span>
         <span class="item">{{complateText}}</span>
-      </span>
+      </div>
     </div>
   </button>
 </template>
@@ -280,19 +280,18 @@ export default {
     }
   }
   .super-wrap {
-    display: inline-block;
-    height: @button-font-size;
     position: relative;
     transform-style: preserve-3d;
+    height: @button-font-size;
     transition: transform 0.3s ease;
     .item {
       position: absolute;
       backface-visibility: hidden;
       top: 0;
       left: 0;
-      bottom: 0;
       white-space: nowrap;
-      height: 100%;
+      height: @button-font-size;
+      line-height: @button-font-size;
       transform-origin: 50% 50%;
       transform: rotateX(0deg) translateZ(10px);
       &:nth-child(2) {
