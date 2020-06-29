@@ -97,6 +97,10 @@ const routes = [
         component: () => import("../pages/layout/header.vue")
     },
     {
+        path: "/tabbar",
+        component: () => import("../pages/layout/tabbar.vue")
+    },
+    {
         path: "/form",
         component: () => import("../pages/base/form.vue")
     },

@@ -81,4 +81,17 @@ describe("header 测试", () => {
         expect(spy).to.have.been.called()
         instance.destroy()
     })
+    it("左边 中间 右边 插槽",async()=>{
+        let instance = mount(ZHeader, {
+            slots: {
+                "left": "<span id='left'>left</span>",
+                "center":"<span id='center'>center</span>",
+                "right":"<span id='right'>right</span>"
+            },
+        })
+        expect(instance.find("#left").text()).to.equal("left")
+        expect(instance.find("#center").text()).to.equal("center")
+        expect(instance.find("#right").text()).to.equal("right")
+        instance.destroy()
+    })
 })

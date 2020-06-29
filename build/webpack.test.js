@@ -7,7 +7,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin'); //清除dist
 module.exports = {
     entry: {
         button:path.resolve(__dirname, '../test/button.test.js'),
-        // menuItem: path.resolve(__dirname, '../test/menu-item.test.js'),
+        tabbar: path.resolve(__dirname, '../test/tabbar.test.js'),
         icon:path.resolve(__dirname, '../test/icon.test.js'),
         header:path.resolve(__dirname, '../test/header.test.js')
         // input:path.resolve(__dirname, '../test/input.test.js')

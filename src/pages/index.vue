@@ -2,9 +2,9 @@
 <template>
   <div class="index">
     <router-view></router-view>
-    <z-tabbar activeColor="#39b54a" inactiveColor="#aaaaaa">
+    <z-tabbar activeColor="#39b54a" route replace inactiveColor="#aaaaaa">
       <template v-for="(item,index) in bottomMenu">
-        <z-tabbar-item :key="index" :buttomMenuItem="item"></z-tabbar-item>
+        <z-tabbar-item :key="index"  v-bind="item"></z-tabbar-item>
       </template>
     </z-tabbar>
   </div>
@@ -19,7 +19,7 @@ export default {
     return {
       bottomMenu: [
         {
-          path: "/home",
+          to: "/home",
           name: "组件",
           iconConfig: {
             classPrefix: "gulu",
@@ -28,7 +28,7 @@ export default {
           }
         },
         {
-          path: "/layout",
+          to: "/layout",
           name: "布局",
           iconConfig: {
             classPrefix: "gulu",
@@ -38,8 +38,7 @@ export default {
           }
         },
         {
-          path: "/person",
-
+          to: "/person",
           name: "扩展",
           iconConfig: {
             classPrefix: "gulu",
