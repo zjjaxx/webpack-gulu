@@ -41,8 +41,8 @@ const routes = [
         component: () => import("../pages/base/icon.vue")
     },
     {
-        path: "/menuItem",
-        component: () => import("../pages/base/menu-item.vue")
+        path: "/cell",
+        component: () => import("../pages/base/cell.vue")
     },
     {
         path: "/input",
@@ -109,7 +109,8 @@ const routes = [
 const router = new VueRouter({
     scrollBehavior(to, from, savedPosition) {
         return { x: 0, y: 0 }
-    }, routes
+    }, 
+    routes
 })
 
 export default router

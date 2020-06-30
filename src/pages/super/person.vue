@@ -2,7 +2,7 @@
 <template>
   <div class="person-container">
     <z-header title="特炫组件" bg="linear-gradient(45deg, #0081ff, #1cbbb4)"></z-header>
-    <z-menu-item title="特炫按钮" :path="{path:'/superButton'}"></z-menu-item>
+    <z-cell-item title="特炫按钮" :path="{path:'/superButton'}"></z-cell-item>
   </div>
 </template>
 

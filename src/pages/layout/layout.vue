@@ -1,11 +1,17 @@
 <!--  -->
 <template>
   <div class="layout">
-    <z-header    leftArrow
-      @leftEvent="$router.back()" title="布局" bg="linear-gradient(45deg, #0081ff, #1cbbb4)"></z-header>
-    <z-menu-item title="导航栏" :path="{path:'/header'}"></z-menu-item>
-    <z-menu-item title="tabbar 标签栏" :path="{path:'/tabbar'}"></z-menu-item>
-    <z-menu-item title="Grid栅格" :path="{path:'/row-col'}"></z-menu-item>
+    <z-header
+      leftArrow
+      @leftEvent="$router.back()"
+      title="布局"
+      bg="linear-gradient(45deg, #0081ff, #1cbbb4)"
+    ></z-header>
+    <z-cell-group>
+      <z-cell-item title="导航栏" :to="{path:'/header'}"></z-cell-item>
+      <z-cell-item title="tabbar 标签栏" :to="{path:'/tabbar'}"></z-cell-item>
+      <z-cell-item title="Grid栅格" :to="{path:'/row-col'}"></z-cell-item>
+    </z-cell-group>
   </div>
 </template>
 

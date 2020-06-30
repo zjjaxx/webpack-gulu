@@ -55,11 +55,11 @@
     <z-tabs v-model="active3" :isSticky="true" :offsetTop="offsetTop">
       <z-tab :title="item.name" v-for="(item,index) in list2" :key="index">
         <div class="tab-content—sticky">
-          <z-menu-group>
+          <z-cell-group>
             <template v-for="(_item,_index) in item.list">
-              <z-menu-item :title="item.name+_index" :key="_index"></z-menu-item>
+              <z-cell-item :title="item.name+_index" :key="_index"></z-cell-item>
             </template>
-          </z-menu-group>
+          </z-cell-group>
         </div>
       </z-tab>
     </z-tabs>

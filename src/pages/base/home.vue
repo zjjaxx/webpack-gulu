@@ -17,9 +17,9 @@
           <div class="nav-name">{{item.name}}</div>
         </router-link>
       </div>
-      <!-- <z-menu-group>
-        <z-menu-item title="SwipeCell 滑动单元格" :path="{path:'/swipeCell'}"></z-menu-item>
-      </z-menu-group>-->
+      <!-- <z-cell-group>
+        <z-cell-item title="SwipeCell 滑动单元格" :path="{path:'/swipeCell'}"></z-cell-item>
+      </z-cell-group>-->
 
   </div>
 </template>
@@ -42,7 +42,7 @@ export default {
         },
         {
           title: 'Cell单元格',
-          name: 'menuItem',
+          name: 'cell',
           color: 'pink'
         },
         {

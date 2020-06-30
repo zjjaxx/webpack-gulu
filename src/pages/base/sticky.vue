@@ -14,11 +14,11 @@
       <img class="img" src="../../assets/imgs/funny.gif" alt />
     </z-sticky>
     <div>
-      <z-menu-group>
+      <z-cell-group>
         <template v-for="(item,index) in 30">
-          <z-menu-item :title="'菜单'+index" :key="index"></z-menu-item>
+          <z-cell-item :title="'菜单'+index" :key="index"></z-cell-item>
         </template>
-      </z-menu-group>
+      </z-cell-group>
     </div>
   </div>
 </template>

@@ -1,13 +1,14 @@
 <!--  -->
 <template>
-  <div :style="c_wrap_style">
-    <div class="z-sticky" :class="c_class" :style="c_style">
+  <div :style="{height: this.isSticky ? `${this.height}px` : null}">
+    <div class="z-sticky" :class="[this.isSticky ? 'z-sticky-fixed' : '']" :style="{ top: this.offsetTop + 'px' }">
       <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
+import {getScroller} from "../../utils/dom.js"
 export default {
   props: {
     offsetTop: {
@@ -24,27 +25,16 @@ export default {
       isSticky: false,
       scrollRoot: null,
       eleToTop: 0,
-      height:0
+      height: 0
     }
   },
   computed: {
-    c_wrap_style() {
-      return {
-        height: this.isSticky ? `${this.height}px` : null
-      }
-    },
-    c_class() {
-      return [this.isSticky ? 'z-sticky-fixed' : '']
-    },
-    c_style() {
-      return { top: this.offsetTop + 'px' }
-    }
   },
   watch: {},
   methods: {
     //监听滚动事件并设置吸顶
     setScrollListener() {
-      this.scrollRoot = this.getScroll(this.$el)
+      this.scrollRoot = getScroller(this.$el)
       this.scrollRoot.addEventListener('scroll', this.scrollEvent)
     },
     scrollEvent() {
@@ -65,39 +55,13 @@ export default {
         isSticky: this.isSticky
       })
     },
-    //获取最近的滚动的父级容器
-    getScroll(el, root = window) {
-      const overflowScrollReg = /scroll|auto/i
-      let node = el
-      while (
-        node &&
-        node.tagName !== 'HTML' &&
-        node.nodeType === 1 &&
-        node !== root
-      ) {
-        const { overflowY } = window.getComputedStyle(node)
-        if (overflowScrollReg.test(overflowY)) {
-          if (node.tagName !== 'BODY') {
-            return node
-          }
-          const { overflowY: htmlOverflowY } = window.getComputedStyle(
-            node.parentNode
-          )
-          if (overflowScrollReg.test(htmlOverflowY)) {
-            return node
-          }
-        }
-        node = node.parentNode
-      }
-      return root
-    }
   },
   created() {},
   mounted() {
     //防止Vue-router路由切换时触发scroll函数
-    this.$nextTick(() => {
+    // this.$nextTick(() => {
       this.setScrollListener()
-    })
+    // })
   },
   updated() {}, //生命周期 - 更新之后
   destroyed() {
@@ -115,5 +79,6 @@ export default {
   left: 0;
   width: 100%;
   background: #fff;
+  z-index: 100;
 }
 </style>

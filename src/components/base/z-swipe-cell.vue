@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="z-swipe-cell">
-    <z-menu-item class="menu-item" title="单元格"></z-menu-item>
+    <z-cell-item class="menu-item" title="单元格"></z-cell-item>
     <slot name="right">
       <div class="right-wrap flex">
         <z-button block size="large" type="custom">删除</z-button>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import ZMenuItem from '../../components/base/z-menu-item.vue'
+import ZMenuItem from '../../components/base/z-cell-item.vue'
 import ZButton from '../../components/base/z-button.vue'
 export default {
   components: { ZMenuItem, ZButton },

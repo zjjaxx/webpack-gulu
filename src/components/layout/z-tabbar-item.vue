@@ -71,6 +71,7 @@ export default {
     return {}
   },
   computed: {
+    //当前子组件在父组件中的索引
     c_index(){
       return this.getParent('ZTabbar').$children.indexOf(this)
     },

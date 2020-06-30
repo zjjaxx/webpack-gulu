@@ -17,11 +17,11 @@ Vue.component("z-icon", ZIcon)
 import ZHeader from "./components/layout/z-header.vue"
 Vue.component("z-header", ZHeader)
 
-import ZMenuGroup from "./components/base/z-menu-group.vue"
-Vue.component("z-menu-group", ZMenuGroup)
+import ZCellGroup from "./components/base/z-cell-group.vue"
+Vue.component("z-cell-group", ZCellGroup)
 
-import ZMenuItem from "./components/base/z-menu-item.vue"
-Vue.component("z-menu-item", ZMenuItem)
+import ZCellItem from "./components/base/z-cell-item.vue"
+Vue.component("z-cell-item", ZCellItem)
 
 
 import ZTitle from "./components/base/z-title.vue"

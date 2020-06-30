@@ -1,5 +1,6 @@
 export default {
     methods: {
+        //获取父组件并调用父组件派发事件
         dispatch(componentName, eventName, params) {
             let parent = this.$parent || this.$root;
             let name = parent.$options.name;
@@ -23,6 +24,7 @@ export default {
                 }
             });
         },
+        //获取父组件
         getParent(componentName) {
             let parent = this.$parent || this.$root;
             let name = parent.$options.name;

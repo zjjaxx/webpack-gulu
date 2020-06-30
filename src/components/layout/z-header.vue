@@ -6,7 +6,7 @@
     >
       <div class="left-wrap flex justify-center aligin-center" @click="$emit('leftEvent')">
         <slot name="left">
-          <z-icon :color="this.bg ? '#fff' : ''"  classPrefix="gulu" iconName="arrowleft" v-if="leftArrow"></z-icon>
+          <z-icon :color="this.bg ? '#fff' : ''"  :classPrefix="classPrefix"  iconName="arrowleft" v-if="leftArrow"></z-icon>
           <span class="back" v-if="leftText">{{leftText}}</span>
         </slot>
       </div>
@@ -27,6 +27,12 @@ import ZIcon from '../base/z-icon.vue'
 export default {
   components: {ZIcon},
   props: {
+    classPrefix:{
+      type:String,
+      default: () => {
+        return "gulu"
+      }
+    },
     //是否fixed布局
     isFixed:{
       type:Boolean,
