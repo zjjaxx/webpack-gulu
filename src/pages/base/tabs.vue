@@ -21,7 +21,7 @@
         <div class="tab-content">内容三</div>
       </z-tab>
     </z-tabs>
-    <z-title title="tab标签超过4个,标签栏可以在水平方向上滚动，切换时会自动将当前标签居中"></z-title>
+    <!-- <z-title title="tab标签超过4个,标签栏可以在水平方向上滚动，切换时会自动将当前标签居中"></z-title>
     <z-tabs v-model="active2" @click="tab_click">
       <z-tab :title="item" v-for="(item,index) in list" :key="index">
         <div class="tab-content">{{item}}</div>
@@ -62,59 +62,59 @@
           </z-cell-group>
         </div>
       </z-tab>
-    </z-tabs>
+    </z-tabs>-->
   </div>
 </template>
 
 <script>
-import ZTabs from '../../components/base/z-tabs.vue'
-import ZTab from '../../components/base/z-tab.vue'
+import ZTabs from "../../components/base/z-tabs.vue";
+import ZTab from "../../components/base/z-tab.vue";
 export default {
   components: { ZTabs, ZTab },
   data() {
     return {
       list: [],
-      list2: ['零食', '日用', '数码', '旅游', '抽奖', '教育', '文学'],
+      list2: ["零食", "日用", "数码", "旅游", "抽奖", "教育", "文学"],
       active: 0,
       active2: 0,
       active3: 0,
       active4: 0,
       offsetTop: 0
-    }
+    };
   },
   computed: {},
   watch: {},
   methods: {
     tab_click({ index, title }) {
-      this.$toast(`title is ${title} , index is ${index}`)
+      this.$toast(`title is ${title} , index is ${index}`);
     }
   },
   created() {},
   mounted() {
-    let header = document.getElementById('header')
-    this.offsetTop = header.offsetHeight
-    this.list2 = this.list2.map(item => {
-      return {
-        name: item,
-        list: [1, 23, 3, 3, 4, 5, 6, 333, 4, 3, 3, 45, 4423, 222, 98, 89]
-      }
-    })
-    this.list = [
-      '水果',
-      '蔬菜',
-      '奶茶',
-      '电影',
-      '家电',
-      '肉类',
-      '汗蒸',
-      '按摩',
-      '网吧',
-      '水上乐园'
-    ]
+    // let header = document.getElementById("header");
+    // this.offsetTop = header.offsetHeight;
+    // this.list2 = this.list2.map(item => {
+    //   return {
+    //     name: item,
+    //     list: [1, 23, 3, 3, 4, 5, 6, 333, 4, 3, 3, 45, 4423, 222, 98, 89]
+    //   };
+    // });
+    // this.list = [
+    //   "水果",
+    //   "蔬菜",
+    //   "奶茶",
+    //   "电影",
+    //   "家电",
+    //   "肉类",
+    //   "汗蒸",
+    //   "按摩",
+    //   "网吧",
+    //   "水上乐园"
+    // ];
   },
   updated() {}, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
-}
+};
 </script>
 <style lang='less' scoped>
 .button-container {
@@ -138,10 +138,10 @@ export default {
   .tab-content {
     padding: 20px;
   }
-  .tab-content—sticky {
-    .item {
-      padding: 10px 20px;
-    }
-  }
+  // .tab-content—sticky {
+  //   .item {
+  //     padding: 10px 20px;
+  //   }
+  // }
 }
 </style>

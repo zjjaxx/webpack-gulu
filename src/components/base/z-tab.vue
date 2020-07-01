@@ -1,14 +1,13 @@
 <!--  -->
 <template>
-  <span
-    @click="tabTap"
-    class="z-tab flex aligin-center justify-center"
-    :class="[c_active? 'active-style' : '']"
+  <div
+    :class="['z-tab','flex', 'aligin-center', 'justify-center',c_active? 'active-style' : '']"
+    @click="tabClick"
   >
     <slot name="title">
       <span>{{title}}</span>
     </slot>
-  </span>
+  </div>
 </template>
 
 <script>
@@ -40,12 +39,14 @@ export default {
   },
   watch: {},
   methods: {
-    tabTap() {
-      this.getParent('ZTab').$emit('change', c_index)
+    tabClick() {
+      console.log("trigger")
+      this.getParent('ZTabs').$emit('change', this.c_index)
     }
   },
   created() {},
-  mounted() {},
+  mounted() {
+  },
   updated() {
     this.getParent('ZTabs').$emit('tabUpdate')
   }, //生命周期 - 更新之后
