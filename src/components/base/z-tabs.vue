@@ -14,23 +14,23 @@ export default {
     event: 'change'
   },
   props: {
+    //是否吸顶
     isSticky: {
-      //是否吸顶
       type: Boolean,
       default: () => {
         return false
       }
     },
+    //激活索引
     active: {
-      //激活索引
       type: Number,
       default: () => {
         return 0
       },
       required: true
     },
+    //吸顶距离
     offsetTop: {
-      //吸顶距离
       type: Number,
       default: () => {
         return 0

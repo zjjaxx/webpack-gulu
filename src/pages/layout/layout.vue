@@ -8,9 +8,9 @@
       bg="linear-gradient(45deg, #0081ff, #1cbbb4)"
     ></z-header>
     <z-cell-group>
-      <z-cell-item title="导航栏" :to="{path:'/header'}"></z-cell-item>
-      <z-cell-item title="tabbar 标签栏" :to="{path:'/tabbar'}"></z-cell-item>
-      <z-cell-item title="Grid栅格" :to="{path:'/row-col'}"></z-cell-item>
+      <z-cell-item route title="导航栏" :to="{path:'/header'}"></z-cell-item>
+      <z-cell-item route title="tabbar 标签栏" :to="{path:'/tabbar'}"></z-cell-item>
+      <z-cell-item route title="Grid栅格" :to="{path:'/row-col'}"></z-cell-item>
     </z-cell-group>
   </div>
 </template>

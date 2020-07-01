@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div :style="{height: this.isSticky ? `${this.height}px` : null}">
+  <div :style="{height: isSticky ? `${height}px` : null}">
     <div
       class="z-sticky"
       :class="[this.isSticky ? 'z-sticky-fixed' : '']"
@@ -47,7 +47,7 @@ export default {
       }
       //放在下面，不然会出现抖动(吸顶已经浮动，但是添加高度还未0)
       this.$emit("scroll", {
-        scrollTop: scrollRoot.scrollTop,
+        scrollTop: scrollTop,
         isSticky: this.isSticky
       });
     }
@@ -60,7 +60,7 @@ export default {
     let clearScrollEvent = throttle("scroll", "optimizedScroll", scrollRoot);
     scrollRoot.addEventListener(
       "optimizedScroll",
-      this.scrollEvent.bind(null, scrollRoot)
+      this.scrollEvent.bind(this, scrollRoot)
     );
     //清理监听事件
     this.$on("hook:beforeDestroy", () => {

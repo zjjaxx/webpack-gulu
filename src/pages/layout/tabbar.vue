@@ -65,7 +65,7 @@
         </template>
       </z-tabbar-item>
       <z-tabbar-item>
-        <template #icon>
+        <template #icon="{active}">
           <z-icon
             size="24"
             classPrefix="gulu"

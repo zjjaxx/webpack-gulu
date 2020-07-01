@@ -10,7 +10,8 @@ module.exports = {
         tabbar: path.resolve(__dirname, '../test/tabbar.test.js'),
         icon:path.resolve(__dirname, '../test/icon.test.js'),
         header:path.resolve(__dirname, '../test/header.test.js'),
-        cell:path.resolve(__dirname, '../test/cell.test.js')
+        cell:path.resolve(__dirname, '../test/cell.test.js'),
+        sticky:path.resolve(__dirname, '../test/sticky.test.js')
         // input:path.resolve(__dirname, '../test/input.test.js')
     },
     mode: "production", //development
