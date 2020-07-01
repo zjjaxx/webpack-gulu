@@ -6,6 +6,9 @@ import router from '../../router/index.js'
 import { scrollToLeft } from '../../utils/animate'
 import mixin from '../../mixin/emitter'
 export default {
+  provide:{
+    tabParent:this
+  },
   name:"ZTabs",
   mixins: [mixin],
   components: { ZSticky },
@@ -40,7 +43,6 @@ export default {
   data() {
     return {
       length: 0,
-      sticky: false,
       children: []
     }
   },
@@ -58,6 +60,7 @@ export default {
   },
   methods: {
     calcPaneInstances(forceUpdated = false) {
+      // 使用$slots而不是用$children是因为$children不保证顺序
       if (this.$slots.default) {
         let slots = this.$slots.default.filter(
           item =>
@@ -77,7 +80,6 @@ export default {
       }
     },
     stickyScroll({ scrollTop, isSticky }) {
-      this.sticky = isSticky
     },
     //滚动
     scroll(element) {
@@ -91,33 +93,6 @@ export default {
       let to_scrollLeft = offsetLeft - half_window_width + half_width
       scrollToLeft(tabs, to_scrollLeft, 500)
     },
-    //设置v-model
-    setVModel() {
-      this.children.forEach((element, index) => {
-        element.$el.onclick = () => {
-          this.$emit('change', index)
-          let buttonList = this.getChildren(this, 'ZButton')
-          this.$nextTick(() => {
-            buttonList.forEach(element => {
-              element.comput_width()
-            })
-          })
-          this.$emit('click', { index, title: element.title })
-          this.reset()
-          element.isActive = true
-          this.scroll(element)
-        }
-        if (index == this.active) {
-          element.isActive = true
-        }
-      })
-    },
-    //重置tab激活样式
-    reset() {
-      this.children.forEach((element, index) => {
-        element.isActive = false
-      })
-    }
   },
   render() {
     const zTabs = (
@@ -163,12 +138,9 @@ export default {
   },
   mounted() {
     this.calcPaneInstances()
-    //设置v-model
-    this.setVModel()
   },
   updated() {
     this.calcPaneInstances()
-    this.setVModel()
   }, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
 }

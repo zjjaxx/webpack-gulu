@@ -1,6 +1,10 @@
 <!--  -->
 <template>
-  <span class="z-tab flex aligin-center justify-center" :class="c_class">
+  <span
+    @click="tabTap"
+    class="z-tab flex aligin-center justify-center"
+    :class="[c_active? 'active-style' : '']"
+  >
     <slot name="title">
       <span>{{title}}</span>
     </slot>
@@ -8,13 +12,14 @@
 </template>
 
 <script>
-import mixin from "../../mixin/emitter"
+import mixin from '../../mixin/emitter'
 export default {
-  mixins:[mixin],
-  name:"ZTab",
+  inject: ['tabParent'],
+  mixins: [mixin],
+  name: 'ZTab',
   props: {
+    //tab 标签名
     title: {
-      //tab 名
       type: String,
       default: () => {
         return ''
@@ -23,21 +28,26 @@ export default {
   },
   components: {},
   data() {
-    return {
-      isActive: false
-    }
+    return {}
   },
   computed: {
-    c_class() {
-      return this.isActive ? 'active-style' : ''
+    c_index() {
+      return this.tabParent.$children.indexOf(this)
+    },
+    c_active() {
+      return this.tabParent.active == this.c_index
     }
   },
   watch: {},
-  methods: {},
+  methods: {
+    tabTap() {
+      this.getParent('ZTab').$emit('change', c_index)
+    }
+  },
   created() {},
   mounted() {},
   updated() {
-    this.getParent("ZTabs").$emit("tabUpdate")
+    this.getParent('ZTabs').$emit('tabUpdate')
   }, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
 }
