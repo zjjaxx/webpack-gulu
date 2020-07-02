@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     c_index() {
-      return this.tabParent.$children.indexOf(this)
+      return this.getChildren(this.tabParent,"ZTab").indexOf(this)
     },
     c_active() {
       return this.tabParent.active == this.c_index
@@ -40,15 +40,16 @@ export default {
   watch: {},
   methods: {
     tabClick() {
-      console.log("trigger")
       this.getParent('ZTabs').$emit('change', this.c_index)
     }
   },
   created() {},
   mounted() {
+      console.log("z-tab mounted")
   },
   updated() {
-    this.getParent('ZTabs').$emit('tabUpdate')
+     console.log("z-tab update")
+    // this.getParent('ZTabs').$emit('tabUpdate')
   }, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成
 }
