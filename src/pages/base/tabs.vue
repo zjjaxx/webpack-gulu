@@ -21,6 +21,18 @@
         <div class="tab-content">内容三</div>
       </z-tab-panel>
     </z-tabs>
+     <z-title title="通过名称匹配"></z-title>
+    <z-tabs v-model="activeName">
+      <z-tab-panel name="a" title="购物区">
+        <div class="tab-content">内容一</div>
+      </z-tab-panel>
+      <z-tab-panel name="b" title="活动区">
+        <div class="tab-content">内容二</div>
+      </z-tab-panel>
+      <z-tab-panel name="c" title="特色区">
+        <div class="tab-content">内容三</div>
+      </z-tab-panel>
+    </z-tabs>
     <z-title title="tab标签超过4个,标签栏可以在水平方向上滚动，切换时会自动将当前标签居中"></z-title>
     <z-tabs v-model="active2">
       <z-tab-panel :title="item" v-for="(item,index) in list" :key="index">
@@ -68,6 +80,7 @@ export default {
   components: { ZTabs, ZTabPanel },
   data() {
     return {
+      activeName:"a",
       list: [],
       list2: ['零食', '日用', '数码', '旅游', '抽奖', '教育', '文学'],
       active: 0,

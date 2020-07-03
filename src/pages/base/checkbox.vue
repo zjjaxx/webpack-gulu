@@ -24,8 +24,8 @@
     <z-title title="自定义图标"></z-title>
     <z-checkbox style="marginLeft:10px;marginTop:10px" activeColor="#1989fa" v-model="checked4">
       <template v-slot:icon="{checked}">
-        <z-icon iconName="i-thumbs-up" color="#f40" v-if="checked"></z-icon>
-        <z-icon iconName="i-thumbs-up" v-else></z-icon>
+        <z-icon classPrefix="gulu" iconName="thumbs-up" color="#f40" v-if="checked"></z-icon>
+        <z-icon classPrefix="gulu" iconName="thumbs-up" v-else></z-icon>
       </template>
       复选框
     </z-checkbox>
@@ -73,8 +73,8 @@
         <div>{{item}}</div>
       </div>
     </div>
-    <z-button style="marginLeft:20px" type="custom" @click="checkAll">全选</z-button>
-    <z-button style="marginLeft:20px;marginBottom:20px" type="custom" @click="toggleAll">反选</z-button>
+    <z-button style="marginLeft:20px"  @click="checkAll">全选</z-button>
+    <z-button style="marginLeft:20px;marginBottom:20px" @click="toggleAll">反选</z-button>
   </div>
 </template>
 

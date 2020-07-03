@@ -27,15 +27,15 @@
       <z-radio style="marginRight:10px" name="sports">
         运动
         <template v-slot:icon="{checked}">
-          <z-icon iconName="i-thumbs-up" color="#f40" v-if="checked"></z-icon>
-          <z-icon iconName="i-thumbs-up" v-else></z-icon>
+          <z-icon classPrefix="gulu" iconName="thumbs-up" color="#f40" v-if="checked"></z-icon>
+          <z-icon classPrefix="gulu" iconName="thumbs-up" v-else></z-icon>
         </template>
       </z-radio>
       <z-radio name="music">
         音乐
         <template v-slot:icon="{checked}">
-          <z-icon iconName="i-thumbs-up" color="#f40" v-if="checked"></z-icon>
-          <z-icon iconName="i-thumbs-up" v-else></z-icon>
+          <z-icon classPrefix="gulu" iconName="thumbs-up" color="#f40" v-if="checked"></z-icon>
+          <z-icon classPrefix="gulu" iconName="thumbs-up" v-else></z-icon>
         </template>
       </z-radio>
     </z-radio-group>

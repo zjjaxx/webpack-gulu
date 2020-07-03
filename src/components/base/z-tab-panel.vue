@@ -9,6 +9,13 @@
 import mixin from '../../mixin/emitter'
 export default {
   props: {
+    //tab 根据 name 来匹配active
+    name:{
+        type: String,
+      default: () => {
+        return ''
+      }
+    },
     //tab title
     title: {
       type: String,
@@ -29,7 +36,7 @@ export default {
       return this.getChildren(this.tabParent, 'ZTabPanel').indexOf(this)
     },
     c_active() {
-      return this.tabParent.active == this.c_index
+      return this.tabParent.active === this.name||this.tabParent.active == this.c_index
     }
   },
   watch: {},

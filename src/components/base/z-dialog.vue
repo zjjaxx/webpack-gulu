@@ -18,7 +18,7 @@
             @click="confirm"
           >确认</div>
           <div class="loading-wrap flex aligin-center justify-center" v-else>
-            <z-icon class="loading" iconName="i-loading_one" color="#1989fa"></z-icon>
+            <z-icon class="loading" classPrefix="gulu" iconName="loading_one" color="#1989fa"></z-icon>
           </div>
         </div>
       </template>

@@ -11,19 +11,19 @@
       <template v-if="type=='common'">{{message}}</template>
       <template v-else-if="type=='loading'">
         <div class="loading-wrap flex aligin-center justify-center">
-          <z-icon class="loading" iconName="i-loading-out"></z-icon>
+          <z-icon size="50" color="#fff" classPrefix="gulu" class="loading" iconName="loading-out"></z-icon>
           <div>{{message}}</div>
         </div>
       </template>
       <template v-else-if="type=='success'">
         <div class="success-wrap flex aligin-center justify-center">
-          <z-icon iconName="i-tipssuccess"></z-icon>
+          <z-icon classPrefix="gulu"  size="50"  color="#fff" iconName="tipssuccess"></z-icon>
           <div class="message">{{message}}</div>
         </div>
       </template>
       <template v-else-if="type=='fail'">
         <div class="fail-wrap flex aligin-center justify-center">
-          <z-icon iconName="i-cloud-error"></z-icon>
+          <z-icon classPrefix="gulu" size="50"  color="#fff" iconName="cloud-error"></z-icon>
           <div class="message">{{message}}</div>
         </div>
       </template>
@@ -86,18 +86,6 @@ export default {
 }
 </script>
 <style lang='less' scoped>
-.z-toast .loading-wrap /deep/ .icon {
-  height: 50px;
-  width: 50px;
-}
-.z-toast .success-wrap /deep/ .icon {
-  height: 50px;
-  width: 50px;
-}
-.z-toast .fail-wrap /deep/ .icon {
-  height: 50px;
-  width: 50px;
-}
 .z-mask {
   position: fixed;
   top: 0;

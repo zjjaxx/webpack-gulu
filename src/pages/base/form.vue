@@ -27,21 +27,14 @@
       <z-form-item style="marginLeft:20px;marginRight:20px">
         <div class="flex justify-center">
           <z-button
+            class="z-custom-button"
             type="custom"
-            commonText="提交"
-            loadingText="上传中"
-            complateText="已完成"
-            iconPosition="right"
-            :status="buttonStauts"
-            :turnOnSuper="true"
+            iconName="download"
+            classPrefix="gulu"
+            superButton
+            :buttonStatus="buttonStauts"
             @click="submit('Form')"
           >
-            <template v-slot:loading-icon>
-              <z-icon color="#fff" iconName="i-loading_one"></z-icon>
-            </template>
-            <template v-slot:complate-icon>
-              <z-icon color="#fff" iconName="i-yiwancheng"></z-icon>
-            </template>
           </z-button>
           <z-button style="marginLeft:20px" @click="show">取消</z-button>
         </div>
@@ -56,11 +49,14 @@ import ZFormItem from '../../components/base/z-form-item.vue'
 import ZInput from '../../components/base/z-input.vue'
 import ZButton from '../../components/base/z-button.vue'
 import ZPopup from '../../components/base/z-popup.vue'
+const COMMON_STATUS = 0 //待激活状态
+const LOADING_STATUS = 1 //加载状态
+const COMPLATE_STATUS = 2 //完成状态
 export default {
   components: { ZForm, ZFormItem, ZInput, ZButton, ZPopup },
   data() {
     return {
-      buttonStauts: 'common',
+      buttonStauts:COMMON_STATUS,
       form: {
         name: '小明',
         age: '',
@@ -96,12 +92,12 @@ export default {
         .validate()
         .then(valid => {
           this.$toast('校验成功')
-          if (this.buttonStauts == 'common') {
-            this.buttonStauts = 'loading'
+          if (this.buttonStauts == COMMON_STATUS) {
+            this.buttonStauts = LOADING_STATUS
             setTimeout(() => {
-              this.buttonStauts = 'complate'
+              this.buttonStauts = COMPLATE_STATUS
               setTimeout(() => {
-                this.buttonStauts = 'common'
+                this.buttonStauts = COMMON_STATUS
               }, 1600)
             }, 3200)
           }
@@ -120,4 +116,14 @@ export default {
 </script>
 <style lang='less' scoped>
 //@import url(); 引入公共css类
+ .z-custom-button {
+    background: linear-gradient(
+      66deg,
+      rgba(232, 48, 56, 1),
+      rgba(247, 88, 151, 1)
+    );
+    color: #fff;
+    font-size: 14px;
+    border-radius: 5px;
+  }
 </style>

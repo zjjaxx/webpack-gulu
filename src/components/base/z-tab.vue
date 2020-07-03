@@ -17,6 +17,13 @@ export default {
   mixins: [mixin],
   name: 'ZTab',
   props: {
+    //tab 根据 name 来匹配active
+    name: {
+      type: String,
+      default: () => {
+        return ''
+      }
+    },
     //tab 标签名
     title: {
       type: String,
@@ -31,24 +38,28 @@ export default {
   },
   computed: {
     c_index() {
-      return this.getChildren(this.tabParent,"ZTab").indexOf(this)
+      return this.getChildren(this.tabParent, 'ZTab').indexOf(this)
     },
     c_active() {
-      return this.tabParent.active == this.c_index
+      return (
+        this.tabParent.active === this.name ||
+        this.tabParent.active == this.c_index
+      )
     }
   },
   watch: {},
   methods: {
     tabClick() {
-      this.getParent('ZTabs').$emit('change', this.c_index)
+      console.log("name",this.name)
+      this.getParent('ZTabs').$emit('change', this.name || this.c_index)
     }
   },
   created() {},
   mounted() {
-      console.log("z-tab mounted")
+    console.log('z-tab mounted')
   },
   updated() {
-     console.log("z-tab update")
+    console.log('z-tab update')
     // this.getParent('ZTabs').$emit('tabUpdate')
   }, //生命周期 - 更新之后
   destroyed() {} //生命周期 - 销毁完成

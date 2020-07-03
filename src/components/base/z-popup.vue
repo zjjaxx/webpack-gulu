@@ -23,7 +23,7 @@
         <slot></slot>
         <span class="close-wrap" v-if="closeIcon" @click="$emit('change',false)">
           <slot name="closeIcon">
-            <z-icon iconName="i-close"></z-icon>
+            <z-icon classPrefix="gulu" iconName="close"></z-icon>
           </slot>
         </span>
       </div>

@@ -4,7 +4,7 @@
     <div class="input-wrap flex">
       <input class="input" type="radio" :disabled="disabled" :checked="getChecked" @change="change" />
       <slot name="icon" :checked="getChecked">
-        <z-icon :color="c_z_icon_class" iconName="i-checked" v-if="getChecked"></z-icon>
+        <z-icon :color="c_z_icon_class" classPrefix="gulu"  iconName="checked" v-if="getChecked"></z-icon>
         <span :class="c_icon_class" v-else></span>
       </slot>
     </div>

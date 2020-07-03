@@ -28,7 +28,7 @@ export default {
     },
     //激活索引
     active: {
-      type: Number,
+      type: [Number,String],
       default: () => {
         return 0
       },
@@ -45,6 +45,7 @@ export default {
   data() {
     return {
       length: 0,
+      index:0,
       children: []
     }
   },
@@ -55,12 +56,26 @@ export default {
           width: 100 / this.length + '%'
         },
         {
-          transform: `translateX(${this.active * 100 + '%'})`
+          transform: `translateX(${this.index * 100 + '%'})`
         }
       ]
     }
   },
+  watch: {
+    active(newValue, oldValue) {
+      this.index=this.getIndex()
+      this.scroll(this.getChildren(this, 'ZTab')[this.index])
+    }
+  },
   methods: {
+    getIndex(){
+       if(typeof this.active=="string"){
+        return this.children.map(item=>item.name).indexOf(this.active)
+      }
+      else{
+        return this.active
+      }
+    },
     calcPaneInstances(forceUpdated = false) {
       // 使用$slots而不是用$children是因为$children不保证顺序
       if (this.$slots.default) {
@@ -78,11 +93,11 @@ export default {
         )
         if (panesChanged || forceUpdated) {
           this.children = children
+          this.$nextTick(()=>{
+               this.getIndex()
+          })
         }
       }
-    },
-    change(index) {
-      this.scroll(this.getChildren(this, 'ZTab')[index])
     },
     stickyScroll({ scrollTop, isSticky }) {},
     //滚动
@@ -103,7 +118,7 @@ export default {
       <div class="z-tabs border-bottom-1px flex">
         {this.children.map(item => {
           return (
-            <z-tab title={item.title}>
+            <z-tab title={item.title} name={item.name}>
               <template slot="title">{item.$slots.title}</template>
             </z-tab>
           )
@@ -129,7 +144,6 @@ export default {
   },
   created() {
     this.$on('tabUpdate', this.calcPaneInstances.bind(this, true))
-    this.$on('change', this.change)
   },
   mounted() {
     this.calcPaneInstances()

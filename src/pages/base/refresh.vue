@@ -8,17 +8,17 @@
       bg="linear-gradient(45deg, #0081ff, #1cbbb4)"
     ></z-header>
     <z-tabs v-model="active">
-      <z-tab title="基础用法">
+      <z-tab-panel title="基础用法">
         <z-refresh @refresh="onRefresh" v-model="isLoading">
           <div class="refresh-content">刷新次数{{count}}</div>
         </z-refresh>
-      </z-tab>
-      <z-tab title="成功提示">
+      </z-tab-panel>
+      <z-tab-panel title="成功提示">
         <z-refresh @refresh="onRefresh1" successTip="刷新成功" v-model="isLoading1">
           <div class="refresh-content">刷新次数{{count1}}</div>
         </z-refresh>
-      </z-tab>
-      <z-tab title="自定义提示">
+      </z-tab-panel>
+      <z-tab-panel title="自定义提示">
         <z-refresh @refresh="onRefresh2" v-model="isLoading2">
           <template v-slot:loadingSlot="{pullStatus,pullDistance,hideHeight}">
             <img
@@ -44,18 +44,18 @@
           </template>
           <div class="refresh-content">刷新次数{{count2}}</div>
         </z-refresh>
-      </z-tab>
+      </z-tab-panel>
     </z-tabs>
   </div>
 </template>
 
 <script>
-import ZTab from '../../components/base/z-tab.vue'
+import ZTabPanel from '../../components/base/z-tab-panel.vue'
 import ZTabs from '../../components/base/z-tabs.vue'
 import ZRefresh from '../../components/base/z-refresh.vue'
 import ZButton from '../../components/base/z-button.vue'
 export default {
-  components: { ZTabs, ZTab, ZRefresh, ZButton },
+  components: { ZTabs, ZTabPanel, ZRefresh, ZButton },
   data() {
     return {
       active: 0,
