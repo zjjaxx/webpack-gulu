@@ -17,7 +17,7 @@
     "async-validator": "^3.2.4",
     "core-js": "^2.6.11",
     "cssnano": "^4.1.10",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "npm": "^6.14.3",
     "postcss-preset-env": "^6.7.0",
     "postcss-px-to-viewport": "^1.1.1",
